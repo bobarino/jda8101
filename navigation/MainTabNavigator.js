@@ -25,6 +25,7 @@ export default TabNavigator(
     Dashboard: {
       screen: DashboardScreen,
       navigationOptions: () => ({
+        // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => (
           <FontAwesome
             name="dashboard"
@@ -38,6 +39,7 @@ export default TabNavigator(
     Workouts: {
       screen: () => <View />,
       navigationOptions: () => ({
+        // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => (
           <MaterialCommunityIcons
             name="run"
@@ -51,6 +53,7 @@ export default TabNavigator(
     Community: {
       screen: () => <View />,
       navigationOptions: () => ({
+        // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => (
           <MaterialIcons
             name="people"
@@ -64,6 +67,7 @@ export default TabNavigator(
     Settings: {
       screen: () => <View />,
       navigationOptions: () => ({
+        // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => (
           <Octicons
             name="gear"
