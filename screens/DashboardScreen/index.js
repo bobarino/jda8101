@@ -13,7 +13,10 @@ export default () => (
 
         }}
         title="Begin"
+        color="white"
       />
+    </View>
+    <View style={styles.border}>
     </View>
     <Text style={styles.bodyText}>My Workout History:</Text>
     <Image
