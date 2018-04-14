@@ -9,6 +9,7 @@ import {
 import { TabNavigator, TabBarBottom } from 'react-navigation'
 
 import DashboardScreen from '../screens/DashboardScreen'
+import WorkoutsScreen from '../screens/WorkoutsScreen'
 import Colors from '../constants/Colors'
 
 const iconSize = 28
@@ -37,7 +38,7 @@ export default TabNavigator(
       }),
     },
     Workouts: {
-      screen: () => <View />,
+      screen: WorkoutsScreen,
       navigationOptions: () => ({
         // eslint-disable-next-line react/prop-types
         tabBarIcon: ({ focused }) => (
