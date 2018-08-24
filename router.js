@@ -3,7 +3,7 @@ import { SafeAreaView, StyleSheet, Platform, Image, Text, View,
   Button, Dimensions, ScrollView } from 'react-native';
 import { createSwitchNavigator, createStackNavigator,
   createDrawerNavigator, createMaterialTopTabNavigator, DrawerItems } from 'react-navigation';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 
 
 import Welcome from './components/login/Welcome';
@@ -25,10 +25,10 @@ import History from './components/mainDrawer/progress/History';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 handleLogout = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => this.props.navigation.navigate('Welcome'))
+  // firebase
+  //   .auth()
+  //   .signOut()
+  //   .then(() => this.props.navigation.navigate('Welcome'))
 }
 
 export const TodayStack = createStackNavigator({

@@ -1,4 +1,9 @@
 {
   "name": "userapp1",
-  "displayName": "userapp1"
+  "displayName": "Fitness App",
+  "expo": {
+    "name": "userapp1",
+    "slug": "userapp1",
+    "sdkVersion": "27.0.0"
+  }
 }
