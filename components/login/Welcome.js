@@ -9,7 +9,7 @@ export default class Welcome extends Component {
     // firebase.auth().onAuthStateChanged(user => {
     //   this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome')
     // })
-    // this.props.navigation.navigate('DrawNav');
+    this.props.navigation.navigate('DrawNav');
   }
 
   // static navigationOptions = {
