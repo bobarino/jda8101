@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native';
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 
 
 export default class Welcome extends Component {
 
   componentDidMount() {
-    // firebase.auth().onAuthStateChanged(user => {
-    //   this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome')
-    // })
-    this.props.navigation.navigate('DrawNav');
+    firebase.auth().onAuthStateChanged(user => {
+      this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome')
+    })
+    // this.props.navigation.navigate('DrawNav');
   }
 
   // static navigationOptions = {
