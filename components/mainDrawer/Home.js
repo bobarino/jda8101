@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Platform, Image, Text, View, Button } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Body } from 'native-base';
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 
 
 export default class Home extends Component {
@@ -10,15 +10,15 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    // const { currentUser } = firebase.auth()
-    // this.setState({ currentUser })
+    const { currentUser } = firebase.auth()
+    this.setState({ currentUser })
   }
 
   handleLogout = () => {
-    // firebase
-    //   .auth()
-    //   .signOut()
-    //   .then(() => this.props.navigation.navigate('Welcome'))
+    firebase
+      .auth()
+      .signOut()
+      .then(() => this.props.navigation.navigate('Welcome'))
     
   }
 

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { StyleSheet, Platform, Image, View, } from 'react-native';
 import { Container, Header, Content, Item, Input, Icon,
   Button, List, ListItem, Text, Body, Title } from "native-base";
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 
 
 
@@ -10,7 +10,7 @@ import { Container, Header, Content, Item, Input, Icon,
 export default class Exercises extends Component {
   constructor() {
     super();
-    // this.ref = firebase.firestore().collection('exercises');
+    this.ref = firebase.firestore().collection('exercises');
     this.unsubscribe = null;
     this.state = {
       exers: [],
@@ -19,7 +19,7 @@ export default class Exercises extends Component {
   }
 
   componentDidMount() {
-    // this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
+    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
   }
 
   componentWillUnmount() {

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
-// import firebase from 'react-native-firebase';
+import firebase from 'react-native-firebase';
 
 
 export default class Login extends Component {
@@ -8,11 +8,11 @@ export default class Login extends Component {
 
   handleLogin = () => {
     const { email, password } = this.state
-    // firebase
-    //   .auth()
-    //   .signInWithEmailAndPassword(email, password)
-    //   .then(() => this.props.navigation.navigate('DrawNav'))
-    //   .catch(error => this.setState({ errorMessage: error.message }))
+    firebase
+      .auth()
+      .signInWithEmailAndPassword(email, password)
+      .then(() => this.props.navigation.navigate('DrawNav'))
+      .catch(error => this.setState({ errorMessage: error.message }))
   }
 
   render() {

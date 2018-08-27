@@ -8,8 +8,14 @@ target 'userapp1' do
   # Pods for userapp1
 
   # Required by RNFirebase
-  pod 'Firebase/Core', '~> 5.3.0'
+  pod 'Firebase'
+  pod 'FirebaseAuth'
+  pod 'FirebaseStorage'
 
+  pod 'React', :path => '../node_modules/react-native'
+  pod 'React/DevSupport', :path => '../node_modules/react-native'
+  pod 'React/RCTNetwork', :path => '../node_modules/react-native'
+  pod 'yoga', :path => '../node_modules/react-native/ReactCommon/yoga'
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 end
