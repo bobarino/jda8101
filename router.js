@@ -15,7 +15,6 @@ import Program from './components/mainDrawer/workout/Program';
 import Workout from './components/mainDrawer/workout/Workout';
 import WorkLive from './components/mainDrawer/workout/WorkLive';
 import Profile from './components/mainDrawer/Profile';
-import Progress from './components/mainDrawer/Progress';
 import Settings from './components/mainDrawer/Settings';
 import Contact  from './components/mainDrawer/Contact';
 import Log from './components/mainDrawer/progress/Log';
@@ -102,7 +101,6 @@ export const WorkoutStack= createStackNavigator({
       headerLeft: <Ionicons name="md-menu" style={{padding:10}}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     })
-
   }
 });
 
@@ -212,6 +210,56 @@ export const ProfileStack = createStackNavigator(
   }
 );
 
+export const ContactStack = createStackNavigator(
+  {
+    Contact: {
+      screen: Contact,
+    },
+  },
+  {
+    navigationOptions: ({navigation}) => ({
+      initialRouteName: 'Contact',
+      drawerLabel: 'Contact',
+      headerMode: 'screen',
+      headerTitle: 'Contact',
+      headerStyle: {
+        backgroundColor: '#324151',
+      },
+      headerTintColor: '#9599a2',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+        size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
+    }),
+  }
+);
+
+export const SettingsStack = createStackNavigator(
+  {
+    Settings: {
+      screen: Settings,
+    },
+  },
+  {
+    navigationOptions: ({navigation}) => ({
+      initialRouteName: 'Settings',
+      drawerLabel: 'Settings',
+      headerMode: 'screen',
+      headerTitle: 'Settings',
+      headerStyle: {
+        backgroundColor: '#324151',
+      },
+      headerTintColor: '#9599a2',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+        size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
+    }),
+  }
+);
+
 const {width} = Dimensions.get('window');
 
 export const CustomDrawComp = (props) => (
@@ -241,8 +289,8 @@ export const DrawNav = createDrawerNavigator({
   Exercises: ExerciseStack,
   Progress: ProgressStack,
   Profile: ProfileStack,
-  Settings: Settings,
-  Contact: Contact,
+  Settings: SettingsStack,
+  Contact: ContactStack,
 },
 {
   contentComponent: CustomDrawComp,
@@ -269,6 +317,6 @@ export const Auth = createStackNavigator(
       gesturesEnabled: false,
       header: null,
     },
-    initialRouteName: 'Welcome'
+    initialRouteName: firebase.auth().currentUser !== null ? 'DrawNav' : 'Welcome',
   },
 );

@@ -5,12 +5,11 @@ import { Container, Header, Content, Item, Input, Icon,
 import firebase from 'react-native-firebase';
 
 
-
-
 export default class Exercises extends Component {
   constructor() {
     super();
     this.ref = firebase.firestore().collection('exercises');
+    
     this.unsubscribe = null;
     this.state = {
       exers: [],
@@ -31,33 +30,28 @@ export default class Exercises extends Component {
     const exers = [];
     snap.forEach((doc) => {
       const { exName, exStart, exAct, exType } = doc.data();
+
       exers.push({
         exName,
         exStart,
         exAct,
         exType,
       });
-    })/*
-    this.setState(
+    });
+
+    this.setState({
       exers,
-      {loading: false},
-   );*/
+      loading: false,
+    });
  }
 
 
   render () {
-    const dataArray = [
-        { title: "First Element", content: "Lorem ipsum dolor sit amet" },
-        { title: "Second Element", content: "Lorem ipsum dolor sit amet" },
-        { title: "Third Element", content: "Lorem ipsum dolor sit amet" },
-        { title: "Fourth Element", content: "Lorem ipsum dolor sit amet" },
-        { title: "Fifth Element", content: "Lorem ipsum dolor sit amet"  }
-      ];
-    const lis = this.state.exers;
+    const list = this.state.exers;
 
-    const exlist = lis.map((x,i) => {
+    const exlist = list.map((x,i) => {
       return (
-        <ListItem>
+        <ListItem key={i}>
           <Text>{x.exName}</Text>
         </ListItem>
       )

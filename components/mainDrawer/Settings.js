@@ -4,9 +4,9 @@ import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native'
 
 export default class Settings extends Component {
 
-  // static navigationOptions = {
-  //   header: 'none'
-  // }
+  static navigationOptions = {
+    drawerLabel: 'Settings',
+  };
 
   render() {
     return (

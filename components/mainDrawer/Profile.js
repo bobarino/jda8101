@@ -3,9 +3,9 @@ import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native'
 
 
 export default class Profile extends Component {
-  // static navigationOptions = {
-  //   header: 'none'
-  // }
+  static navigationOptions = {
+    drawerLabel: 'Profile',
+  };
 
   render() {
     return (
