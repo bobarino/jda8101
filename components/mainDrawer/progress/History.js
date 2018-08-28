@@ -4,10 +4,6 @@ import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native'
 
 export default class History extends Component {
 
-  // static navigationOptions = {
-  //   header: 'none'
-  // }
-
   render() {
     return (
       <View style={styles.container}>
