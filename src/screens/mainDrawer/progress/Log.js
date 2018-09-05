@@ -9,7 +9,7 @@ export default class Log extends Component {
       <View style={styles.container}>
         <Text>Log</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

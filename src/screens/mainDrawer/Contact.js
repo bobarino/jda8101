@@ -13,7 +13,7 @@ export default class Contact extends Component {
       <View style={styles.container}>
         <Text>Contact</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

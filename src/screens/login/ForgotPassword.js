@@ -9,7 +9,7 @@ export default class ForgotPassword extends Component {
       <View style={styles.container}>
         <Text>Forgot Password</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
-import { SafeAreaView, StyleSheet, Platform, Image, Text, View,
-  Button, Dimensions, ScrollView } from 'react-native';
-import { createSwitchNavigator, createStackNavigator,
-  createDrawerNavigator, createMaterialTopTabNavigator, DrawerItems } from 'react-navigation';
-import firebase from 'react-native-firebase';
-
+import React from 'react';
+import {
+  SafeAreaView, Image, View,
+  Button, Dimensions, ScrollView
+} from 'react-native';
+import {
+  createStackNavigator,
+  createDrawerNavigator, createMaterialTopTabNavigator, DrawerItems
+} from 'react-navigation';
 
 import Welcome from './screens/login/Welcome';
 import Register from './screens/login/Register';
@@ -16,31 +18,28 @@ import Workout from './screens/mainDrawer/workout/Workout';
 import WorkLive from './screens/mainDrawer/workout/WorkLive';
 import Profile from './screens/mainDrawer/Profile';
 import Settings from './screens/mainDrawer/Settings';
-import Contact  from './screens/mainDrawer/Contact';
+import Contact from './screens/mainDrawer/Contact';
 import Log from './screens/mainDrawer/progress/Log';
 import History from './screens/mainDrawer/progress/History';
+
+import LoginService from './services/LoginService';
 
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-handleLogout = () => {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => this.props.navigation.navigate('Welcome'))
-}
+
 
 export const TodayStack = createStackNavigator({
-    Home: {
-      screen: Home,
-    },
-    Workout: {
-      screen: Workout,
-    },
-    WorkLive: {
-      screen: WorkLive,
-    },
+  Home: {
+    screen: Home,
   },
+  Workout: {
+    screen: Workout,
+  },
+  WorkLive: {
+    screen: WorkLive,
+  },
+},
   {
     navigationOptions: {
       gesturesEnabled: false,
@@ -48,7 +47,7 @@ export const TodayStack = createStackNavigator({
     },
     initialRouteName: 'Home'
   },
-)
+);
 
 export const WorkoutTabNav = createMaterialTopTabNavigator({
   Home: {
@@ -64,28 +63,28 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
     }
   },
 },
-{
-  tabBarOptions: {
-    style: {
-      backgroundColor: '#324151',
-    },
-    activeTintColor: '#fe1a27',
-    inactiveTintColor: '#fff',
-    labelStyle: {
-      fontWeight: 'bold',
-      fontSize: 16,
-    },
+  {
+    tabBarOptions: {
+      style: {
+        backgroundColor: '#324151',
+      },
+      activeTintColor: '#fe1a27',
+      inactiveTintColor: '#fff',
+      labelStyle: {
+        fontWeight: 'bold',
+        fontSize: 16,
+      },
 
-    indicatorStyle: {
-      backgroundColor: '#fe1a27'
-    }
-  },
-  swipeEnabled: true,
-  initialRouteName: 'Home',
-});
+      indicatorStyle: {
+        backgroundColor: '#fe1a27'
+      }
+    },
+    swipeEnabled: true,
+    initialRouteName: 'Home',
+  });
 
-export const WorkoutStack= createStackNavigator({
-  TabNavigator:{
+export const WorkoutStack = createStackNavigator({
+  TabNavigator: {
     screen: WorkoutTabNav,
     navigationOptions: ({ navigation }) => ({
       drawerLabel: 'Workout',
@@ -98,8 +97,9 @@ export const WorkoutStack= createStackNavigator({
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
-        size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
+        size={35} color='#9599a2' onPress={() => navigation.openDrawer()}
+      />
     })
   }
 });
@@ -118,30 +118,30 @@ export const ProgTabNav = createMaterialTopTabNavigator({
     }
   },
 },
-{
-  tabBarOptions: {
-    style: {backgroundColor: '#324151'},
-    activeTintColor: '#fe1a27',
-    inactiveTintColor: '#fff',
-    labelStyle: {
-      fontWeight: 'bold',
-      fontSize: 16,
-    },
+  {
+    tabBarOptions: {
+      style: { backgroundColor: '#324151' },
+      activeTintColor: '#fe1a27',
+      inactiveTintColor: '#fff',
+      labelStyle: {
+        fontWeight: 'bold',
+        fontSize: 16,
+      },
 
-    indicatorStyle: {
-      backgroundColor: '#fe1a27'
-    }
-  },
-  swipeEnabled: true,
-  initialRouteName: 'Log',
-  navigationOptions: {
-    gesturesEnabled: false,
-  },
-});
+      indicatorStyle: {
+        backgroundColor: '#fe1a27'
+      }
+    },
+    swipeEnabled: true,
+    initialRouteName: 'Log',
+    navigationOptions: {
+      gesturesEnabled: false,
+    },
+  });
 
 
 export const ProgressStack = createStackNavigator({
-  TabNavigator:{
+  TabNavigator: {
     screen: ProgTabNav,
     navigationOptions: ({ navigation }) => ({
       drawerLabel: 'Progress',
@@ -154,7 +154,7 @@ export const ProgressStack = createStackNavigator({
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     })
   }
@@ -167,7 +167,7 @@ export const ExerciseStack = createStackNavigator(
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       initialRouteName: 'Exercises',
       drawerLabel: 'Exercises Guide',
       headerMode: 'screen',
@@ -179,7 +179,7 @@ export const ExerciseStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     }),
   }
@@ -192,7 +192,7 @@ export const ProfileStack = createStackNavigator(
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       initialRouteName: 'Profile',
       drawerLabel: 'Profile',
       headerMode: 'screen',
@@ -204,7 +204,7 @@ export const ProfileStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     }),
   }
@@ -217,7 +217,7 @@ export const ContactStack = createStackNavigator(
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       initialRouteName: 'Contact',
       drawerLabel: 'Contact',
       headerMode: 'screen',
@@ -229,7 +229,7 @@ export const ContactStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     }),
   }
@@ -242,7 +242,7 @@ export const SettingsStack = createStackNavigator(
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({ navigation }) => ({
       initialRouteName: 'Settings',
       drawerLabel: 'Settings',
       headerMode: 'screen',
@@ -254,23 +254,25 @@ export const SettingsStack = createStackNavigator(
       headerTitleStyle: {
         fontWeight: 'bold',
       },
-      headerLeft: <Ionicons name="md-menu" style={{padding:10}}
+      headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
         size={35} color='#9599a2' onPress={() => navigation.openDrawer()} />
     }),
   }
 );
 
-const {width} = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export const CustomDrawComp = (props) => (
-  <SafeAreaView style={{flex:1}}>
-    <View style={{ height: 220, backgroundColor: '#9599a2',
-      alignItems: 'center', justifyContent: 'center'}}>
+  <SafeAreaView style={{ flex: 1 }}>
+    <View style={{
+      height: 220, backgroundColor: '#9599a2',
+      alignItems: 'center', justifyContent: 'center'
+    }}>
       <Image source={require('./screens/mainDrawer/logo2.png')}
-      style={{height: 180, width:220, borderRadius: 0}} />
+        style={{ height: 180, width: 220, borderRadius: 0 }} />
     </View>
 
-    <ScrollView style={{marginBottom: 50, backgroundColor: '#9599a2'}}>
+    <ScrollView style={{ marginBottom: 50, backgroundColor: '#9599a2' }}>
       <DrawerItems {...props} />
       <Button
         color='#fe1a27'
@@ -292,10 +294,10 @@ export const DrawNav = createDrawerNavigator({
   Settings: SettingsStack,
   Contact: ContactStack,
 },
-{
-  contentComponent: CustomDrawComp,
-  drawerWidth: width*.65,
-});
+  {
+    contentComponent: CustomDrawComp,
+    drawerWidth: width * .65,
+  });
 
 export const Auth = createStackNavigator(
   {
@@ -317,6 +319,6 @@ export const Auth = createStackNavigator(
       gesturesEnabled: false,
       header: null,
     },
-    initialRouteName: firebase.auth().currentUser !== null ? 'DrawNav' : 'Welcome',
+    initialRouteName: LoginService.isLoggedIn() ? 'DrawNav' : 'Welcome',
   },
 );

@@ -12,7 +12,7 @@ export default class Profile extends Component {
       <View style={styles.container}>
         <Text>Profile</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -22,4 +22,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

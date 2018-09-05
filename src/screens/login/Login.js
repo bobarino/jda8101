@@ -7,12 +7,12 @@ export default class Login extends Component {
   state = { email: '', password: '', errorMessage: 'Incorrect Combination' }
 
   handleLogin = () => {
-    const { email, password } = this.state
+    const { email, password } = this.state;
     firebase
       .auth()
       .signInAndRetrieveDataWithEmailAndPassword(email, password)
       .then(() => this.props.navigation.navigate('DrawNav'))
-      .catch(error => this.setState({ errorMessage: error.message }))
+      .catch(error => this.setState({ errorMessage: error.message }));
   }
 
   render() {
@@ -44,7 +44,7 @@ export default class Login extends Component {
           onPress={() => this.props.navigation.navigate('Register')}
         />
       </View>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 8
   }
-})
+});

@@ -11,7 +11,7 @@ export default class Register extends Component {
       .auth()
       .createUserWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => this.props.navigation.navigate('DrawNav'))
-      .catch(error => this.setState({ errorMessage: error.message }))
+      .catch(error => this.setState({ errorMessage: error.message }));
   }
   render() {
     return (
@@ -49,7 +49,7 @@ export default class Register extends Component {
           onPress={() => this.props.navigation.navigate('Login')}
         />
       </View>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -65,4 +65,4 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 8
   }
-})
+});

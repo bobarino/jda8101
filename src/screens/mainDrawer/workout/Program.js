@@ -99,6 +99,6 @@ export default class Program
 
         </Content>
       </Container>
-    )
+    );
   }
 }
