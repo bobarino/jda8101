@@ -6,19 +6,19 @@ import { createSwitchNavigator, createStackNavigator,
 import firebase from 'react-native-firebase';
 
 
-import Welcome from './components/login/Welcome';
-import Register from './components/login/Register';
-import Login from './components/login/Login';
-import Home from './components/mainDrawer/Home';
-import Exercises from './components/mainDrawer/exercise/Exercises';
-import Program from './components/mainDrawer/workout/Program';
-import Workout from './components/mainDrawer/workout/Workout';
-import WorkLive from './components/mainDrawer/workout/WorkLive';
-import Profile from './components/mainDrawer/Profile';
-import Settings from './components/mainDrawer/Settings';
-import Contact  from './components/mainDrawer/Contact';
-import Log from './components/mainDrawer/progress/Log';
-import History from './components/mainDrawer/progress/History';
+import Welcome from './screens/login/Welcome';
+import Register from './screens/login/Register';
+import Login from './screens/login/Login';
+import Home from './screens/mainDrawer/Home';
+import Exercises from './screens/mainDrawer/exercise/Exercises';
+import Program from './screens/mainDrawer/workout/Program';
+import Workout from './screens/mainDrawer/workout/Workout';
+import WorkLive from './screens/mainDrawer/workout/WorkLive';
+import Profile from './screens/mainDrawer/Profile';
+import Settings from './screens/mainDrawer/Settings';
+import Contact  from './screens/mainDrawer/Contact';
+import Log from './screens/mainDrawer/progress/Log';
+import History from './screens/mainDrawer/progress/History';
 
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -266,7 +266,7 @@ export const CustomDrawComp = (props) => (
   <SafeAreaView style={{flex:1}}>
     <View style={{ height: 220, backgroundColor: '#9599a2',
       alignItems: 'center', justifyContent: 'center'}}>
-      <Image source={require('./components/mainDrawer/logo2.png')}
+      <Image source={require('./screens/mainDrawer/logo2.png')}
       style={{height: 180, width:220, borderRadius: 0}} />
     </View>
 
