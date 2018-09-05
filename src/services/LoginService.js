@@ -1,6 +1,6 @@
 import firebase from 'react-native-firebase';
 
-export class LoginService {
+export default class LoginService {
     static login(email, password) {
         return firebase.auth().signInAndRetrieveDataWithEmailAndPassword(email, password);
     }
