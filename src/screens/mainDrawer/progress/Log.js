@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native';
+import React, { Component } from 'react';
+import { View, Text, StyleSheet } from 'react-native';
 
 
 export default class Log extends Component {

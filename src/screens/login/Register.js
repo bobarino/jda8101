@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
 import firebase from 'react-native-firebase';
 
@@ -14,43 +14,43 @@ export default class Register extends Component {
       .catch(error => this.setState({ errorMessage: error.message }))
   }
   render() {
-      return (
-        <View style={styles.container}>
-          <Text>Register</Text>
-          {this.state.errorMessage &&
-            <Text style={{ color: 'red' }}>
-              {this.state.errorMessage}
-            </Text>}
-          <TextInput
-            placeholder="Email"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
-          />
-          <TextInput
-            secureTextEntry
-            placeholder="Password"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={password => this.setState({ password })}
-            value={this.state.password}
-          />
-          <TextInput
-            placeholder="Team Code"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={team => this.setState({ team })}
-            value={this.state.team}
-          />
-          <Button title="Sign Up" onPress={this.handleSignUp} />
-          <Button
-            title="Already have an account? Login"
-            onPress={() => this.props.navigation.navigate('Login')}
-          />
-        </View>
-      )
-    }
+    return (
+      <View style={styles.container}>
+        <Text>Register</Text>
+        {this.state.errorMessage &&
+          <Text style={{ color: 'red' }}>
+            {this.state.errorMessage}
+          </Text>}
+        <TextInput
+          placeholder="Email"
+          autoCapitalize="none"
+          style={styles.textInput}
+          onChangeText={email => this.setState({ email })}
+          value={this.state.email}
+        />
+        <TextInput
+          secureTextEntry
+          placeholder="Password"
+          autoCapitalize="none"
+          style={styles.textInput}
+          onChangeText={password => this.setState({ password })}
+          value={this.state.password}
+        />
+        <TextInput
+          placeholder="Team Code"
+          autoCapitalize="none"
+          style={styles.textInput}
+          onChangeText={team => this.setState({ team })}
+          value={this.state.team}
+        />
+        <Button title="Sign Up" onPress={this.handleSignUp} />
+        <Button
+          title="Already have an account? Login"
+          onPress={() => this.props.navigation.navigate('Login')}
+        />
+      </View>
+    )
+  }
 }
 const styles = StyleSheet.create({
   container: {

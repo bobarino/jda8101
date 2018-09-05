@@ -1,10 +1,14 @@
-import React, {Component} from 'react';
-import { StyleSheet,  Text } from 'react-native';
+import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { Container, Content, Card, CardItem } from 'native-base';
 import firebase from 'react-native-firebase';
 
 
 export default class Home extends Component {
+  static navigationOptions = {
+    drawerLabel: 'Home',
+  };
+
   state = {
     currentUser: null
   }
@@ -19,15 +23,11 @@ export default class Home extends Component {
       .auth()
       .signOut()
       .then(() => this.props.navigation.navigate('Welcome'))
-    
+
   }
 
-  static navigationOptions = {
-    drawerLabel: 'Home',
-  };
-
   render() {
-    const { currentUser } = this.state
+    // const { currentUser } = this.state
     return (
       <Container>
         <Content>
@@ -36,16 +36,16 @@ export default class Home extends Component {
               <Text>Today's Workout: </Text>
             </CardItem>
             <CardItem body>
-                <Text>
-                  Mesocycle : RFD {'\n'}
-                  Week : A {'\n'}
-                  Day : 2
-                </Text>
+              <Text>
+                Mesocycle : RFD {'\n'}
+                Week : A {'\n'}
+                Day : 2
+              </Text>
             </CardItem>
             <CardItem footer button onPress={() => this.props.navigation.navigate('Workout')}>
-                <Text>
-                  View Workout
-                </Text>
+              <Text>
+                View Workout
+              </Text>
             </CardItem>
           </Card>
           <Card>
@@ -53,10 +53,10 @@ export default class Home extends Component {
               <Text>This Mesocycle: </Text>
             </CardItem>
             <CardItem body>
-                <Text>
-                  Strength Linear{'\n'}
-                  The focus of this mesocycle is to build strength with a linear progerssion etc. {'\n'}
-                </Text>
+              <Text>
+                Strength Linear{'\n'}
+                The focus of this mesocycle is to build strength with a linear progerssion etc. {'\n'}
+              </Text>
             </CardItem>
           </Card>
 
@@ -67,11 +67,3 @@ export default class Home extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})
