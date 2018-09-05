@@ -47,4 +47,15 @@ Don't commit either of these files because they contain API keys.  They should a
 
 ## The Structure
 
-**Needs to be re-written because of new code**
+`android/`: native code and project files for compiling the app on Android
+
+`ios/`: native code and project files for compiling the app on iOS
+
+`res/`: resource files for the application like pictures or videos
+
+`src/entities/`: classes that represent database entries for the project; can be used to access different databases to read or store data
+
+`src/screens/`: files that define the user interface and logic for the applications; split up by screen
+
+`src/services/`: different services needed by the application; serves as an API layer over third party libraries such as Firebase.io
+
