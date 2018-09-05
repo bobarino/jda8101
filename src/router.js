@@ -277,14 +277,11 @@ export const CustomDrawComp = (props) => (
       <Button
         color='#fe1a27'
         title="Log Out"
-        onPress={this.handleLogout}
+        onPress={() => LoginService.logout().then(() => this.props.navigation.navigate('Welcome'))}
       />
     </ScrollView>
-
-
-
   </SafeAreaView>
-)
+);
 
 export const DrawNav = createDrawerNavigator({
   Workout: WorkoutStack,

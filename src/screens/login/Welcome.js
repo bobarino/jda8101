@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
-import firebase from 'react-native-firebase';
+import LoginService from '../../services/LoginService';
 
 
 export default class Welcome extends Component {
 
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
+    LoginService.onLoginStateChanged(user => {
       this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome');
     });
   }

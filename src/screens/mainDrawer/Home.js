@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { Container, Content, Card, CardItem } from 'native-base';
-import firebase from 'react-native-firebase';
+import LoginService from '../../services/LoginService';
 
 
 export default class Home extends Component {
@@ -14,16 +14,7 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const { currentUser } = firebase.auth();
-    this.setState({ currentUser });
-  }
-
-  handleLogout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .then(() => this.props.navigation.navigate('Welcome'));
-
+    this.setState({ currentUser: LoginService.getCurrentUser() });
   }
 
   render() {
