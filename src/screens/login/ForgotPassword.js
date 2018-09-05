@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
-export default class Settings extends Component {
-
-  static navigationOptions = {
-    drawerLabel: 'Settings',
-  };
+export default class ForgotPassword extends Component {
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Settings</Text>
+        <Text>Forgot Password</Text>
       </View>
     )
   }

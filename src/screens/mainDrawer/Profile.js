@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
-import { View, Text, ActivityIndicator, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 
-export default class History extends Component {
+export default class Profile extends Component {
+  static navigationOptions = {
+    drawerLabel: 'Profile',
+  };
 
   render() {
     return (
       <View style={styles.container}>
-        <Text>Training History</Text>
+        <Text>Profile</Text>
       </View>
     )
   }
