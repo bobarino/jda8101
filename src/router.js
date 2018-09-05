@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  SafeAreaView, Image, View,
-  Button, Dimensions, ScrollView
-} from 'react-native';
-import {
-  createStackNavigator,
-  createDrawerNavigator, createMaterialTopTabNavigator, DrawerItems
-} from 'react-navigation';
+import { SafeAreaView, Image, View, Button, Dimensions, ScrollView } from 'react-native';
+import { createStackNavigator, createDrawerNavigator, createMaterialTopTabNavigator, DrawerItems } from 'react-navigation';
 
 import Welcome from './screens/login/Welcome';
 import Register from './screens/login/Register';
@@ -24,9 +18,7 @@ import History from './screens/mainDrawer/progress/History';
 
 import LoginService from './services/LoginService';
 
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 
 
 export const TodayStack = createStackNavigator({
@@ -268,7 +260,7 @@ export const CustomDrawComp = (props) => (
       height: 220, backgroundColor: '#9599a2',
       alignItems: 'center', justifyContent: 'center'
     }}>
-      <Image source={require('./screens/mainDrawer/logo2.png')}
+      <Image source={require('../res/logo2.png')}
         style={{ height: 180, width: 220, borderRadius: 0 }} />
     </View>
 
