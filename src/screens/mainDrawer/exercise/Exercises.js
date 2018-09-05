@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { StyleSheet } from 'react-native';
 import {
   Container, Header, Content, Item, Input, Icon,
   Button, List, ListItem, Text
@@ -20,7 +19,7 @@ export default class Exercises extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate)
+    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
   }
 
   componentWillUnmount() {
@@ -56,8 +55,8 @@ export default class Exercises extends Component {
         <ListItem key={i}>
           <Text>{x.exName}</Text>
         </ListItem>
-      )
-    })
+      );
+    });
 
     return (
       <Container>
@@ -77,14 +76,6 @@ export default class Exercises extends Component {
           </List>
         </Content>
       </Container>
-    )
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-})

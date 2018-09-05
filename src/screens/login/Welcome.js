@@ -7,8 +7,8 @@ export default class Welcome extends Component {
 
   componentDidMount() {
     firebase.auth().onAuthStateChanged(user => {
-      this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome')
-    })
+      this.props.navigation.navigate(user ? 'DrawNav' : 'Welcome');
+    });
   }
 
   render() {
@@ -22,7 +22,7 @@ export default class Welcome extends Component {
           onPress={() => this.props.navigation.navigate('Register')}
         />
       </View>
-    )
+    );
   }
 }
 const styles = StyleSheet.create({
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

@@ -13,7 +13,7 @@ export default class Settings extends Component {
       <View style={styles.container}>
         <Text>Settings</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

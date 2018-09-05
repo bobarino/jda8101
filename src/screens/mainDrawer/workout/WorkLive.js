@@ -46,6 +46,6 @@ export default class WorkLive
         />
       </Container>
 
-    )
+    );
   }
 }

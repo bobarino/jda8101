@@ -9,7 +9,7 @@ export default class History extends Component {
       <View style={styles.container}>
         <Text>Training History</Text>
       </View>
-    )
+    );
   }
 }
 
@@ -19,4 +19,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   }
-})
+});

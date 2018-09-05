@@ -14,10 +14,6 @@
     "react/react-in-jsx-scope": 2,
     "react/self-closing-comp": 2,
     "react/sort-comp": 1,
-    "react/jsx-closing-bracket-location": [
-      2,
-      "tag-aligned"
-    ],
     "react/jsx-equals-spacing": [
       2,
       "never"
@@ -41,7 +37,11 @@
     "react/jsx-uses-vars": 2,
     "react-native/no-unused-styles": 2,
     "react-native/split-platform-components": 2,
-    "no-console": 0
+    "no-console": 0,
+    "semi": [
+      2,
+      "always"
+    ]
   },
   "plugins": [
     "react",
