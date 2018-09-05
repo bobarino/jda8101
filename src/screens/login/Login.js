@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
-import firebase from 'react-native-firebase';
+import LoginService from '../../services/LoginService';
 
 
 export default class Login extends Component {
   state = { email: '', password: '', errorMessage: 'Incorrect Combination' }
 
-  handleLogin = () => {
+  handleLogin() {
     const { email, password } = this.state;
-    firebase
-      .auth()
-      .signInAndRetrieveDataWithEmailAndPassword(email, password)
+    LoginService.login(email, password)
       .then(() => this.props.navigation.navigate('DrawNav'))
-      .catch(error => this.setState({ errorMessage: error.message }));
+      .error((error) => this.setState({ errorMessage: error.errorMessage }));
   }
 
   render() {
@@ -38,7 +36,7 @@ export default class Login extends Component {
           onChangeText={password => this.setState({ password })}
           value={this.state.password}
         />
-        <Button title="Log In" onPress={this.handleLogin} />
+        <Button title="Log In" onPress={this.handleLogin.bind(this)} />
         <Button
           title="Don't have an account? Register"
           onPress={() => this.props.navigation.navigate('Register')}

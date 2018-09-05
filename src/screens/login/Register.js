@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
-import firebase from 'react-native-firebase';
+import LoginService from '../../services/LoginService';
 
 
 export default class Register extends Component {
   state = { email: '', password: '', team: '', errorMessage: "Please fill out both fields" }
 
   handleSignUp = () => {
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+    LoginService.signUp(this.state.email, this.state.password)
       .then(() => this.props.navigation.navigate('DrawNav'))
       .catch(error => this.setState({ errorMessage: error.message }));
   }
