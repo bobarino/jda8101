@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Container, Content, Card, CardItem } from 'native-base';
+import React, { Component } from "react";
+import { Text } from "react-native";
+import { Container, Content, Card, CardItem } from "native-base";
 
 
 
@@ -9,7 +9,7 @@ export default class Program
   extends Component {
 
   static navigationOptions = {
-    drawerLabel: 'Your Program',
+    drawerLabel: "Your Program",
   };
 
   render() {

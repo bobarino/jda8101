@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 
 export default class Profile extends Component {
   static navigationOptions = {
-    drawerLabel: 'Profile',
+    drawerLabel: "Profile",
   };
 
   render() {
@@ -19,7 +19,7 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   }
 });
