@@ -1,0 +1,1 @@
+export var LogoImage = require("../res/logo2.png");
