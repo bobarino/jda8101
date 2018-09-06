@@ -41,6 +41,10 @@
     "semi": [
       2,
       "always"
+    ],
+    "quotes": [
+      1,
+      "double"
     ]
   },
   "plugins": [

@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Text, Button } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Body, Title } from 'native-base';
+import React, { Component } from "react";
+import { Text, Button } from "react-native";
+import { Container, Header, Content, Card, CardItem, Body, Title } from "native-base";
 
 
 
@@ -9,7 +9,7 @@ export default class WorkLive
   extends Component {
 
   static navigationOptions = {
-    drawerLabel: 'Live',
+    drawerLabel: "Live",
   };
 
   render() {
@@ -42,7 +42,7 @@ export default class WorkLive
         </Content>
         <Button
           title="Next"
-          onPress={() => this.props.navigation.navigate('WorkLive')}
+          onPress={() => this.props.navigation.navigate("WorkLive")}
         />
       </Container>
 

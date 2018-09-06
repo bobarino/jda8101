@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, { Component } from "react";
+import { View, Text, StyleSheet } from "react-native";
 
 
 export default class Settings extends Component {
 
   static navigationOptions = {
-    drawerLabel: 'Settings',
+    drawerLabel: "Settings",
   };
 
   render() {
@@ -20,7 +20,7 @@ export default class Settings extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    justifyContent: "center",
+    alignItems: "center",
   }
 });

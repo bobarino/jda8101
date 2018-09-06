@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { Text } from 'react-native';
-import { Container, Content, Card, CardItem } from 'native-base';
-import LoginService from '../../services/LoginService';
+import React, { Component } from "react";
+import { Text } from "react-native";
+import { Container, Content, Card, CardItem } from "native-base";
+import LoginService from "../../services/LoginService";
 
 
 export default class Home extends Component {
   static navigationOptions = {
-    drawerLabel: 'Home',
+    drawerLabel: "Home",
   };
 
   state = {
@@ -24,16 +24,16 @@ export default class Home extends Component {
         <Content>
           <Card>
             <CardItem header>
-              <Text>Today's Workout: </Text>
+              <Text>Today"s Workout: </Text>
             </CardItem>
             <CardItem body>
               <Text>
-                Mesocycle : RFD {'\n'}
-                Week : A {'\n'}
+                Mesocycle : RFD {"\n"}
+                Week : A {"\n"}
                 Day : 2
               </Text>
             </CardItem>
-            <CardItem footer button onPress={() => this.props.navigation.navigate('Workout')}>
+            <CardItem footer button onPress={() => this.props.navigation.navigate("Workout")}>
               <Text>
                 View Workout
               </Text>
@@ -45,8 +45,8 @@ export default class Home extends Component {
             </CardItem>
             <CardItem body>
               <Text>
-                Strength Linear{'\n'}
-                The focus of this mesocycle is to build strength with a linear progerssion etc. {'\n'}
+                Strength Linear{"\n"}
+                The focus of this mesocycle is to build strength with a linear progerssion etc. {"\n"}
               </Text>
             </CardItem>
           </Card>

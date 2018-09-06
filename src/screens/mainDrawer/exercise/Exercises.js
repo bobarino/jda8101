@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Container, Header, Content, Item, Input, Icon,
   Button, List, ListItem, Text
 } from "native-base";
-import firebase from 'react-native-firebase';
+import firebase from "react-native-firebase";
 
 
 export default class Exercises extends Component {
   constructor() {
     super();
-    this.ref = firebase.firestore().collection('exercises');
+    this.ref = firebase.firestore().collection("exercises");
 
     this.unsubscribe = null;
     this.state = {
@@ -60,7 +60,7 @@ export default class Exercises extends Component {
 
     return (
       <Container>
-        <Header style={{ backgroundColor: '#324151' }} searchBar rounded>
+        <Header style={{ backgroundColor: "#324151" }} searchBar rounded>
           <Item>
             <Icon name="ios-search" />
             <Input placeholder="Search" />

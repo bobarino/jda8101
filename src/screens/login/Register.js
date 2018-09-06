@@ -1,14 +1,19 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, TextInput, View, Button } from 'react-native';
-import LoginService from '../../services/LoginService';
+import React, { Component } from "react";
+import { StyleSheet, Text, TextInput, View, Button } from "react-native";
+import LoginService from "../../services/LoginService";
 
 
 export default class Register extends Component {
-  state = { email: '', password: '', team: '', errorMessage: "Please fill out both fields" }
+  state = { email: "", password: "", team: "", errorMessage: "" }
 
   handleSignUp = () => {
+<<<<<<< HEAD
     LoginService.register(this.state.email, this.state.password)
       .then(() => this.props.navigation.navigate('DrawNav'))
+=======
+    LoginService.signUp(this.state.email, this.state.password)
+      .then(() => this.props.navigation.navigate("DrawNav"))
+>>>>>>> Replace all single quotes with double quotes and correctly display error from firebase on Logging In
       .catch(error => this.setState({ errorMessage: error.message }));
   }
   render() {
@@ -16,7 +21,7 @@ export default class Register extends Component {
       <View style={styles.container}>
         <Text>Register</Text>
         {this.state.errorMessage &&
-          <Text style={{ color: 'red' }}>
+          <Text style={{ color: "red" }}>
             {this.state.errorMessage}
           </Text>}
         <TextInput
@@ -44,7 +49,7 @@ export default class Register extends Component {
         <Button title="Sign Up" onPress={this.handleSignUp} />
         <Button
           title="Already have an account? Login"
-          onPress={() => this.props.navigation.navigate('Login')}
+          onPress={() => this.props.navigation.navigate("Login")}
         />
       </View>
     );
@@ -53,13 +58,13 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: "center",
+    alignItems: "center"
   },
   textInput: {
     height: 40,
-    width: '90%',
-    borderColor: 'gray',
+    width: "90%",
+    borderColor: "gray",
     borderWidth: 1,
     marginTop: 8
   }

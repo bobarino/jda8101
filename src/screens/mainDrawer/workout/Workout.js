@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Text, Button } from 'react-native';
-import { Container, Content, Card, CardItem } from 'native-base';
+import React, { Component } from "react";
+import { Text, Button } from "react-native";
+import { Container, Content, Card, CardItem } from "native-base";
 
 
 
@@ -9,7 +9,7 @@ export default class Workout
   extends Component {
 
   static navigationOptions = {
-    drawerLabel: 'Todays workout',
+    drawerLabel: "Todays workout",
   };
 
   render() {
@@ -28,7 +28,7 @@ export default class Workout
           </Card>
           <Button
             title="START WORKOUT"
-            onPress={() => this.props.navigation.navigate('WorkLive')}
+            onPress={() => this.props.navigation.navigate("WorkLive")}
           />
           <Text>
             Warm Up:
