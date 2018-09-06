@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { View, StyleSheet, TextInput, Button } from "react-native";
+import { createStackNavigator } from "react-navigation";
 import email from "react-native-email";
 
 
-export default class Contact extends Component {
-  state = { name: "", message: "" }
+class Contact extends Component {
+  state = { name: "", message: "" };
 
   componentDidMount() {
     console.log(this.props);
@@ -51,3 +52,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }
 });
+
+export default function ContactScreen(navigationOptionsFunc) {
+  return createStackNavigator(
+    { Contact: { screen: Contact } }, { navigationOptions: navigationOptionsFunc }
+  );
+}

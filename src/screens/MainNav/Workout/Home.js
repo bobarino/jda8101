@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text } from "react-native";
 import { Container, Content, Card, CardItem } from "native-base";
-import LoginService from "../../services/LoginService";
+import LoginService from "../../../services/LoginService";
 
 
 export default class Home extends Component {
@@ -24,7 +24,7 @@ export default class Home extends Component {
         <Content>
           <Card>
             <CardItem header>
-              <Text>Today"s Workout: </Text>
+              <Text>Today's Workout: </Text>
             </CardItem>
             <CardItem body>
               <Text>

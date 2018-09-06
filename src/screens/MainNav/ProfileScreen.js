@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { createStackNavigator } from "react-navigation";
 
-
-export default class Profile extends Component {
+class Profile extends Component {
   static navigationOptions = {
     drawerLabel: "Profile",
   };
@@ -23,3 +23,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }
 });
+
+export default function ProfileScreen(navigationOptionsFunc) {
+  return createStackNavigator(
+    { Profile: { screen: Profile } }, { navigationOptions: navigationOptionsFunc }
+  );
+}

@@ -4,9 +4,10 @@ import {
   Button, List, ListItem, Text
 } from "native-base";
 import firebase from "react-native-firebase";
+import { createStackNavigator } from "react-navigation";
 
 
-export default class Exercises extends Component {
+class Exercises extends Component {
   constructor() {
     super();
     this.ref = firebase.firestore().collection("exercises");
@@ -78,4 +79,10 @@ export default class Exercises extends Component {
       </Container>
     );
   }
+}
+
+export default function ExcercisesScreen(navigationOptionsFunc) {
+  return createStackNavigator(
+    { Excercises: { screen: Exercises } }, { navigationOptions: navigationOptionsFunc }
+  );
 }

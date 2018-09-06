@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { createStackNavigator } from "react-navigation";
 
-
-export default class Settings extends Component {
+class Settings extends Component {
 
   static navigationOptions = {
     drawerLabel: "Settings",
@@ -24,3 +24,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   }
 });
+
+export default function SettingsScreen(navigationOptionsFunc) {
+  return createStackNavigator(
+    { Settings: { screen: Settings } }, { navigationOptions: navigationOptionsFunc }
+  );
+}
