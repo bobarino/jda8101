@@ -19,7 +19,7 @@ export default class Login extends Component {
   handleLogin() {
     const { email, password } = this.state;
     LoginService.login(email, password)
-      .then(() => this.props.navigation.navigate("DrawNav"))
+      .then(() => this.props.navigation.navigate("MainNav"))
       .catch((error) => { this.setState({ errorMessage: `Error: ${error.userInfo.NSLocalizedDescription}` }); });
   }
 
@@ -54,7 +54,11 @@ export default class Login extends Component {
         <View style={{ width: "100%" }}>
           <Button style={styles.loginButton}
             onPress={this.handleLogin.bind(this)}>
-            <Text style={styles.loginButtonText}>Log In ></Text>
+            <Text style={styles.buttonText}>Log In ></Text>
+          </Button>
+          <Button style={styles.registerButton}
+            onPress={() => this.props.navigation.navigate("Register")}>
+            <Text style={styles.buttonText}>Register ></Text>
           </Button>
         </View>
       </View>
@@ -104,7 +108,12 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: "red",
   },
-  loginButtonText: {
+  registerButton: {
+    width: "100%",
+    height: 100,
+    backgroundColor: "green",
+  },
+  buttonText: {
     textAlign: "center",
     fontSize: 24,
     color: "white"

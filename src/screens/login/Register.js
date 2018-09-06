@@ -7,13 +7,8 @@ export default class Register extends Component {
   state = { email: "", password: "", team: "", errorMessage: "" }
 
   handleSignUp = () => {
-<<<<<<< HEAD
     LoginService.register(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate('DrawNav'))
-=======
-    LoginService.signUp(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate("DrawNav"))
->>>>>>> Replace all single quotes with double quotes and correctly display error from firebase on Logging In
+      .then(() => this.props.navigation.navigate("MainNav"))
       .catch(error => this.setState({ errorMessage: error.message }));
   }
   render() {
