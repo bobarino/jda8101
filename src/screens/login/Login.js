@@ -14,7 +14,10 @@ export default class Login extends Component {
 
   state = { email: "", password: "", errorMessage: "" }
 
-
+  // temp to hide the login screen during development
+  componentDidMount() {
+    // this.setState({ email: "test@athlete-physics.com", password: "password" }, () => this.handleLogin());
+  }
 
   handleLogin() {
     const { email, password } = this.state;

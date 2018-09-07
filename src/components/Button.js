@@ -20,7 +20,7 @@ export default class Button extends Component {
         onPress={this.props.onPress}
         activeOpacity={0.8}
       >
-        <View style={{ flex: 1, justifyContent: "center", alignContent: "center", textAlign: "center" }}>
+        <View style={{ flex: 1, justifyContent: "center", alignContent: "center" }}>
           {this.props.children}
         </View>
       </TouchableHighlight>
