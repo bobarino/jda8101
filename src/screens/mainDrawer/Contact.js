@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, TextInput } from 'react-native';
 import email from 'react-native-email'
 
 
 export default class Contact extends Component {
+  state = { message: '' }
 
   componentDidMount() {
     console.log(this.props);
@@ -12,9 +13,17 @@ export default class Contact extends Component {
   render() {
       return (
           <View style={styles.container}>
-              <Button title="Contact" onPress={this.handleEmail} />
+            <TextInput
+              style={{width: 250, borderColor: 'gray', borderWidth: 1}}
+              multiline = {true}
+              numberOfLines = {4}
+              placeholder="Message"
+              onChangeText={message => this.setState({ message })}
+              value={this.state.message}
+            />
+            <Button title="Contact" onPress={this.handleEmail} />
           </View>
-      )
+      );
   }
 
   handleEmail = () => {
@@ -24,7 +33,7 @@ export default class Contact extends Component {
           cc: [], // string or array of email addresses
           bcc: [], // string or array of email addresses
           subject: 'A user sent a contact message',
-          body: 'CONTACTING'
+          body: this.state.message
       }).catch(console.error)
   }
 }
