@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { StyleSheet, Text, TextInput, View, Image } from "react-native";
+import { StyleSheet, Text, TextInput, View, Dimensions, Animated } from "react-native";
 import LoginService from "../../services/LoginService";
 import Button from "../../components/Button";
 import Spinner from "../../components/Spinner";
@@ -14,11 +14,32 @@ export default class Login extends Component {
   }
 
 
-  state = { email: "", password: "", errorMessage: "", showSpinner: false }
+  state = {
+    startScreen: true,
+    email: "",
+    password: "",
+    errorMessage: "",
+    showSpinner: false,
+    logoPos: new Animated.Value(Dimensions.get("window").height / 2 - 90),
+    fadeOpacity: new Animated.Value(0),
+    firstOpen: true
+  }
 
-  // temp to hide the login screen during development
   componentDidMount() {
-    // this.setState({ email: "test@athlete-physics.com", password: "password" }, () => this.handleLogin());
+
+    const animation1 = Animated.timing(this.state.logoPos, { toValue: 30, duration: 750 });
+    const animation2 = Animated.timing(this.state.fadeOpacity, { toValue: 1, duration: 1500 });
+
+    LoginService.onLoginStateChanged((user) => {
+      if (user) {
+        this.props.navigation.navigate("MainNav");
+      } else {
+        if (this.state.firstOpen) {
+          setTimeout(() => Animated.parallel([animation1, animation2]).start(), 500);
+          this.setState({ firstOpen: false });
+        }
+      }
+    });
   }
 
   handleLogin() {
@@ -32,50 +53,70 @@ export default class Login extends Component {
       .catch((error) => this.setState({ errorMessage: `Error: ${error.userInfo.NSLocalizedDescription}`, showSpinner: false }));
   }
 
+
   render() {
+    let { fadeOpacity, logoPos } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={{ width: "100%", height: "100%" }}>
         <Spinner show={this.state.showSpinner} />
-        <Image source={LogoImage}
-          style={styles.logo} />
-        <View style={{ width: "100%" }}>
-          <Text style={styles.loginHeader}>Login</Text>
-          <Text style={styles.loginErrorMessage}>
-            {this.state.errorMessage}
-          </Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Email"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
-          />
-          <TextInput
-            secureTextEntry
-            style={styles.textInput}
-            autoCapitalize="none"
-            placeholder="Password"
-            onChangeText={password => this.setState({ password })}
-            value={this.state.password}
-          />
-        </View>
-        <Button style={styles.forgotPasswordButton}
-          onPress={() => this.props.navigation.navigate("ForgotPassword")}>
-          <Text style={styles.forgotPasswordButtonText}>I forgot my password</Text>
-        </Button>
-        <View style={{ width: "100%" }}>
-          <Button style={styles.loginButton}
-            onPress={this.handleLogin.bind(this)}>
-            <Text style={styles.buttonText}>Log In ></Text>
-          </Button>
-          <Button style={styles.registerButton}
-            onPress={() => this.props.navigation.navigate("Register")}>
-            <Text style={styles.buttonText}>Register ></Text>
-          </Button>
-        </View>
+        <Animated.View style={styles.container}>
+          <Animated.Image source={LogoImage}
+            style={{
+              height: 180,
+              width: 220,
+              position: "absolute",
+              top: logoPos,
+              // transform: [{ translateY: logoPos }],
+              // top: logoPos
+            }} />
+          <Animated.View style={{
+            flex: 1,
+            justifyContent: "space-between",
+            alignItems: "center",
+            height: "100%",
+            width: "100%",
+            opacity: fadeOpacity
+          }} >
+            <View style={{ width: "100%" }}>
+              <Text style={styles.loginHeader}>Login</Text>
+              <Text style={styles.loginErrorMessage}>
+                {this.state.errorMessage}
+              </Text>
+            </View>
+            <View style={styles.inputContainer}>
+              <TextInput
+                placeholder="Email"
+                autoCapitalize="none"
+                keyboardType="email-address"
+                style={styles.textInput}
+                onChangeText={email => this.setState({ email })}
+                value={this.state.email}
+              />
+              <TextInput
+                secureTextEntry
+                style={styles.textInput}
+                autoCapitalize="none"
+                placeholder="Password"
+                onChangeText={password => this.setState({ password })}
+                value={this.state.password}
+              />
+            </View>
+            <Button style={styles.forgotPasswordButton}
+              onPress={() => this.props.navigation.navigate("ForgotPassword")}>
+              <Text style={styles.forgotPasswordButtonText}>I forgot my password</Text>
+            </Button>
+            <View style={{ width: "100%" }}>
+              <Button style={styles.loginButton}
+                onPress={this.handleLogin.bind(this)}>
+                <Text style={styles.buttonText}>Log In ></Text>
+              </Button>
+              <Button style={styles.registerButton}
+                onPress={() => this.props.navigation.navigate("Register")}>
+                <Text style={styles.buttonText}>Register ></Text>
+              </Button>
+            </View>
+          </Animated.View>
+        </Animated.View>
       </View>
     );
   }
@@ -86,13 +127,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#324151",
-    paddingTop: 30, // for top bar
-  },
-  logo: {
-    height: 180,
-    width: 220,
-    borderRadius: 0,
-    marginTop: 10,
+    paddingTop: 250, // for logo which is absolutely positioned
+    height: "100%",
   },
   inputContainer: {
     width: "100%",

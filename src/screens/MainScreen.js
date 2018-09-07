@@ -98,6 +98,6 @@ export const MainScreen = createStackNavigator(
       gesturesEnabled: false,
       header: null,
     },
-    initialRouteName: LoginService.isLoggedIn() ? "MainNav" : "Login",
+    initialRouteName: "Login",
   },
 );
