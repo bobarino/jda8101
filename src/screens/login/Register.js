@@ -14,6 +14,7 @@ export default class Register extends Component {
       .then(() => this.props.navigation.navigate("MainNav"))
       .catch(error => this.setState({ errorMessage: error.message }));
   }
+
   render() {
     return (
       <View style={styles.container}>
@@ -29,6 +30,7 @@ export default class Register extends Component {
           <TextInput
             placeholder="Email"
             autoCapitalize="none"
+            keyboardType="email-address"
             style={styles.textInput}
             onChangeText={email => this.setState({ email })}
             value={this.state.email}
@@ -49,10 +51,14 @@ export default class Register extends Component {
             value={this.state.team}
           />
         </View>
+        <Button style={styles.backButton}
+          onPress={() => this.props.navigation.navigate("Login")}>
+          <Text style={styles.backButtonText}>I already have an account</Text>
+        </Button>
         <View style={{ width: "100%" }}>
           <Button style={styles.registerButton}
             onPress={this.handleSignUp}>
-            <Text style={styles.buttonText}>Sign Up ></Text>
+            <Text style={styles.registerButtonText}>Sign Up ></Text>
           </Button>
         </View>
       </View>
@@ -102,9 +108,18 @@ const styles = StyleSheet.create({
     height: 100,
     backgroundColor: "green",
   },
-  buttonText: {
+  registerButtonText: {
     textAlign: "center",
     fontSize: 24,
+    color: "white"
+  },
+  backButton: {
+    width: "100%",
+    height: 20
+  },
+  backButtonText: {
+    textAlign: "center",
+    fontSize: 12,
     color: "white"
   }
 });
