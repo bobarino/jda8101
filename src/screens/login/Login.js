@@ -9,8 +9,7 @@ export default class Login extends Component {
   handleLogin() {
     const { email, password } = this.state;
     LoginService.login(email, password)
-      .then(() => this.props.navigation.navigate('DrawNav'))
-      .error((error) => this.setState({ errorMessage: error.errorMessage }));
+      .then(() => this.props.navigation.navigate('DrawNav'));
   }
 
   render() {
