@@ -3,63 +3,71 @@ import { StyleSheet, Text, TextInput, View, Image } from "react-native";
 import LoginService from "../../services/LoginService";
 
 import Button from "../../components/Button";
+import Spinner from "../../components/Spinner";
 import { LogoImage } from "../../Images";
 
 
 export default class Register extends Component {
-  state = { email: "", password: "", team: "", errorMessage: "" }
+  state = { email: "", password: "", team: "", errorMessage: "", showSpinner: false }
 
   handleSignUp = () => {
+    this.setState({ showSpinner: true });
     LoginService.register(this.state.email, this.state.password)
-      .then(() => this.props.navigation.navigate("MainNav"))
-      .catch(error => this.setState({ errorMessage: error.message }));
+      .then(() => {
+        this.setState({ email: "", password: "", errorMessage: "", showSpinner: false });
+        this.props.navigation.navigate("MainNav");
+      })
+      .catch(error => this.setState({ errorMessage: error.message, showSpinner: false }));
   }
 
   render() {
     return (
-      <View style={styles.container}>
-        <Image source={LogoImage}
-          style={styles.logo} />
-        <View style={{ width: "100%" }}>
-          <Text style={styles.loginHeader}>Sign Up</Text>
-          <Text style={styles.loginErrorMessage}>
-            {this.state.errorMessage}
-          </Text>
-        </View>
-        <View style={styles.inputContainer}>
-          <TextInput
-            placeholder="Email"
-            autoCapitalize="none"
-            keyboardType="email-address"
-            style={styles.textInput}
-            onChangeText={email => this.setState({ email })}
-            value={this.state.email}
-          />
-          <TextInput
-            secureTextEntry
-            placeholder="Password"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={password => this.setState({ password })}
-            value={this.state.password}
-          />
-          <TextInput
-            placeholder="Team Code"
-            autoCapitalize="none"
-            style={styles.textInput}
-            onChangeText={team => this.setState({ team })}
-            value={this.state.team}
-          />
-        </View>
-        <Button style={styles.backButton}
-          onPress={() => this.props.navigation.navigate("Login")}>
-          <Text style={styles.backButtonText}>I already have an account</Text>
-        </Button>
-        <View style={{ width: "100%" }}>
-          <Button style={styles.registerButton}
-            onPress={this.handleSignUp}>
-            <Text style={styles.registerButtonText}>Sign Up ></Text>
+      <View style={{ width: "100%", height: "100%" }}>
+        <Spinner show={this.state.showSpinner} />
+        <View style={styles.container}>
+          <Image source={LogoImage}
+            style={styles.logo} />
+          <View style={{ width: "100%" }}>
+            <Text style={styles.loginHeader}>Sign Up</Text>
+            <Text style={styles.loginErrorMessage}>
+              {this.state.errorMessage}
+            </Text>
+          </View>
+          <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="Email"
+              autoCapitalize="none"
+              keyboardType="email-address"
+              style={styles.textInput}
+              onChangeText={email => this.setState({ email })}
+              value={this.state.email}
+            />
+            <TextInput
+              secureTextEntry
+              placeholder="Password"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={password => this.setState({ password })}
+              value={this.state.password}
+            />
+            <TextInput
+              placeholder="Team Code"
+              autoCapitalize="none"
+              style={styles.textInput}
+              onChangeText={team => this.setState({ team })}
+              value={this.state.team}
+            />
+          </View>
+          <Button style={styles.backButton}
+            onPress={() => this.props.navigation.navigate("Login")}>
+            <Text style={styles.backButtonText}>I already have an account</Text>
           </Button>
+          <View style={{ width: "100%" }}>
+            <Button style={styles.registerButton}
+              onPress={this.handleSignUp}>
+              <Text style={styles.registerButtonText}>Sign Up ></Text>
+            </Button>
+          </View>
         </View>
       </View>
     );

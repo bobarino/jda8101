@@ -61,3 +61,4 @@ ios/Pods
 # API Keys
 GoogleService-Info.plist
 google-services.json
+main.jsbundle.meta

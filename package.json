@@ -6,7 +6,8 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "android": "node node_modules/react-native/local-cli/cli.js run-android",
     "ios": "node node_modules/react-native/local-cli/cli.js run-ios",
-    "debug": "open \"rndebugger://set-debugger-loc?host=localhost&port=8081\""
+    "debug": "open \"rndebugger://set-debugger-loc?host=localhost&port=8081\"",
+    "bundle-ios": "node node_modules/react-native/local-cli/cli.js bundle --entry-file index.js --platform ios --dev false --bundle-output ios/userapp1/main.jsbundle --assets-dest ios"
   },
   "dependencies": {
     "firebase": "^5.4.0",
