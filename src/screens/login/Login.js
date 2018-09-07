@@ -19,7 +19,10 @@ export default class Login extends Component {
   handleLogin() {
     const { email, password } = this.state;
     LoginService.login(email, password)
-      .then(() => this.props.navigation.navigate("MainNav"))
+      .then(() => {
+        this.setState({ email: "", password: "" });
+        this.props.navigation.navigate("MainNav");
+      })
       .catch((error) => { this.setState({ errorMessage: `Error: ${error.userInfo.NSLocalizedDescription}` }); });
   }
 
