@@ -7,7 +7,7 @@ export default class Register extends Component {
   state = { email: '', password: '', team: '', errorMessage: "Please fill out both fields" }
 
   handleSignUp = () => {
-    LoginService.signUp(this.state.email, this.state.password)
+    LoginService.register(this.state.email, this.state.password)
       .then(() => this.props.navigation.navigate('DrawNav'))
       .catch(error => this.setState({ errorMessage: error.message }));
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import email from 'react-native-email'
 
 
 export default class Contact extends Component {
@@ -9,11 +10,22 @@ export default class Contact extends Component {
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Contact</Text>
-      </View>
-    );
+      return (
+          <View style={styles.container}>
+              <Button title="Contact" onPress={this.handleEmail} />
+          </View>
+      )
+  }
+
+  handleEmail = () => {
+      const to = ['ngiammanco@gmail.com'] // string or array of email addresses
+      email(to, {
+          // Optional additional arguments
+          cc: [], // string or array of email addresses
+          bcc: [], // string or array of email addresses
+          subject: 'A user sent a contact message',
+          body: 'CONTACTING'
+      }).catch(console.error)
   }
 }
 
