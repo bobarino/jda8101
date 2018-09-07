@@ -55,7 +55,7 @@ const CustomDrawerComponent = (props) => (
       <Button
         color="#fe1a27"
         title="Log Out"
-        onPress={() => LoginService.logout().then(() => this.props.navigation.navigate("Login"))}
+        onPress={() => LoginService.logout().then(() => props.navigation.navigate("Login"))}
       />
     </ScrollView>
   </SafeAreaView>
