@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { StyleSheet, Text, TextInput, View, Image } from "react-native";
 import LoginService from "../../services/LoginService";
 import Button from "../../components/Button";
+import Spinner from "../../components/Spinner";
 
 import { LogoImage } from "../../Images";
+import { ORANGE1, ORANGE2 } from "../../Colors";
 
 
 export default class Login extends Component {
@@ -12,7 +14,7 @@ export default class Login extends Component {
   }
 
 
-  state = { email: "", password: "", errorMessage: "" }
+  state = { email: "", password: "", errorMessage: "", showSpinner: false }
 
   // temp to hide the login screen during development
   componentDidMount() {
@@ -21,17 +23,19 @@ export default class Login extends Component {
 
   handleLogin() {
     const { email, password } = this.state;
+    this.setState({ showSpinner: true });
     LoginService.login(email, password)
       .then(() => {
-        this.setState({ email: "", password: "" });
+        this.setState({ email: "", password: "", showSpinner: false });
         this.props.navigation.navigate("MainNav");
       })
-      .catch((error) => { this.setState({ errorMessage: `Error: ${error.userInfo.NSLocalizedDescription}` }); });
+      .catch((error) => this.setState({ errorMessage: `Error: ${error.userInfo.NSLocalizedDescription}`, showSpinner: false }));
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Spinner show={this.state.showSpinner} />
         <Image source={LogoImage}
           style={styles.logo} />
         <View style={{ width: "100%" }}>
@@ -42,9 +46,10 @@ export default class Login extends Component {
         </View>
         <View style={styles.inputContainer}>
           <TextInput
-            style={styles.textInput}
-            autoCapitalize="none"
             placeholder="Email"
+            autoCapitalize="none"
+            keyboardType="email-address"
+            style={styles.textInput}
             onChangeText={email => this.setState({ email })}
             value={this.state.email}
           />
@@ -57,6 +62,10 @@ export default class Login extends Component {
             value={this.state.password}
           />
         </View>
+        <Button style={styles.forgotPasswordButton}
+          onPress={() => this.props.navigation.navigate("ForgotPassword")}>
+          <Text style={styles.forgotPasswordButtonText}>I forgot my password</Text>
+        </Button>
         <View style={{ width: "100%" }}>
           <Button style={styles.loginButton}
             onPress={this.handleLogin.bind(this)}>
@@ -107,21 +116,35 @@ const styles = StyleSheet.create({
   loginErrorMessage: {
     marginTop: 10,
     color: "red",
-    textAlign: "center"
+    textAlign: "center",
+    height: 50
   },
   loginButton: {
     width: "100%",
     height: 100,
-    backgroundColor: "red",
+    // backgroundColor: ORANGE1,
+    backgroundColor: "red"
+    // backgroundColor: "#688bb0"
   },
   registerButton: {
     width: "100%",
     height: 100,
-    backgroundColor: "green",
+    // backgroundColor: ORANGE2,
+    backgroundColor: "green"
+    // backgroundColor: "#8197ae"
   },
   buttonText: {
     textAlign: "center",
     fontSize: 24,
+    color: "white"
+  },
+  forgotPasswordButton: {
+    width: "100%",
+    height: 20
+  },
+  forgotPasswordButtonText: {
+    textAlign: "center",
+    fontSize: 12,
     color: "white"
   }
 });
