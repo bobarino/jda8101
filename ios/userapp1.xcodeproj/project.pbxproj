@@ -62,7 +62,6 @@
 		CD79391A945941728EF3ED1C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A3076F3CA66748839620DD7E /* FontAwesome.ttf */; };
 		D1220CC62142F40500FEC108 /* logo2.png in Resources */ = {isa = PBXBuildFile; fileRef = D1220CC52142F40500FEC108 /* logo2.png */; };
 		D1220CC92143105400FEC108 /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = D1220CC72143105400FEC108 /* main.jsbundle */; };
-		D1220CCA2143105400FEC108 /* main.jsbundle.meta in Resources */ = {isa = PBXBuildFile; fileRef = D1220CC82143105400FEC108 /* main.jsbundle.meta */; };
 		D1220CCC214311F400FEC108 /* assets in Resources */ = {isa = PBXBuildFile; fileRef = D1220CCB214311F400FEC108 /* assets */; };
 		D1C9792C212F1E7900DF5A5B /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		D1FB78D1213451C300905D33 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D1FB78AB213451C300905D33 /* GoogleService-Info.plist */; };
@@ -410,7 +409,6 @@
 		B902980B26A0A3DF19608799 /* libPods-userapp1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-userapp1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1220CC52142F40500FEC108 /* logo2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo2.png; path = ../res/logo2.png; sourceTree = "<group>"; };
 		D1220CC72143105400FEC108 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = main.jsbundle; path = userapp1/main.jsbundle; sourceTree = "<group>"; };
-		D1220CC82143105400FEC108 /* main.jsbundle.meta */ = {isa = PBXFileReference; lastKnownFileType = file; name = main.jsbundle.meta; path = userapp1/main.jsbundle.meta; sourceTree = "<group>"; };
 		D1220CCB214311F400FEC108 /* assets */ = {isa = PBXFileReference; lastKnownFileType = folder; path = assets; sourceTree = "<group>"; };
 		D1FB78AB213451C300905D33 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "userapp1/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D22BCE453E944040B588EE37 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
@@ -596,7 +594,6 @@
 			children = (
 				D1220CCB214311F400FEC108 /* assets */,
 				D1220CC72143105400FEC108 /* main.jsbundle */,
-				D1220CC82143105400FEC108 /* main.jsbundle.meta */,
 				D1FB78AB213451C300905D33 /* GoogleService-Info.plist */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -1219,7 +1216,6 @@
 				B790578BA86F45338D03C06B /* Octicons.ttf in Resources */,
 				5FA642D8C4814DFFAE3BEB36 /* Roboto_medium.ttf in Resources */,
 				3ABE781B3F254AFE869328B0 /* Roboto.ttf in Resources */,
-				D1220CCA2143105400FEC108 /* main.jsbundle.meta in Resources */,
 				E138737B2A1A465A80001204 /* rubicon-icon-font.ttf in Resources */,
 				B9A814367225468EB5085D53 /* SimpleLineIcons.ttf in Resources */,
 				D7894AA0582B43E8BCA0A692 /* Zocial.ttf in Resources */,
