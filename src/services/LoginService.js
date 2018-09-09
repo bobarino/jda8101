@@ -23,4 +23,8 @@ export default class LoginService {
   static isLoggedIn() {
     return firebase.auth().currentUser !== null;
   }
+
+  static sendPasswordResetEmail(email) {
+      return firebase.auth().sendPasswordResetEmail(email);
+  }
 }
