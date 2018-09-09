@@ -11,6 +11,8 @@ import { ORANGE1, ORANGE2 } from "../../Colors";
 export default class Login extends Component {
   constructor(props) {
     super(props);
+
+    this.unsubscribe = null;
   }
 
 
@@ -30,7 +32,7 @@ export default class Login extends Component {
     const animation1 = Animated.timing(this.state.logoPos, { toValue: 30, duration: 750 });
     const animation2 = Animated.timing(this.state.fadeOpacity, { toValue: 1, duration: 1500 });
 
-    LoginService.onLoginStateChanged((user) => {
+    this.unsubscribe = LoginService.onLoginStateChanged((user) => {
       if (user) {
         this.props.navigation.navigate("MainNav");
       } else {
@@ -40,6 +42,10 @@ export default class Login extends Component {
         }
       }
     });
+  }
+
+  componentWillUnmount() {
+    this.unsubscribe();
   }
 
   handleLogin() {

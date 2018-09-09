@@ -1,50 +1,26 @@
 import React, { Component } from "react";
 import {
   Container, Header, Content, Item, Input, Icon,
-  Button, List, ListItem, Text
+  List, ListItem, Text
 } from "native-base";
-import firebase from "react-native-firebase";
 import { createStackNavigator } from "react-navigation";
 
+import Button from "../../../components/Button";
+import Exercises from "../../../entities/Exercises";
 
-class Exercises extends Component {
-  constructor() {
-    super();
-    this.ref = firebase.firestore().collection("exercises");
+import IndividualExercise from "./IndividualExercise";
 
-    this.unsubscribe = null;
+
+class ExercisesList extends Component {
+  constructor(props) {
+    super(props);
+
+    Exercises.getList().then((list) => this.setState({ exers: list, loading: false }));
+
     this.state = {
       exers: [],
       loading: true,
     };
-  }
-
-  componentDidMount() {
-    this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
-  }
-
-  componentWillUnmount() {
-    this.unsubscribe();
-  }
-
-
-  onCollectionUpdate = (snap) => {
-    const exers = [];
-    snap.forEach((doc) => {
-      const { exName, exStart, exAct, exType } = doc.data();
-
-      exers.push({
-        exName,
-        exStart,
-        exAct,
-        exType,
-      });
-    });
-
-    this.setState({
-      exers,
-      loading: false,
-    });
   }
 
 
@@ -54,8 +30,10 @@ class Exercises extends Component {
     const exlist = list.map((x, i) => {
       return (
         <ListItem key={i}>
-          <Text>{x.exName}</Text>
-        </ListItem>
+          <Button onPress={() => this.props.navigation.navigate("IndividualExercise", { exercise: x })}>
+            <Text>{x.exName}</Text>
+          </Button>
+        </ListItem >
       );
     });
 
@@ -66,7 +44,7 @@ class Exercises extends Component {
             <Icon name="ios-search" />
             <Input placeholder="Search" />
           </Item>
-          <Button transparent>
+          <Button>
             <Text>Search</Text>
           </Button>
         </Header>
@@ -76,13 +54,20 @@ class Exercises extends Component {
             {exlist}
           </List>
         </Content>
-      </Container>
+      </Container >
     );
   }
 }
 
 export default function ExcercisesScreen(navigationOptionsFunc) {
   return createStackNavigator(
-    { Excercises: { screen: Exercises } }, { navigationOptions: navigationOptionsFunc }
+    {
+      ExercisesList: { screen: ExercisesList },
+      IndividualExercise: { screen: IndividualExercise }
+    },
+    {
+      navigationOptions: navigationOptionsFunc,
+      InitialRouteName: "ExercisesList"
+    }
   );
 }
