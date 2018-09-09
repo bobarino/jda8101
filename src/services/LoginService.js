@@ -17,7 +17,7 @@ export default class LoginService {
   }
 
   static onLoginStateChanged(callback) {
-    firebase.auth().onAuthStateChanged(callback);
+    return firebase.auth().onAuthStateChanged(callback);
   }
 
   static isLoggedIn() {

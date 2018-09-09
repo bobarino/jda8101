@@ -7,35 +7,35 @@
     "es6": true
   },
   "rules": {
-    "react/no-deprecated": 2,
-    "react/no-direct-mutation-state": 2,
-    "react/no-unknown-property": 2,
+    "react/no-deprecated": 1,
+    "react/no-direct-mutation-state": 1,
+    "react/no-unknown-property": 1,
     "react/prefer-stateless-function": 0,
-    "react/react-in-jsx-scope": 2,
-    "react/self-closing-comp": 2,
+    "react/react-in-jsx-scope": 1,
+    "react/self-closing-comp": 1,
     "react/sort-comp": 1,
     "react/jsx-equals-spacing": [
-      2,
+      1,
       "never"
     ],
     "react/jsx-indent": [
-      2,
+      1,
       2
     ],
     "react/jsx-indent-props": [
-      2,
-      2
+      1,
+      1
     ],
-    "react/jsx-key": 2,
+    "react/jsx-key": 1,
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
     "react/jsx-space-before-closing": [
-      2,
+      1,
       "always"
     ],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react-native/no-unused-styles": 2,
+    "react/jsx-uses-react": 1,
+    "react/jsx-uses-vars": 1,
+    "react-native/no-unused-styles": 1,
     "react-native/split-platform-components": 2,
     "no-console": 0,
     "semi": [
@@ -45,7 +45,8 @@
     "quotes": [
       1,
       "double"
-    ]
+    ],
+    "no-unused-vars": 1
   },
   "plugins": [
     "react",

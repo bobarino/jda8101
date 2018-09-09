@@ -6,7 +6,7 @@ import Login from "./Login/Login";
 import Register from "./Login/Register";
 import ForgotPassword from "./Login/ForgotPassword";
 
-import ExercisesScreen from "./MainNav/ExercisesScreen";
+import ExercisesScreen from "./MainNav/Exercises/ExercisesScreen";
 import WorkoutScreen from "./MainNav/Workout/WorkoutScreen";
 import ProfileScreen from "./MainNav/ProfileScreen";
 import FeedbackScreen from "./MainNav/FeedbackScreen";
