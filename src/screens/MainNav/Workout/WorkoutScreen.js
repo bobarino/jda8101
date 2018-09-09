@@ -7,14 +7,14 @@ import WorkLive from "./WorkLive";
 
 
 export const TodayStack = createStackNavigator({
-  Home: { screen: Home },
-  Workout: { screen: Workout },
-  WorkLive: { screen: WorkLive },
+  Workout1: { screen: Home },
+  Workout2: { screen: Workout },
+  Workout3: { screen: WorkLive },
 }, {
     navigationOptions: {
       gesturesEnabled: false,
       header: null,
-      initialRouteName: "Home"
+      initialRouteName: "Workout1"
     },
   },
 );
