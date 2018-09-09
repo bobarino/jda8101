@@ -3,8 +3,6 @@ import { Text } from "react-native";
 import { Container, Content, Card, CardItem } from "native-base";
 
 
-
-
 export default class Program
   extends Component {
 
@@ -95,8 +93,6 @@ export default class Program
               </Text>
             </CardItem>
           </Card>
-
-
         </Content>
       </Container>
     );

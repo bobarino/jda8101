@@ -1,19 +1,19 @@
 import firebase from "react-native-firebase";
 
-export default class Exercises {
+export default class Programs {
 
   static getList() {
     return new Promise((resolve) => {
-      const ref = firebase.firestore().collection("exercises");
+      const ref = firebase.firestore().collection("programs");
       const unsubscribe = ref.onSnapshot((snap) => {
         unsubscribe();
         resolve(snap.docs.map((doc) => {
-          const { exName, exStart, exAct, exType } = doc.data();
+          const { level, pid, sport, weeks } = doc.data();
           return {
-            exName,
-            exStart,
-            exAct,
-            exType,
+            level,
+            pid,
+            sport,
+            weeks,
           };
         }));
       });
