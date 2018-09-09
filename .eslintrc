@@ -24,7 +24,7 @@
     ],
     "react/jsx-indent-props": [
       1,
-      1
+      2
     ],
     "react/jsx-key": 1,
     "react/jsx-no-duplicate-props": 2,
