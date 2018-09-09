@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, Image, View, Button, Dimensions, ScrollView } from "react-native";
+import { SafeAreaView, Image, View, Text, Dimensions, ScrollView } from "react-native";
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import Login from "./Login/Login";
@@ -9,11 +9,12 @@ import ForgotPassword from "./Login/ForgotPassword";
 import ExercisesScreen from "./MainNav/ExercisesScreen";
 import WorkoutScreen from "./MainNav/Workout/WorkoutScreen";
 import ProfileScreen from "./MainNav/ProfileScreen";
-import ContactScreen from "./MainNav/ContactScreen";
+import FeedbackScreen from "./MainNav/FeedbackScreen";
 import SettingsScreen from "./MainNav/SettingsScreen";
 import ProgressScreen from "./MainNav/Progress/ProgressScreen";
 
 import LoginService from "../services/LoginService";
+import Button from "../components/Button";
 
 import { LogoImage } from "../Images";
 
@@ -33,8 +34,12 @@ function createNavigationHeader(name) {
     headerTitleStyle: {
       fontWeight: "bold",
     },
-    headerLeft: <Ionicons name="md-menu" style={{ padding: 10 }}
-      size={35} color="#9599a2" onPress={() => navigation.openDrawer()} />
+    headerLeft: (
+      <Button style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()}>
+        <Ionicons name="md-menu"
+          size={35} color="#9599a2" />
+      </Button>
+    )
   });
 }
 
@@ -53,10 +58,11 @@ const CustomDrawerComponent = (props) => (
     <ScrollView style={{ backgroundColor: "#9599a2" }} contentContainerStyle={{ flex: 1, justifyContent: "space-between" }}>
       <DrawerItems {...props} />
       <Button
-        color="#fe1a27"
-        title="Log Out"
+        style={{ width: "100%", height: 50, backgroundColor: "#9599a2" }}
         onPress={() => LoginService.logout().then(() => props.navigation.navigate("Login"))}
-      />
+      >
+        <Text style={{ textAlign: "center", fontSize: 12, color: "black" }}>Log Out</Text>
+      </Button>
     </ScrollView>
   </SafeAreaView>
 );
@@ -67,7 +73,7 @@ const MainNav = createDrawerNavigator({
   Progress: ProgressScreen(createNavigationHeader("Progress")),
   Profile: ProfileScreen(createNavigationHeader("Profile")),
   Settings: SettingsScreen(createNavigationHeader("Settings")),
-  Contact: ContactScreen(createNavigationHeader("Contact")),
+  Feedback: FeedbackScreen(createNavigationHeader("Feedback")),
 },
   {
     contentComponent: CustomDrawerComponent,
