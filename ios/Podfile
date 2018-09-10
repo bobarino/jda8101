@@ -3,6 +3,8 @@ platform :ios, '9.0'
 
 target 'userapp1' do
 
+  # For displaying touch input during demos
+
   # Required by RNFirebase
   pod 'Firebase', :subspecs => [
     'Core',
