@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 import LoginService from "../../../services/LoginService";
 import Programs from "../../../entities/Programs";
 import Spinner from "../../../components/Spinner";
+import Button from "../../../components/Button";
 import { getWorkoutDayAndWeek, dayStrings } from "../../../Utils";
 
 
@@ -65,6 +66,9 @@ export default class Home extends Component {
               <Text key={i} style={{ fontSize: 20, marginLeft: 20 }}>{item.exName}</Text>
             );
           })}
+          <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: "green" }}>
+            <Text style={{ color: "white", fontSize: 24 }}>Start Workout</Text>
+          </Button>
         </View>
       </View >
     );
