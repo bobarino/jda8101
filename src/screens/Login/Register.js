@@ -12,9 +12,9 @@ export default class Register extends Component {
 
   handleSignUp = () => {
     this.setState({ showSpinner: true });
-    LoginService.register(this.state.email, this.state.password)
+    LoginService.register(this.state.email, this.state.password, this.state.team)
       .then(() => {
-        this.setState({ email: "", password: "", errorMessage: "", showSpinner: false });
+        this.setState({ email: "", password: "", team: "", errorMessage: "", showSpinner: false });
         this.props.navigation.navigate("MainNav");
       })
       .catch(error => this.setState({ errorMessage: error.message, showSpinner: false }));
