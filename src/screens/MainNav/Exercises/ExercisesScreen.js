@@ -4,7 +4,7 @@ import { createStackNavigator } from "react-navigation";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import Button from "../../../components/Button";
-import Exercises from "../../../entities/Exercises";
+import { Exercises } from "../../../entities";
 
 import IndividualExercise from "./IndividualExercise";
 

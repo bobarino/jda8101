@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import LoginService from "../../../services/LoginService";
-import Programs from "../../../entities/Programs";
+import { Exercises } from "../../../entities";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../components/Button";
 import { getWorkoutDayAndWeek, dayStrings } from "../../../Utils";
@@ -15,22 +15,57 @@ export default class Home extends Component {
   state = {
     curUser: null,
     curDay: null,
-    loading: true
+    loading: true,
+    noProgram: false,
+    exList: null
   }
 
   componentDidMount() {
-    const startDate = new Date("09/03/2018");
-    // const curDate = new Date();
-    const curDate = new Date("09/05/2018");
-    const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+    // Exercises.getList().then((list) => {
+    //   const columns = {};
+    //   let index = 0;
+    //   list.forEach((item) => {
+    //     for (const key of Object.keys(item)) {
+    //       if (!(key in columns))
+    //         columns[key] = [];
 
-    Programs.getList().then((programs) => {
-      const curProgram = programs[1];
-      const day = curProgram.weeks[curWeek].days[curDay];
-      this.setState({ curDay: day, loading: false });
-    }).catch((error) => console.error(error));
+    //       columns[key][index] = item[key];
+    //     }
+    //     index++;
+    //   });
 
-    this.setState({ curUser: LoginService.getCurrentUser() });
+    //   let lines = [];
+    //   for (let i = 0; i < index; i++) {
+    //     lines.push(Object.keys(columns).map((key) => `"${columns[key][i]}"`).join(", "));
+    //   }
+    //   // console.log("columns:", columns);
+    //   lines = lines.map((line) => line.replace("\n", "").replace("\t", ""));
+    //   console.log(lines.join("\n"));
+    // });
+
+    LoginService.getCurrentUser().then((curUser) => {
+      this.setState({ curUser });
+
+      console.log("curUser:", curUser);
+
+      if (curUser.curProgram) {
+        // commented out for testing
+        const startDate = curUser.curProgramStart;
+        const curDate = new Date();
+        // const startDate = new Date("09/03/2018");
+        // const curDate = new Date("09/05/2018");
+
+        const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+        curUser.curProgram.get()
+          .then((doc) => doc.data())
+          .then((program) => {
+            console.log("program:", program);
+            this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
+          });
+      } else {
+        //
+      }
+    });
   }
 
   render() {
@@ -42,7 +77,7 @@ export default class Home extends Component {
       </View >
     );
 
-    if (!curDay) return (
+    if (curDay != {}) return (
       <View style={styles.baseContainer} >
         <Text style={styles.headerText}>No Workout Today</Text>
       </View >
@@ -57,7 +92,7 @@ export default class Home extends Component {
             <Text style={{ fontSize: 26 }}>{curDay.week}</Text>
           </View>
           <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={{ fontSize: 26 }}>Mesocycle: </Text>
+            <Text style={{ fontSize: 26 }}>Training Cycle: </Text>
             <Text style={{ fontSize: 26 }}>{curDay.meso}</Text>
           </View>
           <Text style={{ fontSize: 26 }}>Exercises: </Text>
