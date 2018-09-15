@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import Programs from "../../../entities/Programs";
+import { Programs } from "../../../entities";
 import { getWorkoutDayAndWeek, dayStrings } from "../../../Utils";
 
 export default class Program
