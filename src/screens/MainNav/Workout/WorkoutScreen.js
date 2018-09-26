@@ -4,7 +4,7 @@ import Home from "./Home";
 import Program from "./Program";
 import Workout from "./Workout";
 import WorkLive from "./WorkLive";
-
+import TeamCalendar from "./TeamCalendar";
 
 export const TodayStack = createStackNavigator({
   Workout1: { screen: Home },
@@ -31,6 +31,12 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
     navigationOptions: {
       tabBarLabel: "Your Program",
     }
+  },
+  TeamCalendar: {
+      screen: TeamCalendar,
+      navigationOptions: {
+          tabBarLabel: "Team Calendar",
+      }
   },
 },
   {
