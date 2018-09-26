@@ -1,0 +1,32 @@
+{
+  "Soccer0DEF": {
+    "sport": "Soccer",
+    "level": "0",
+    "weeks": [
+      {
+        "meso": "Daily Undulating",
+        "num": 1,
+        "week": "A",
+        "days": [
+          "__ref:workouts/SOC0DUA1",
+          "__ref:workouts/SOC0DUA2",
+          "__ref:workouts/SOC0DUA3",
+          "__ref:workouts/SOC0DUA4",
+          "__ref:workouts/SOC0DUA5"
+        ]
+      },
+      {
+        "meso": "Strength Linear",
+        "num": 2,
+        "week": "A",
+        "days": [
+          "__ref:workouts/SOC0SLA1",
+          "__ref:workouts/SOC0SLA2",
+          "__ref:workouts/SOC0SLA3",
+          "__ref:workouts/SOC0SLA4",
+          "__ref:workouts/SOC0SLA5"
+        ]
+      }
+    ]
+  }
+}

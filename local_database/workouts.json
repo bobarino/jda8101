@@ -1,0 +1,1343 @@
+{
+  "SOC0DUA1": {
+    "day": "1",
+    "sport": "Soccer",
+    "meso": "Daily Undulating",
+    "week": "A",
+    "wID": "SOC0DUA1",
+    "season": "In Season",
+    "level": "0",
+    "exercises": [
+      {
+        "exid": "High Knees-1",
+        "wtType": "Percentage",
+        "exName": "High Knees",
+        "order": 0,
+        "unit": "Time",
+        "time": "10",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5",
+        "reps": "20",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 1,
+        "unit": "Weight"
+      },
+      {
+        "sets": "4",
+        "exid": "Shoulder-Extension Plank-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder-Extension Plank",
+        "order": 2,
+        "unit": "Time",
+        "time": "30",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4",
+        "reps": "6",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 3,
+        "unit": "Weight"
+      },
+      {
+        "sets": "4",
+        "reps": "5",
+        "exid": "Partner-Weighted Squats-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-Weighted Squats",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "description": "2 lunges each leg followed by 4 half-field sprints",
+        "sets": "4",
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Lunge to Sprint",
+        "order": 5,
+        "unit": "Other",
+        "type": "Core Lift"
+      },
+      {
+        "wtType": "Percentage",
+        "exName": "YTW",
+        "order": 6,
+        "unit": "Time",
+        "time": "60",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "2",
+        "exid": "YTW-1"
+      }
+    ]
+  },
+  "SOC0DUA2": {
+    "exercises": [
+      {
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time",
+        "rest": "60",
+        "time": "240",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "3"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0DUA2",
+    "season": "Post Season",
+    "level": "0",
+    "day": "2",
+    "sport": "Soccer",
+    "meso": "Daily Undulating"
+  },
+  "SOC0DUA3": {
+    "exercises": [
+      {
+        "wtType": "Percentage",
+        "exName": "Skip to Sprint",
+        "order": 0,
+        "unit": "Other",
+        "type": "Warm Up",
+        "description": "skip to goal-box, sprint to half-field",
+        "sets": "4",
+        "exid": "Skip to Sprint-1"
+      },
+      {
+        "exName": "Hip Bridge",
+        "order": 1,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "8",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight"
+      },
+      {
+        "reps": "4",
+        "exid": "Single Leg Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Single Leg Hip Bridge",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "sets": "4",
+        "reps": "6",
+        "exid": "Straight-Leg Heel lifts-1",
+        "wtType": "Body Weight",
+        "exName": "Straight-Leg Heel lifts",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "reps": "8",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "reps": "15",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Warm Up"
+      },
+      {
+        "description": "",
+        "sets": "2",
+        "exid": "Side Plank-1",
+        "wtType": "Body Weight",
+        "exName": "Side Plank",
+        "order": 6,
+        "unit": "Time",
+        "time": "30",
+        "type": "Warm Up"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0DUA3",
+    "season": "In Season",
+    "level": "0",
+    "day": "3",
+    "sport": "Soccer",
+    "meso": "Daily Undulating"
+  },
+  "SOC0DUA4": {
+    "day": "4",
+    "sport": "Soccer",
+    "meso": "Daily Undulating",
+    "exercises": [
+      {
+        "order": 0,
+        "unit": "Time",
+        "rest": "120",
+        "time": "420",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "2",
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "fweight": ""
+      },
+      {
+        "sets": "4",
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Lunge to Sprint",
+        "order": 1,
+        "unit": "Other",
+        "type": "Warm Up",
+        "description": "2 lunges each leg followed by 4 quarter field sprints"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0DUA4",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0DUA5": {
+    "level": "0",
+    "day": "5",
+    "sport": "Soccer",
+    "meso": "Daily Undulating",
+    "exercises": [
+      {
+        "wtType": "Percentage",
+        "exName": "A-Skip",
+        "order": 0,
+        "unit": "Time",
+        "time": "15",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "A-Skip-1"
+      },
+      {
+        "wtType": "Percentage",
+        "exName": "High Knees",
+        "order": 1,
+        "unit": "Time",
+        "time": "10",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "High Knees-1"
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "reps": "5",
+        "exid": "Partner-Weighted Squats-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-Weighted Squats",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Core Lift"
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "exid": "Moving Plank-1",
+        "wtType": "Body Weight",
+        "exName": "Moving Plank",
+        "order": 3,
+        "unit": "Time",
+        "time": "20",
+        "type": "Core Lift"
+      },
+      {
+        "reps": "8",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3"
+      },
+      {
+        "wtType": "Body Weight",
+        "exName": "Scap Dip",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "reps": "8",
+        "exid": "Scap Dip-1"
+      },
+      {
+        "type": "Core Lift",
+        "description": "2 lunges each leg followed by 4 half field sprints",
+        "sets": "4",
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Body Weight",
+        "exName": "Lunge to Sprint",
+        "order": 6,
+        "unit": "Other"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0DUA5",
+    "season": "In Season"
+  },
+  "SOC0RFDA2": {
+    "sport": "Soccer",
+    "meso": "Strength/Power/RFD",
+    "exercises": [
+      {
+        "description": "",
+        "sets": "4",
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time",
+        "rest": "120",
+        "time": "30",
+        "type": "Warm Up"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0RFDA2",
+    "season": "In Season",
+    "level": "0",
+    "day": "2"
+  },
+  "SOC0RFDA3": {
+    "season": "In Season",
+    "level": "0",
+    "day": "3",
+    "sport": "Soccer",
+    "meso": "Strength/Power/RFD",
+    "exercises": [
+      {
+        "exid": "Sprinter Starts-1",
+        "wtType": "Percentage",
+        "exName": "Sprinter Starts",
+        "order": 0,
+        "unit": "Other",
+        "type": "Warm Up",
+        "description": "half court",
+        "sets": "4"
+      },
+      {
+        "type": "Warm Up",
+        "description": "goal box length",
+        "sets": "4",
+        "exid": "Carioca to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Carioca to Sprint",
+        "order": 1,
+        "unit": "Other"
+      },
+      {
+        "reps": "6",
+        "exid": "Hamstring Curl with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Hamstring Curl with Ball",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5"
+      },
+      {
+        "reps": "5",
+        "exid": "Partner-Weighted Squats-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-Weighted Squats",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "sets": "4",
+        "exid": "Power Skip-1",
+        "wtType": "Body Weight",
+        "exName": "Power Skip",
+        "order": 4,
+        "unit": "Time",
+        "time": "15",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "reps": "3",
+        "exid": "Partner-resisted Lateral Lunge-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-resisted Lateral Lunge",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Core Lift"
+      },
+      {
+        "exid": "YTW-1",
+        "wtType": "Body Weight",
+        "exName": "YTW",
+        "order": 6,
+        "unit": "Time",
+        "time": "60",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "2"
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "reps": "6",
+        "exid": "Dive Bomber Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Dive Bomber Pushup",
+        "order": 7,
+        "unit": "Weight",
+        "type": "Core Lift"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0RFDA3"
+  },
+  "SOC0RFDA5": {
+    "day": "5",
+    "sport": "Soccer",
+    "meso": "Strength/Power/RFD",
+    "exercises": [
+      {
+        "time": "8",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "Heel Raise-1",
+        "wtType": "Percentage",
+        "exName": "Heel Raise",
+        "order": 0,
+        "unit": "Time"
+      },
+      {
+        "time": "12",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "A-Skip-1",
+        "wtType": "Percentage",
+        "exName": "A-Skip",
+        "order": 1,
+        "unit": "Time"
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4",
+        "reps": "3",
+        "exid": "Partner-resisted Lateral Lunge-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-resisted Lateral Lunge",
+        "order": 2,
+        "unit": "Weight"
+      },
+      {
+        "sets": "4",
+        "reps": "15",
+        "exid": "Power Skip-1",
+        "wtType": "Body Weight",
+        "exName": "Power Skip",
+        "order": 3,
+        "unit": "Time",
+        "time": "15",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "type": "Core Lift",
+        "description": "goal box length",
+        "sets": "4",
+        "exid": "Carioca to Sprint-1",
+        "wtType": "Body Weight",
+        "exName": "Carioca to Sprint",
+        "order": 4,
+        "unit": "Other"
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4",
+        "reps": "6",
+        "exid": "Dive Bomber Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Dive Bomber Pushup",
+        "order": 5,
+        "unit": "Weight"
+      },
+      {
+        "wtType": "Body Weight",
+        "exName": "Hamstring Curl with Ball",
+        "order": 6,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5",
+        "reps": "6",
+        "exid": "Hamstring Curl with Ball-1"
+      },
+      {
+        "time": "30",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "exid": "Shoulder tap-planks-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder tap-planks",
+        "order": 7,
+        "unit": "Time"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0RFDA5",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0SLA1": {
+    "day": "1",
+    "sport": "Soccer",
+    "meso": "Strength Linear",
+    "exercises": [
+      {
+        "description": "",
+        "sets": "5",
+        "percs": "",
+        "reps": "5",
+        "exid": "Lunge with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Lunge with Ball",
+        "order": 0,
+        "unit": "Weight",
+        "type": "Core Lift"
+      },
+      {
+        "percs": "",
+        "reps": "10",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 1,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5"
+      },
+      {
+        "exName": "Hip Bridge",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "5",
+        "percs": "",
+        "reps": "5",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight"
+      },
+      {
+        "reps": "8",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "percs": ""
+      },
+      {
+        "exid": "Shoulder tap-planks-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder tap-planks",
+        "order": 4,
+        "unit": "Time",
+        "time": "30",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "percs": ""
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SLA1",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0SLA2": {
+    "day": "2",
+    "sport": "Soccer",
+    "meso": "Strength Linear",
+    "exercises": [],
+    "week": "A",
+    "wID": "SOC0SLA2",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0SLA3": {
+    "day": "3",
+    "sport": "Soccer",
+    "meso": "Strength Linear",
+    "exercises": [
+      {
+        "description": "4 lunges each leg followed by 2 field length sprints per set",
+        "sets": "2",
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Lunge to Sprint",
+        "order": 0,
+        "unit": "Other",
+        "type": "Warm Up"
+      },
+      {
+        "type": "Warm Up",
+        "description": "",
+        "sets": "2",
+        "reps": "8",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 1,
+        "unit": "Weight"
+      },
+      {
+        "reps": "15",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "3"
+      },
+      {
+        "sets": "4",
+        "reps": "8",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "order": 4,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "10",
+        "exid": "Straight-Leg Heel lifts-1",
+        "wtType": "Body Weight",
+        "exName": "Straight-Leg Heel lifts",
+        "fweight": ""
+      },
+      {
+        "description": "",
+        "sets": "3",
+        "exid": "Shoulder tap-planks-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder tap-planks",
+        "order": 5,
+        "unit": "Time",
+        "time": "30",
+        "type": "Warm Up"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SLA3",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0SLA4": {
+    "sport": "Soccer",
+    "meso": "Strength Linear",
+    "exercises": [
+      {
+        "time": "600",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "1",
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time"
+      },
+      {
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Lunge to Sprint",
+        "order": 1,
+        "unit": "Other",
+        "type": "Warm Up",
+        "description": "4 lunges each leg followed by 2 field length down and back sprints",
+        "sets": "2"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SLA4",
+    "season": "In Season",
+    "level": "0",
+    "day": "4"
+  },
+  "SOC0SLA5": {
+    "level": "0",
+    "day": "5",
+    "sport": "Soccer",
+    "meso": "Strength Linear",
+    "exercises": [
+      {
+        "wtType": "Body Weight",
+        "exName": "Reverse Walking Lunges with ball",
+        "order": 0,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "5",
+        "exid": "Reverse Walking Lunges with ball-1"
+      },
+      {
+        "type": "Warm Up",
+        "description": "",
+        "sets": "2",
+        "reps": "5",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 1,
+        "unit": "Weight"
+      },
+      {
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "15",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 2,
+        "unit": "Weight"
+      },
+      {
+        "sets": "4",
+        "reps": "8",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "10",
+        "exid": "Straight-Leg Heel lifts-1",
+        "wtType": "Body Weight",
+        "exName": "Straight-Leg Heel lifts",
+        "order": 4,
+        "unit": "Weight"
+      },
+      {
+        "reps": "10",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SLA5",
+    "season": "In Season"
+  },
+  "SOC0SPA1": {
+    "sport": "Soccer",
+    "meso": "Strength/Power",
+    "exercises": [
+      {
+        "time": "10",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "Heel Raise-1",
+        "wtType": "Percentage",
+        "exName": "Heel Raise",
+        "order": 0,
+        "unit": "Time"
+      },
+      {
+        "reps": "20",
+        "exid": "A-Skip-1",
+        "wtType": "Body Weight",
+        "exName": "A-Skip",
+        "order": 1,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "5"
+      },
+      {
+        "description": "",
+        "sets": "3",
+        "exid": "Reverse Crab Walk-1",
+        "wtType": "Body Weight",
+        "exName": "Reverse Crab Walk",
+        "order": 2,
+        "unit": "Time",
+        "time": "30",
+        "type": "Warm Up"
+      },
+      {
+        "exName": "YTW",
+        "order": 3,
+        "unit": "Time",
+        "time": "60",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "2",
+        "exid": "YTW-1",
+        "wtType": "Body Weight"
+      },
+      {
+        "exName": "Pushup",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "5",
+        "reps": "20",
+        "exid": "Pushup-1",
+        "wtType": "Body Weight"
+      },
+      {
+        "sets": "5",
+        "reps": "8",
+        "exid": "Hamstring Curl with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Hamstring Curl with Ball",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "description": "",
+        "sets": "3",
+        "exid": "Shoulder tap-planks-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder tap-planks",
+        "order": 6,
+        "unit": "Time",
+        "time": "30",
+        "type": "Warm Up"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SPA1",
+    "season": "In Season",
+    "level": "0",
+    "day": "1"
+  },
+  "SOC0SPA2": {
+    "season": "In Season",
+    "level": "0",
+    "day": "2",
+    "sport": "Soccer",
+    "meso": "Strength/Power",
+    "exercises": [
+      {
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time",
+        "rest": "60",
+        "time": "120",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "5"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SPA2"
+  },
+  "SOC0SPA3": {
+    "week": "A",
+    "wID": "SOC0SPA3",
+    "season": "In Season",
+    "level": "0",
+    "day": "3",
+    "sport": "Soccer",
+    "meso": "Strength/Power",
+    "exercises": [
+      {
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Percentage",
+        "exName": "Lunge to Sprint",
+        "order": 0,
+        "unit": "Other",
+        "type": "Warm Up",
+        "description": "2 lunges followed by 1 quarter field sprint",
+        "sets": "2"
+      },
+      {
+        "reps": "8",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 1,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "sets": "4",
+        "reps": "5",
+        "exid": "Partner-Weighted Squats-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-Weighted Squats",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "reps": "3",
+        "exid": "Split Squat-Jump-1",
+        "wtType": "Body Weight",
+        "exName": "Split Squat-Jump",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "sets": "4",
+        "reps": "3",
+        "exid": "Partner-resisted Lateral Lunge-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-resisted Lateral Lunge",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "sets": "2",
+        "exid": "YTW-1",
+        "wtType": "Body Weight",
+        "exName": "YTW",
+        "order": 5,
+        "unit": "Time",
+        "time": "60",
+        "type": "Warm Up",
+        "description": ""
+      },
+      {
+        "wtType": "Body Weight",
+        "exName": "Pushup",
+        "order": 6,
+        "unit": "Weight",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "reps": "20",
+        "exid": "Pushup-1"
+      }
+    ]
+  },
+  "SOC0SPA5": {
+    "day": "5",
+    "sport": "Soccer",
+    "meso": "Strength/Power",
+    "exercises": [
+      {
+        "time": "15",
+        "type": "Warm Up",
+        "description": "",
+        "sets": "4",
+        "exid": "A-Skip-1",
+        "wtType": "Percentage",
+        "exName": "A-Skip",
+        "order": 0,
+        "unit": "Time"
+      },
+      {
+        "type": "Warm Up",
+        "description": "",
+        "distance": "20",
+        "sets": "5",
+        "exid": "Acceleration Build Runs-1",
+        "wtType": "Percentage",
+        "exName": "Acceleration Build Runs",
+        "order": 1,
+        "unit": "Distance"
+      },
+      {
+        "order": 2,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4",
+        "reps": "6",
+        "exid": "Dive Bomber Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Dive Bomber Pushup"
+      },
+      {
+        "reps": "5",
+        "exid": "Split Squat-1",
+        "wtType": "Body Weight",
+        "exName": "Split Squat",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "reps": "3",
+        "exid": "Partner-resisted Lateral Lunge-1",
+        "wtType": "Body Weight",
+        "exName": "Partner-resisted Lateral Lunge",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4"
+      },
+      {
+        "wtType": "Body Weight",
+        "exName": "Hamstring Curl with Ball",
+        "order": 5,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5",
+        "reps": "8",
+        "exid": "Hamstring Curl with Ball-1"
+      },
+      {
+        "description": "",
+        "sets": "4",
+        "exid": "Shoulder-Extension Plank-1",
+        "wtType": "Body Weight",
+        "exName": "Shoulder-Extension Plank",
+        "order": 6,
+        "unit": "Time",
+        "time": "20",
+        "type": "Core Lift"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0SPA5",
+    "season": "In Season",
+    "level": "0"
+  },
+  "SOC0WCA1": {
+    "day": "1",
+    "sport": "Soccer",
+    "meso": "Work Capacity",
+    "exercises": [
+      {
+        "percs": "",
+        "reps": "6",
+        "exid": "Lunge with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Lunge with Ball",
+        "order": 0,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "6"
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5",
+        "percs": "",
+        "reps": "8",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 1,
+        "unit": "Weight"
+      },
+      {
+        "description": "",
+        "sets": "3",
+        "percs": "",
+        "reps": "8",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Warm Up"
+      },
+      {
+        "time": "30",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "percs": "",
+        "exid": "Plank-1",
+        "wtType": "Body Weight",
+        "exName": "Plank",
+        "order": 3,
+        "unit": "Time"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0WCA1",
+    "season": "Off Season",
+    "level": "0"
+  },
+  "SOC0WCA2": {
+    "day": "2",
+    "sport": "Soccer",
+    "meso": "Work Capacity",
+    "exercises": [
+      {
+        "percs": "",
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time",
+        "rest": "120",
+        "time": "600",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "2"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0WCA2",
+    "season": "Off Season",
+    "level": "0"
+  },
+  "SOC0WCA3": {
+    "sport": "Soccer",
+    "meso": "Work Capacity",
+    "exercises": [
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "2",
+        "percs": "",
+        "exid": "Lunge to Sprint-1",
+        "wtType": "Body Weight",
+        "exName": "Lunge to Sprint",
+        "order": 0,
+        "unit": "Weight",
+        "rest": "90"
+      },
+      {
+        "reps": "8",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 1,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "percs": ""
+      },
+      {
+        "order": 2,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "percs": "",
+        "reps": "8",
+        "exid": "Scap Dip-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Dip",
+        "fweight": ""
+      },
+      {
+        "percs": "",
+        "reps": "12",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 3,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5"
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "5",
+        "percs": "",
+        "reps": "6",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 4,
+        "unit": "Weight"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0WCA3",
+    "season": "Off Season",
+    "level": "0",
+    "day": "3"
+  },
+  "SOC0WCA4": {
+    "season": "Off Season",
+    "level": "0",
+    "day": "4",
+    "sport": "Soccer",
+    "meso": "Work Capacity",
+    "exercises": [
+      {
+        "time": "900",
+        "type": "Core Lift",
+        "description": "",
+        "sets": 1,
+        "percs": "",
+        "exid": "Run Bout-1",
+        "wtType": "Percentage",
+        "exName": "Run Bout",
+        "order": 0,
+        "unit": "Time",
+        "rest": "Full rest"
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0WCA4"
+  },
+  "SOC0WCA5": {
+    "day": "5",
+    "sport": "Soccer",
+    "meso": "Work Capacity",
+    "exercises": [
+      {
+        "sets": "5",
+        "percs": "",
+        "reps": "6",
+        "exid": "Hip Bridge-1",
+        "wtType": "Body Weight",
+        "exName": "Hip Bridge",
+        "order": 0,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "type": "Core Lift",
+        "description": "",
+        "sets": "4",
+        "percs": "",
+        "reps": "6",
+        "exid": "Lunge with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Lunge with Ball",
+        "order": 1,
+        "unit": "Weight"
+      },
+      {
+        "sets": "3",
+        "percs": "",
+        "reps": "8",
+        "exid": "Scap Pushup-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Pushup",
+        "order": 2,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": ""
+      },
+      {
+        "order": 3,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": "",
+        "sets": "3",
+        "percs": "",
+        "reps": "8",
+        "exid": "Scap Dip-1",
+        "wtType": "Body Weight",
+        "exName": "Scap Dip",
+        "fweight": ""
+      },
+      {
+        "sets": "4",
+        "percs": "",
+        "reps": "10",
+        "exid": "Squat with Ball-1",
+        "wtType": "Body Weight",
+        "exName": "Squat with Ball",
+        "order": 4,
+        "unit": "Weight",
+        "type": "Core Lift",
+        "description": ""
+      }
+    ],
+    "week": "A",
+    "wID": "SOC0WCA5",
+    "season": "Off Season",
+    "level": "0"
+  }
+}
