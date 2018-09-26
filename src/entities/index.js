@@ -44,7 +44,28 @@ class Firestore {
 }
 
 const USE_LOCAL_JSON = true;
-const LOCAL_JSON_FILE = "../../local_database.json";
+const LOCAL_JSON_FOLDER = "../../local_database";
+
+let Exercises, Workouts, Programs, Teams, Users;
+
+let jsonDB = null;
+
+class LocalJSONRef {
+  constructor(path, ) {
+    this.path = path;
+  }
+
+  async get() {
+    const pathSplit = this.path.split("/");
+    let cur = jsonDB;
+
+    for (const path of pathSplit) {
+      if (!cur) throw new Error(`Invalid Reference: ${this.path}`);
+      cur = cur[path];
+    }
+    return cur;
+  }
+}
 
 class LocalJSON {
   constructor(jsonDB) {
@@ -76,19 +97,46 @@ class LocalJSON {
   }
 }
 
-let Exercises, Programs, Teams, Users;
-
 if (USE_LOCAL_JSON) {
-  const jsonDB = require(LOCAL_JSON_FILE);
-  Exercises = new LocalJSON(jsonDB["exercises"]);
-  Programs = new LocalJSON(jsonDB["programs"]);
-  Teams = new LocalJSON(jsonDB["teams"]);
-  Users = new LocalJSON(jsonDB["users"]);
+  const totalDB = {};
+  totalDB.exercises = require(`${LOCAL_JSON_FOLDER}/exercises.json`);
+  totalDB.workouts = require(`${LOCAL_JSON_FOLDER}/workouts.json`);
+  totalDB.programs = require(`${LOCAL_JSON_FOLDER}/programs.json`);
+  totalDB.teams = require(`${LOCAL_JSON_FOLDER}/teams.json`);
+  totalDB.users = require(`${LOCAL_JSON_FOLDER}/users.json`);
+
+  console.log("before:", totalDB);
+
+  const transformDB = (db) => {
+    Object.entries(db).forEach(([key, value]) => {
+      if (typeof value === "object") {
+        db[key] = transformDB(value);
+      } else if (typeof value === "string") {
+        if (value.startsWith("__ref:")) {
+          db[key] = new LocalJSONRef(value.split(":")[1]);
+        }
+        if (value.startsWith("__date:")) {
+          db[key] = new Date(value);
+        }
+      }
+    });
+    return db;
+  };
+
+  jsonDB = transformDB(totalDB);
+
+  console.log("after:", jsonDB);
+  Exercises = new LocalJSON(jsonDB.exercises);
+  Workouts = new LocalJSON(jsonDB.workouts);
+  Programs = new LocalJSON(jsonDB.programs);
+  Teams = new LocalJSON(jsonDB.teams);
+  Users = new LocalJSON(jsonDB.users);
 } else {
   Exercises = new Firestore("exercises", ["exName", "exStart", "exAct", "exType"]);
+  // Workouts = new Firestore("workouts", []);
   Programs = new Firestore("programs", ["level", "pid", "sport", "weeks"]);
   Teams = new Firestore("teams", ["school", "sport"]);
   Users = new Firestore("users", ["team", "curProgram", "curProgramStart"]);
 }
 
-export { Exercises, Programs, Teams, Users };
+export { Exercises, Workouts, Programs, Teams, Users };

@@ -21,27 +21,6 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    // Exercises.getList().then((list) => {
-    //   const columns = {};
-    //   let index = 0;
-    //   list.forEach((item) => {
-    //     for (const key of Object.keys(item)) {
-    //       if (!(key in columns))
-    //         columns[key] = [];
-
-    //       columns[key][index] = item[key];
-    //     }
-    //     index++;
-    //   });
-
-    //   let lines = [];
-    //   for (let i = 0; i < index; i++) {
-    //     lines.push(Object.keys(columns).map((key) => `"${columns[key][i]}"`).join(", "));
-    //   }
-    //   // console.log("columns:", columns);
-    //   lines = lines.map((line) => line.replace("\n", "").replace("\t", ""));
-    //   console.log(lines.join("\n"));
-    // });
 
     LoginService.getCurrentUser().then((curUser) => {
       this.setState({ curUser });
@@ -52,16 +31,16 @@ export default class Home extends Component {
         // commented out for testing
         // const startDate = curUser.curProgramStart;
         // const curDate = new Date();
-        // const startDate = new Date("09/03/2018");
-        // const curDate = new Date("09/05/2018");
+        const startDate = new Date("09/03/2018");
+        const curDate = new Date("09/05/2018");
 
-        // const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
-        // curUser.curProgram.get()
-        //   .then((doc) => doc.data())
-        //   .then((program) => {
-        //     console.log("program:", program);
-        //     this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
-        //   });
+        const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+        curUser.curProgram.get()
+          .then((doc) => doc.data())
+          .then((program) => {
+            console.log("program:", program);
+            this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
+          });
       } else {
         //
       }
@@ -84,7 +63,7 @@ export default class Home extends Component {
     );
 
     return (
-      <View style={styles.baseContainer} >
+      <View style={styles.baseContainer}>
         <Text style={styles.headerText}>{dayStrings[curDay.day]}'s Workout:</Text>
         <View style={styles.exerciseContiner}>
           <View style={{ flexDirection: "row", width: "100%" }}>
@@ -105,7 +84,7 @@ export default class Home extends Component {
             <Text style={{ color: "white", fontSize: 24 }}>Start Workout</Text>
           </Button>
         </View>
-      </View >
+      </View>
     );
   }
 }
