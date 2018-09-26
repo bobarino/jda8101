@@ -33,17 +33,19 @@ export default class Program
     const { program } = this.state;
     let { curDay, curWeek } = this.state;
 
-    while (i < num) {
-      const day = program.weeks[curWeek].days[curDay];
-      if (day && day.hasOwnProperty("wID")) {
-        workouts.push(day);
-        i++;
-      }
+    if (program) {
+      while (i < num) {
+        const day = program.weeks[curWeek].days[curDay];
+        if (day && day.hasOwnProperty("wID")) {
+          workouts.push(day);
+          i++;
+        }
 
-      curDay++;
-      if (curDay == 7) {
-        curDay = 0;
-        curWeek++;
+        curDay++;
+        if (curDay == 7) {
+          curDay = 0;
+          curWeek++;
+        }
       }
     }
 
