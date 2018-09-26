@@ -50,18 +50,18 @@ export default class Home extends Component {
 
       if (curUser.curProgram) {
         // commented out for testing
-        const startDate = curUser.curProgramStart;
-        const curDate = new Date();
+        // const startDate = curUser.curProgramStart;
+        // const curDate = new Date();
         // const startDate = new Date("09/03/2018");
         // const curDate = new Date("09/05/2018");
 
-        const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
-        curUser.curProgram.get()
-          .then((doc) => doc.data())
-          .then((program) => {
-            console.log("program:", program);
-            this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
-          });
+        // const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+        // curUser.curProgram.get()
+        //   .then((doc) => doc.data())
+        //   .then((program) => {
+        //     console.log("program:", program);
+        //     this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
+        //   });
       } else {
         //
       }
