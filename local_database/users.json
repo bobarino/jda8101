@@ -2,7 +2,7 @@
   "test@athlete-physics.com": {
     "curProgram": "__ref:programs/Soccer0DEF",
     "team": "__ref:teams/11102",
-    "curProgramStart": "__date:2018-09-03T04:00:00.000Z",
+    "curProgramStart": "__date:2018-09-03",
     "uid": "9S6d6H6IRcdcRs1lL6vCoGWoCr13"
   }
 }
