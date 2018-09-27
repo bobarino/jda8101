@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import LoginService from "../../../services/LoginService";
-import { Exercises } from "../../../entities";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../components/Button";
 import { getWorkoutDayAndWeek, dayStrings } from "../../../Utils";
@@ -25,8 +24,6 @@ export default class Home extends Component {
     LoginService.getCurrentUser().then((curUser) => {
       this.setState({ curUser });
 
-      console.log("curUser:", curUser);
-
       if (curUser.curProgram) {
         // commented out for testing
         // const startDate = curUser.curProgramStart;
@@ -37,10 +34,10 @@ export default class Home extends Component {
         const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
         curUser.curProgram.get()
           .then((doc) => doc.data())
-          .then((program) => {
-            console.log("program:", program);
-            this.setState({ curDay: program.weeks[curWeek].days[curDay], loading: false });
-          });
+          .then((program) => program.weeks[curWeek].days[curDay].get())
+          .then((doc) => doc.data())
+          .then((data) => this.setState({ curDay: data, loading: false }))
+          .catch((err) => console.log(err));
       } else {
         //
       }
@@ -56,7 +53,7 @@ export default class Home extends Component {
       </View >
     );
 
-    if (curDay != {}) return (
+    if (!curDay) return (
       <View style={styles.baseContainer} >
         <Text style={styles.headerText}>No Workout Today</Text>
       </View >

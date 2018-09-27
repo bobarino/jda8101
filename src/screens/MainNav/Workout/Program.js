@@ -17,51 +17,15 @@ export default class Program
     const { curDay, curWeek } = getWorkoutDayAndWeek(this.startDate, this.curDate);
 
     Programs.getList().then((programs) => {
-      this.setState({ program: programs[1], curDay, curWeek, loading: false });
+      const program = programs[0];
+      this.setState({ program, curDay, curWeek, loading: false });
     }).catch((error) => console.error(error));
   }
 
   render() {
-    const num = 5;
-    let i = 0;
-    const workouts = [];
-
     if (this.state.loading) {
       return null;
     }
-
-    const { program } = this.state;
-    let { curDay, curWeek } = this.state;
-
-    if (program) {
-      while (i < num) {
-        const day = program.weeks[curWeek].days[curDay];
-        if (day && day.hasOwnProperty("wID")) {
-          workouts.push(day);
-          i++;
-        }
-
-        curDay++;
-        if (curDay == 7) {
-          curDay = 0;
-          curWeek++;
-        }
-      }
-    }
-
-    console.log("workouts:", workouts);
-
-    // return (
-    //   <View style={styles.baseContainer}>
-    //     {workouts.map((item, i) => {
-    //       return (
-    //         <View key={i}>
-    //           <Text style={styles.headerText}>{dayStrings[item.day]} Workout:</Text>
-    //         </View>
-    //       );
-    //     })}
-    //   </View>
-    // );
 
     return (
       <View style={styles.container}>

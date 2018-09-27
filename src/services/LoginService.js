@@ -39,7 +39,7 @@ function getCurrentUserCredential() {
 }
 
 function getCurrentUser() {
-  return Users.getByID(getCurrentUserCredential().uid);
+  return Users.getByID(getCurrentUserCredential().email);
 }
 
 function onLoginStateChanged(callback) {
