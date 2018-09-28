@@ -20,18 +20,21 @@ export default class Program extends Component {
 
   componentDidMount() {
     Programs.getList().then(async (programs) => {
-      const p = programs[0];
+      const curProgram = programs[0];
 
-      for (const week in p.weeks) {
-        for (const day in p.weeks[week].days) {
-          const snapshot = await p.weeks[week].days[day].get();
+      const p = { weeks: [] };
+
+      for (const week in curProgram.weeks) {
+        const w = { days: [] };
+        for (const day in curProgram.weeks[week].days) {
+
+          const snapshot = await curProgram.weeks[week].days[day].get();
 
           if (snapshot.exists) {
-            p.weeks[week].days[day] = snapshot.data();
-          } else {
-            delete p.weeks[week].days[day];
+            w.days.push(snapshot.data());
           }
         }
+        p.weeks.push(w);
       }
 
       this.setState({ program: p, loading: false });

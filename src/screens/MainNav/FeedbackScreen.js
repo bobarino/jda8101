@@ -9,7 +9,6 @@ class Feedback extends Component {
   state = { name: "", message: "" };
 
   componentDidMount() {
-    console.log(this.props);
   }
 
   handleEmail = () => {

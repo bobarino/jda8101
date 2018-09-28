@@ -22,7 +22,6 @@ class UserForm extends Component {
   onSelectedItemsChange = teams => this.setState({ teams });
 
   render() {
-    console.log(this.state);
     const { email, displayName, setFieldValue, handleSubmit } = this.props;
     const { teams } = this.state;
     return (
