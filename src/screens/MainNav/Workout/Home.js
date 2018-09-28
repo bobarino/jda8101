@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import LoginService from "../../../services/LoginService";
-import Programs from "../../../entities/Programs";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../components/Button";
 import { getWorkoutDayAndWeek, dayStrings } from "../../../Utils";
@@ -15,22 +14,34 @@ export default class Home extends Component {
   state = {
     curUser: null,
     curDay: null,
-    loading: true
+    loading: true,
+    noProgram: false,
+    exList: null
   }
 
   componentDidMount() {
-    const startDate = new Date("09/03/2018");
-    // const curDate = new Date();
-    const curDate = new Date("09/05/2018");
-    const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
 
-    Programs.getList().then((programs) => {
-      const curProgram = programs[1];
-      const day = curProgram.weeks[curWeek].days[curDay];
-      this.setState({ curDay: day, loading: false });
-    }).catch((error) => console.error(error));
+    LoginService.getCurrentUser().then((curUser) => {
+      this.setState({ curUser });
 
-    this.setState({ curUser: LoginService.getCurrentUser() });
+      if (curUser.curProgram) {
+        // commented out for testing
+        // const startDate = curUser.curProgramStart;
+        // const curDate = new Date();
+        const startDate = new Date("09/03/2018");
+        const curDate = new Date("09/05/2018");
+
+        const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+        curUser.curProgram.get()
+          .then((doc) => doc.data())
+          .then((program) => program.weeks[curWeek].days[curDay].get())
+          .then((doc) => doc.data())
+          .then((data) => this.setState({ curDay: data, loading: false }))
+          .catch((err) => console.log(err));
+      } else {
+        //
+      }
+    });
   }
 
   render() {
@@ -49,7 +60,7 @@ export default class Home extends Component {
     );
 
     return (
-      <View style={styles.baseContainer} >
+      <View style={styles.baseContainer}>
         <Text style={styles.headerText}>{dayStrings[curDay.day]}'s Workout:</Text>
         <View style={styles.exerciseContiner}>
           <View style={{ flexDirection: "row", width: "100%" }}>
@@ -57,7 +68,7 @@ export default class Home extends Component {
             <Text style={{ fontSize: 26 }}>{curDay.week}</Text>
           </View>
           <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={{ fontSize: 26 }}>Mesocycle: </Text>
+            <Text style={{ fontSize: 26 }}>Training Cycle: </Text>
             <Text style={{ fontSize: 26 }}>{curDay.meso}</Text>
           </View>
           <Text style={{ fontSize: 26 }}>Exercises: </Text>
@@ -70,7 +81,7 @@ export default class Home extends Component {
             <Text style={{ color: "white", fontSize: 24 }}>Start Workout</Text>
           </Button>
         </View>
-      </View >
+      </View>
     );
   }
 }

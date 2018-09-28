@@ -1,0 +1,254 @@
+{
+  "A-Skip-1": {
+    "exName": "A-Skip",
+    "exType": "Lower Body",
+    "exAct": "Smoothly drive alternating knees and toes up in rhythmic fashion",
+    "exid": "A-Skip-1",
+    "exStart": "Good posture, split arms, quickly pull knee and toe to chest while pushing opposing heel backwards."
+  },
+  "Acceleration Build Runs-1": {
+    "exid": "Acceleration Build Runs-1",
+    "exStart": "Forward learning position, 6 smooth first steps",
+    "exName": "Acceleration Build Runs",
+    "exType": "Full Body",
+    "exAct": "Run forward, gradually build speed during required distance"
+  },
+  "Carioca to Sprint-1": {
+    "exStart": "",
+    "exName": "Carioca to Sprint",
+    "exType": "Full Body",
+    "exAct": "Lateral leg shuffle, after 3 crossover steps rotate 90 degrees and sprint",
+    "exid": "Carioca to Sprint-1"
+  },
+  "Dive Bomber Pushup-1": {
+    "exName": "Dive Bomber Pushup",
+    "exType": "Upper Push",
+    "exAct": "Glide chest towards ground in between hands. Push chest and head up, dropping hips near floor. Reverse movement, elevating hips back to inverted V",
+    "exid": "Dive Bomber Pushup-1",
+    "exStart": "Hands and feet on ground, hips elevated making inverted V position"
+  },
+  "Hamstring Curl with Ball-1": {
+    "exid": "Hamstring Curl with Ball-1",
+    "exStart": "Shoulders on the ground, feet on top of a soccer ball, hips elevated",
+    "exName": "Hamstring Curl with Ball",
+    "exType": "Lower Body",
+    "exAct": "Keep hips elevated, curl feet on top of soccer ball towards hips, taking mini-steps"
+  },
+  "Heel Raise-1": {
+    "exName": "Heel Raise",
+    "exType": "Lower Body",
+    "exAct": "Alternate knees and heels up AFAP",
+    "exid": "Heel Raise-1",
+    "exStart": "Good posture, pull heel straight up from ground alongside planted leg"
+  },
+  "High Knees-1": {
+    "exType": "",
+    "exAct": "Pull one knee/toe up from ground, quickly and smoothly alternating pump knees and toes up ",
+    "exid": "High Knees-1",
+    "exStart": "Start standing with good posture",
+    "exName": "High Knees"
+  },
+  "Hip Bridge-1": {
+    "exStart": "Start lying on back with knees bent, feet planted on the ground",
+    "exName": "Hip Bridge",
+    "exType": "Lower Body",
+    "exAct": "Drive hips up from heels, squeeze glutes",
+    "exid": "Hip Bridge-1"
+  },
+  "Inverted Row-1": {
+    "exName": "Inverted Row",
+    "exType": "Upper Pull",
+    "exAct": "Pull chest up to barbell keeping body straight",
+    "exid": "Inverted Row-1",
+    "exStart": "Place barbell in power rack. Start holding barbell from underneath with straight arms and straight body"
+  },
+  "Jerk-1": {
+    "exName": "Jerk",
+    "exType": "Full Body",
+    "exAct": "In one explosive movement, extend barbell overhead while dropping one foot behind the body. ",
+    "exid": "Jerk-1",
+    "exStart": "Start holding barbell at upper chest"
+  },
+  "Lunge to Sprint-1": {
+    "exName": "Lunge to Sprint",
+    "exType": "Full Body",
+    "exAct": "Perform 2 lunges on each leg moving forward then take off to sprint",
+    "exid": "Lunge to Sprint-1",
+    "exStart": "Stand with good posture"
+  },
+  "Lunge with Ball-1": {
+    "exid": "Lunge with Ball-1",
+    "exStart": "Stand with good posture holding soccer ball overhead with straight arms ",
+    "exName": "Lunge with Ball",
+    "exType": "Full Body",
+    "exAct": "Lunge one foot forward with heel directly underneath knee, push back to standing"
+  },
+  "Moving Plank-1": {
+    "exid": "Moving Plank-1",
+    "exStart": "From pushup position, Keeping core stiff",
+    "exName": "Moving Plank",
+    "exType": "Full Body",
+    "exAct": "Alternatively move from pushup position to a forearm plank for desired time"
+  },
+  "Overhead Press-1": {
+    "exAct": "Press bar up extending arms overhead",
+    "exid": "Overhead Press-1",
+    "exStart": "Start with barbell behind neck",
+    "exName": "Overhead Press",
+    "exType": "Upper Push"
+  },
+  "Partner-Weighted Squats-1": {
+    "exName": "Partner-Weighted Squats",
+    "exType": "",
+    "exAct": "Lower body-level slightly above knees at 90 degrees. Drive from outside edges of feet back to standing.",
+    "exid": "Partner-Weighted Squats-1",
+    "exStart": "Partner 'backpacked' on active partner, feet just outside hip-width "
+  },
+  "Partner-resisted Lateral Lunge-1": {
+    "exStart": "Partner standing to the side of played",
+    "exName": "Partner-resisted Lateral Lunge",
+    "exType": "Lower Body",
+    "exAct": "Partner pushes player at shoulders, player steps lunges laterally, player returns to standing by driving from outside leg",
+    "exid": "Partner-resisted Lateral Lunge-1"
+  },
+  "Partner-resisted Squat-1": {
+    "exName": "Partner-resisted Squat",
+    "exType": "Lower Body",
+    "exAct": "Partner pushes player at shoulders, player steps lunges laterally, player returns to standing by driving from outside leg",
+    "exid": "Partner-resisted Squat-1",
+    "exStart": "Partner standing to side of player."
+  },
+  "Plank-1": {
+    "exAct": "Maintain position for required time",
+    "exid": "Plank-1",
+    "exStart": "Start with forearms and toes touching the ground",
+    "exName": "Plank",
+    "exType": "Auxiliary"
+  },
+  "Power Skip-1": {
+    "exName": "Power Skip",
+    "exType": "Full Body",
+    "exAct": "Skip with large vertical jump.  Skipping remains rhythmic and smooth",
+    "exid": "Power Skip-1",
+    "exStart": ""
+  },
+  "Pushup-1": {
+    "exAct": "Lower body down, push back up with stiff core",
+    "exid": "Pushup-1",
+    "exStart": "Pushup position",
+    "exName": "Pushup",
+    "exType": "Upper Push"
+  },
+  "Reverse Crab Walk-1": {
+    "exName": "Reverse Crab Walk",
+    "exType": "Full Body",
+    "exAct": "Keeping hips elevated, push from heels, stabilize with arms, moving backwards",
+    "exid": "Reverse Crab Walk-1",
+    "exStart": "feet and palms planted on ground, fingers pointed backwards, hips elevated and pointed skyward"
+  },
+  "Reverse Walking Lunges with ball-1": {
+    "exName": "Reverse Walking Lunges with ball",
+    "exType": "Lower Body",
+    "exAct": "Reach one foot backwards, flex front knee to 90 degrees, push off front foot back to standing",
+    "exid": "Reverse Walking Lunges with ball-1",
+    "exStart": "Stand with good posture holding soccer ball overhead with straight arms"
+  },
+  "Run Bout-1": {
+    "exName": "Run Bout",
+    "exType": "",
+    "exAct": "Run at 7/10 intensity",
+    "exid": "Run Bout-1",
+    "exStart": ""
+  },
+  "Scap Dip-1": {
+    "exid": "Scap Dip-1",
+    "exStart": "Straight arms planted on bench, hips elevated body in a straight line",
+    "exName": "Scap Dip",
+    "exType": "Upper Push",
+    "exAct": "Lower body-level sagging hips by bending elbows. Elevate body level by straightening arms"
+  },
+  "Scap Pushup-1": {
+    "exAct": "Lower body level by slouching shoulders keep body straight. Push body up from shoulders",
+    "exid": "Scap Pushup-1",
+    "exStart": "Start in pushup position",
+    "exName": "Scap Pushup",
+    "exType": "Upper Push"
+  },
+  "Shoulder tap-planks -1": {
+    "exStart": "From pushup position, Keeping core stiff",
+    "exName": "Shoulder tap-planks ",
+    "exType": "Full Body",
+    "exAct": "Alternatively tap shoulders with hands",
+    "exid": "Shoulder tap-planks -1"
+  },
+  "Shoulder-Extension Plank-1": {
+    "exid": "Shoulder-Extension Plank-1",
+    "exStart": "From pushup position, Keeping core stiff",
+    "exName": "Shoulder-Extension Plank",
+    "exType": "",
+    "exAct": "Alternatively extend straight arm forwards"
+  },
+  "Side Plank-1": {
+    "exName": "Side Plank",
+    "exType": "Auxiliary",
+    "exAct": "Hold body in straight-line, core stiff",
+    "exid": "Side Plank-1",
+    "exStart": "From pushup position, rotate to one forearm, chest facing wall Keeping core stiff"
+  },
+  "Single Leg Hip Bridge-1": {
+    "exType": "",
+    "exAct": "Drive hips up from planted heel, squeeze glutes",
+    "exid": "Single Leg Hip Bridge-1",
+    "exStart": "Lying on back, one heel planted on ground, other ankle resting across planted knee (figure 4 position)",
+    "exName": "Single Leg Hip Bridge"
+  },
+  "Skip to Sprint-1": {
+    "exName": "Skip to Sprint",
+    "exType": "",
+    "exAct": "Take off to a sprint",
+    "exid": "Skip to Sprint-1",
+    "exStart": "Skip for 6-8 strides"
+  },
+  "Split Squat-1": {
+    "exName": "Split Squat",
+    "exType": "Lower Body",
+    "exAct": "In lunge position, one leg elevated backwards on bench",
+    "exid": "Split Squat-1",
+    "exStart": "In lunge position, one leg elevated backwards on bench"
+  },
+  "Split Squat-Jump-1": {
+    "exName": "Split Squat-Jump",
+    "exType": "Lower Body",
+    "exAct": "Lower body-level slightly above knees at 90 degrees. Explode up to standing (front foot may leave ground)",
+    "exid": "Split Squat-Jump-1",
+    "exStart": "In lunge position, one leg elevated backwards on bench"
+  },
+  "Sprinter Starts-1": {
+    "exName": "Sprinter Starts",
+    "exType": "Full Body",
+    "exAct": "Explode for 6 steps, gradually elevate posture",
+    "exid": "Sprinter Starts-1",
+    "exStart": "Line up like a 100m sprinter"
+  },
+  "Squat with Ball-1": {
+    "exType": "Full Body",
+    "exAct": "Lower body-level to 90 degree knee angle, keep chest up. Drive from heels back to standing.",
+    "exid": "Squat with Ball-1",
+    "exStart": "Stand with good posture, feet just outside hip-width holding soccer ball overhead with straight arms ",
+    "exName": "Squat with Ball"
+  },
+  "Straight-Leg Heel lifts-1": {
+    "exName": "Straight-Leg Heel lifts",
+    "exType": "Lower Body",
+    "exAct": "Squeeze glute with straight leg. Elevate foot from ground",
+    "exid": "Straight-Leg Heel lifts-1",
+    "exStart": "Lying on stomach on ground"
+  },
+  "YTW-1": {
+    "exName": "YTW",
+    "exType": "",
+    "exAct": "Keeping feet together, extend arms making a Y, T, and W position for 20 seconds each",
+    "exid": "YTW-1",
+    "exStart": "Lie on stomach, pull chest and knees off the ground"
+  }
+}
