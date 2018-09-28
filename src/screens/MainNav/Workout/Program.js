@@ -22,10 +22,12 @@ export default class Program extends Component {
     Programs.getList().then(async (programs) => {
       const curProgram = programs[0];
 
-      const p = { weeks: [] };
+      const p = Object.assign({}, curProgram);
+      p.weeks = [];
 
       for (const week in curProgram.weeks) {
-        const w = { days: [] };
+        const w = Object.assign([], curProgram.weeks[week]);
+        w.days = [];
         for (const day in curProgram.weeks[week].days) {
 
           const snapshot = await curProgram.weeks[week].days[day].get();
@@ -33,6 +35,7 @@ export default class Program extends Component {
           if (snapshot.exists) {
             w.days.push(snapshot.data());
           }
+
         }
         p.weeks.push(w);
       }
