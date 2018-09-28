@@ -3,6 +3,11 @@ import { jsonDB } from ".";
 export class LocalJSONSnapshot {
   constructor(data) {
     this._data = data;
+    this.exists = true;
+
+    if (data === null) {
+      this.exists = false;
+    }
   }
 
   data() {
@@ -15,12 +20,14 @@ export class LocalJSONRef {
     this.path = path;
   }
 
-  get() {
+  async get() {
     const pathSplit = this.path.split("/");
     let cur = jsonDB;
 
     for (const path of pathSplit) {
-      if (!cur) throw new Error(`Invalid Reference: ${this.path}`);
+      if (!cur) {
+        return new LocalJSONSnapshot(null);
+      }
       cur = cur[path];
     }
     return new LocalJSONSnapshot(cur);
