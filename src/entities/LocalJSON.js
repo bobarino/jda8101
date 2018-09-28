@@ -2,11 +2,11 @@ import { jsonDB } from ".";
 
 export class LocalJSONSnapshot {
   constructor(data) {
-    this._data = data;
-    this.exists = true;
+    this.exists = false;
 
-    if (data === null) {
-      this.exists = false;
+    if (data !== null) {
+      this._data = Object.assign({}, data);
+      this.exists = true;
     }
   }
 
@@ -54,8 +54,7 @@ export class LocalJSON {
     const val = this.db[Object.keys(this.db).find((value) => value === id)];
     if (!val) return undefined;
 
-    val.id = id;
-    return val;
+    return Object.assign({ id }, val);
   }
 
   async setByID(id, value) {
