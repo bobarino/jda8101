@@ -45,9 +45,9 @@ export default class Home extends Component {
   }
 
   render() {
-    const { curDay, loading } = this.state;
+    const { curDay } = this.state;
 
-    if (loading) return (
+    if (this.state.loading) return (
       <View style={styles.baseContainer} >
         <Spinner show />
       </View >
