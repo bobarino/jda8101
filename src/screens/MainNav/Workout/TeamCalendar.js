@@ -89,7 +89,7 @@ export default class TeamCalendar extends Component {
             '2018-10-01': { dots: [workout], disableTouchEvent: false },
           }}
         />
-        <View style={{ flex: 0.8, color: bgColor }}>
+        <View style={{ flex: 0.8, backgroundColor: bgColor }}>
           <Text>Workout</Text>
           <Text>Barbell Lunge</Text>
           <Text>Type: Lower Body</Text>
