@@ -20,7 +20,6 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-
     LoginService.getCurrentUser().then((curUser) => {
       this.setState({ curUser });
 
@@ -35,11 +34,14 @@ export default class Home extends Component {
         curUser.curProgram.get()
           .then((doc) => doc.data())
           .then((program) => program.weeks[curWeek].days[curDay].get())
-          .then((doc) => doc.data())
+          .then((doc) => {
+            if (doc.exists) return doc.data();
+            return undefined;
+          })
           .then((data) => this.setState({ curDay: data, loading: false }))
-          .catch((err) => console.log(err));
+          .catch((err) => console.log("error:", err));
       } else {
-        //
+        this.setState({ loading: false });
       }
     });
   }
