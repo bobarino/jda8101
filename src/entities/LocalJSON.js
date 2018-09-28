@@ -15,7 +15,7 @@ export class LocalJSONRef {
     this.path = path;
   }
 
-  async get() {
+  get() {
     const pathSplit = this.path.split("/");
     let cur = jsonDB;
 
