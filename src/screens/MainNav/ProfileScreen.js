@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { createStackNavigator } from "react-navigation";
+
+import UserForm from "./Profile/UserForm";
 
 class Profile extends Component {
   static navigationOptions = {
@@ -9,23 +11,16 @@ class Profile extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Profile</Text>
+      <View>
+        <UserForm email="johnjones@gmail.com" displayName="John Jones" teams={[]} />
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  }
-});
-
 export default function ProfileScreen(navigationOptionsFunc) {
   return createStackNavigator(
-    { Profile: { screen: Profile } }, { navigationOptions: navigationOptionsFunc }
+    { Profile: { screen: Profile } },
+    { navigationOptions: navigationOptionsFunc },
   );
 }
