@@ -9,9 +9,8 @@ export class Firestore {
   }
 
   makeEntity(doc) {
-    const entity = {};
     const data = doc.data();
-    this.fields.forEach((value) => entity[value] = (data[value]));
+    const entity = Object.assign({}, data);
     entity.id = doc.id;
     return entity;
   }
@@ -23,8 +22,12 @@ export class Firestore {
   }
 
   async getList() {
-    return this.db.collection(this.collection).get()
-      .then((snap) => snap.docs.map((doc) => this.makeEntity(doc)));
+    const snap = await this.db.collection(this.collection).get();
+    const ret = [];
+    for (const doc of snap.docs) {
+      ret.push(await this.makeEntity(doc));
+    }
+    return ret;
   }
 
   async getByID(id) {

@@ -3,7 +3,7 @@ import { LocalJSON, LocalJSONRef } from "./LocalJSON";
 
 let Exercises, Workouts, Programs, Teams, Users;
 
-const USE_LOCAL_JSON = true;
+const USE_LOCAL_JSON = false;
 const LOCAL_JSON_FOLDER = "../../local_database";
 
 export let jsonDB = null;
