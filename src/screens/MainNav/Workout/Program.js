@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, Button, ScrollView, Dimensions } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Dimensions } from "react-native";
 import { Programs } from "../../../entities";
-import { getWorkoutDayAndWeek } from "../../../Utils";
 import Collapsible from "react-native-collapsible";
 import Spinner from "../../../components/Spinner";
+import Button from "../../../components/Button";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
 const { height } = Dimensions.get("window");
 
 export default class Program extends Component {
-
-  startDate = new Date("09/03/2018");
-  curDate = new Date("09/05/2018");
 
   state = {
     program: undefined, curDay: 0, curWeek: 0, loading: true, screenHeight: height,
@@ -23,10 +21,14 @@ export default class Program extends Component {
       const p = Object.assign({}, curProgram);
       p.weeks = [];
 
+      const open = {};
+
       for (const week in curProgram.weeks) {
         const w = Object.assign([], curProgram.weeks[week]);
         w.days = [];
+        open[`w${week.num}`] = false;
         for (const day in curProgram.weeks[week].days) {
+          open[`w${week.num}d${day.day}`] = false;
 
           const snapshot = await curProgram.weeks[week].days[day].get();
 
@@ -38,25 +40,33 @@ export default class Program extends Component {
         p.weeks.push(w);
       }
 
-      this.setState({ program: p, loading: false });
+      this.setState({ program: p, open, loading: false });
 
     }).catch((error) => console.error(error));
   }
 
   toggleWeek = (w) => {
-    let curState = this.state[`w${w.num}`];
+    let curState = this.state.open[`w${w.num}`];
     if (curState === undefined) {
-      curState = true;
+      curState = false;
     }
-    this.setState({ [`w${w.num}`]: !curState });
+
+    const newState = this.state.open;
+    newState[`w${w.num}`] = !curState;
+
+    this.setState({ open: newState });
   }
 
   toggleDay = (w, d) => {
-    let curState = this.state[`w${w.num}d${d.day}`];
+    let curState = this.state.open[`w${w.num}d${d.day}`];
     if (curState === undefined) {
-      curState = true;
+      curState = false;
     }
-    this.setState({ [`w${w.num}d${d.day}`]: !curState });
+
+    const newState = this.state.open;
+    newState[`w${w.num}d${d.day}`] = !curState;
+
+    this.setState({ open: newState });
   }
 
 
@@ -66,7 +76,7 @@ export default class Program extends Component {
       for (const e in d.exercises) {
         var c = d.exercises[e];
         toReturn.push(
-          <View>
+          <View key={e}>
             <Text style={styles.exHead}>{c.exName + ": "}</Text>
             <Text style={styles.exText}>{c.sets + "x" + (c.unit == "Time" ? c.time : c.reps) + (c.unit == "Time" ? " seconds" : " reps")}</Text>
           </View>
@@ -74,34 +84,41 @@ export default class Program extends Component {
       }
     } else {
       toReturn.push(
-        <Text style={styles.exText}>Rest Day!</Text>
+        <Text key="rest" style={styles.exText}>Rest Day!</Text>
       );
     }
     return toReturn;
   }
 
   day = (w, d) => {
+    const open = this.state.open[`w${w.num}d${d.day}`];
+    const iconName = !open ? "ios-arrow-forward" : "ios-arrow-down";
     return (
-      <View key={d.num}>
-        <Button style={styles.button}
-          title={"Day: " + d.day}
-          onPress={() => this.toggleDay(w, d)}
-        />
-        <Collapsible collapsed={this.state[`w${w.num}d${d.day}`]}>
+      <View key={`w${w.num}d${d.day}`}>
+        <Button style={styles.dayButton} onPress={() => this.toggleDay(w, d)}>
+          <View style={{ flexDirection: "row", width: "100%", height: 32 }}>
+            <Ionicons style={styles.chevron} name={iconName} size={32} color="#9599a2" />
+            <Text style={styles.dayButtonText}>{"Day: " + d.day}</Text>
+          </View>
+        </Button>
+        <Collapsible collapsed={!this.state.open[`w${w.num}d${d.day}`]}>
           {this.ex(d)}
         </Collapsible>
-      </View>
+      </View >
     );
   }
 
   week = (w) => {
+    const iconName = !this.state.open[`w${w.num}`] ? "ios-arrow-forward" : "ios-arrow-down";
     return (
-      <View key={w.num}>
-        <Button style={styles.button}
-          title={"Week " + w.num + ": " + w.meso}
-          onPress={() => this.toggleWeek(w)}
-        />
-        <Collapsible collapsed={this.state[`w${w.num}`]}>
+      <View key={`w${w.num}`}>
+        <Button style={styles.weekButton} onPress={() => this.toggleWeek(w)}>
+          <View style={{ flexDirection: "row", width: "100%", height: 32 }}>
+            <Ionicons style={styles.chevron} name={iconName} size={32} color="#9599a2" />
+            <Text style={styles.weekButtonText}>{"Week " + w.num + ": " + w.meso}</Text>
+          </View>
+        </Button>
+        <Collapsible collapsed={!this.state.open[`w${w.num}`]}>
           {w.days.map((d) => this.day(w, d))}
         </Collapsible>
       </View>
@@ -117,13 +134,11 @@ export default class Program extends Component {
 
     var p = this.state.program;
 
-    const scrollEnabled = this.state.screenHeight > height;
     return (
       <ScrollView
         style={styles.baseContainer}
-        scrollEnabled={scrollEnabled}
+        scrollEnabled={true}
         contentContainerStyle={styles.scrollview}
-        onContentSizeChange={(w, h) => this.setState({ screenHeight: h })}
       >
         <Text style={styles.headerText}> {p.sport + " - Level: " + p.level}</Text>
         {p.weeks.map((w) => this.week(w))}
@@ -137,16 +152,28 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%"
   },
-  button: {
-    color: "white",
-    padding: 5
-  },
   headerText: {
     marginTop: 10,
     marginBottom: 10,
     fontSize: 32,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  weekButton: {
+    paddingLeft: 20,
+    height: 32,
+  },
+  weekButtonText: {
+    paddingLeft: 20,
+    fontSize: 20
+  },
+  dayButton: {
+    height: 32,
+    paddingLeft: 40,
+  },
+  dayButtonText: {
+    paddingLeft: 20,
+    fontSize: 20
   },
   exText: {
     textAlign: "center"

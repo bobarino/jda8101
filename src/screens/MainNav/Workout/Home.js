@@ -37,10 +37,6 @@ export default class Home extends Component {
         this.setState({ loading: false });
       }
 
-
-
-
-
     }).catch((error) => console.error(error));
 
     // Exercises.getList().then((list) => this.setState({ exers: list }));
@@ -66,7 +62,7 @@ export default class Home extends Component {
     );
 
     return (
-      <View style={styles.baseContainer} >
+      <View style={styles.baseContainer}>
         <Text style={styles.headerText}>{dayStrings[day.day]}{"'"}s Workout:</Text>
         <View style={styles.exerciseContiner}>
           <View style={{ flexDirection: "row", width: "100%" }}>
