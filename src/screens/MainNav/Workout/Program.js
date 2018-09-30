@@ -14,8 +14,6 @@ export default class Program extends Component {
 
   state = {
     program: undefined, curDay: 0, curWeek: 0, loading: true, screenHeight: height,
-    w1: true, w1d0: true, w1d1: true, w1d2: true, w1d3: true, w1d4: true,
-    w2: true, w2d0: true, w2d1: true, w2d2: true, w2d3: true, w2d4: true
   };
 
   componentDidMount() {
@@ -45,6 +43,22 @@ export default class Program extends Component {
     }).catch((error) => console.error(error));
   }
 
+  toggleWeek = (w) => {
+    let curState = this.state[`w${w.num}`];
+    if (curState === undefined) {
+      curState = true;
+    }
+    this.setState({ [`w${w.num}`]: !curState });
+  }
+
+  toggleDay = (w, d) => {
+    let curState = this.state[`w${w.num}d${d.day}`];
+    if (curState === undefined) {
+      curState = true;
+    }
+    this.setState({ [`w${w.num}d${d.day}`]: !curState });
+  }
+
 
   ex = (d) => {
     const toReturn = [];
@@ -54,7 +68,7 @@ export default class Program extends Component {
         toReturn.push(
           <View>
             <Text style={styles.exHead}>{c.exName + ": "}</Text>
-            <Text style={styles.exText}>{c.sets + "x" + (c.unit == "Time" ? c.time : c.reps) + (c.unit == "Time" ? " secs" : " reps")}</Text>
+            <Text style={styles.exText}>{c.sets + "x" + (c.unit == "Time" ? c.time : c.reps) + (c.unit == "Time" ? " seconds" : " reps")}</Text>
           </View>
         );
       }
@@ -66,6 +80,34 @@ export default class Program extends Component {
     return toReturn;
   }
 
+  day = (w, d) => {
+    return (
+      <View key={d.num}>
+        <Button style={styles.button}
+          title={"Day: " + d.day}
+          onPress={() => this.toggleDay(w, d)}
+        />
+        <Collapsible collapsed={this.state[`w${w.num}d${d.day}`]}>
+          {this.ex(d)}
+        </Collapsible>
+      </View>
+    );
+  }
+
+  week = (w) => {
+    return (
+      <View key={w.num}>
+        <Button style={styles.button}
+          title={"Week " + w.num + ": " + w.meso}
+          onPress={() => this.toggleWeek(w)}
+        />
+        <Collapsible collapsed={this.state[`w${w.num}`]}>
+          {w.days.map((d) => this.day(w, d))}
+        </Collapsible>
+      </View>
+    );
+  }
+
   render() {
     if (this.state.loading) return (
       <View style={styles.baseContainer} >
@@ -75,34 +117,6 @@ export default class Program extends Component {
 
     var p = this.state.program;
 
-    // var weekList = []
-
-    // for (var week in p.weeks) {
-    // 	var curTrig = "col" + week;
-    // 	this.state[curTrig] = true;
-    // 	weekList.push(		
-    // 		<Button key = {curTrig}
-    // 			title = {"Week " + p.weeks[week].num + ": " + p.weeks[week].meso + " " + curTrig}
-    // 			onPress = {() => {this.butPush(week);}} 
-    // 		/>
-    // 	);
-    // }
-
-    // <Button 
-    // 	title = {"Week " + p.weeks[0].num + ": " + p.weeks[0].meso}
-    // 	onPress = {() => this.setState({b: !this.state.b})}
-    // />
-    // <Collapsible collapsed = {this.state.b}>
-    // 	<Text>POOP</Text>
-    // </Collapsible>
-
-
-    // return (
-    // 	<View style = {styles.baseContainer}>
-    // 		<Text>{p.sport + " - Level: " + p.level}</Text>
-    // 		{weekList}
-    // 	</View>
-    // );
     const scrollEnabled = this.state.screenHeight > height;
     return (
       <ScrollView
@@ -112,96 +126,7 @@ export default class Program extends Component {
         onContentSizeChange={(w, h) => this.setState({ screenHeight: h })}
       >
         <Text style={styles.headerText}> {p.sport + " - Level: " + p.level}</Text>
-        <Button style={styles.button}
-          title={"Week " + p.weeks[0].num + ": " + p.weeks[0].meso}
-          onPress={() => this.setState({ w1: !this.state.w1 })}
-        />
-        <Collapsible collapsed={this.state.w1}>
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[0].days[0].day}
-            onPress={() => this.setState({ w1d0: !this.state.w1d0 })}
-          />
-          <Collapsible collapsed={this.state.w1d0}>
-            {this.ex(p.weeks[0].days[0])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[0].days[1].day}
-            onPress={() => this.setState({ w1d1: !this.state.w1d1 })}
-          />
-          <Collapsible collapsed={this.state.w1d1}>
-            {this.ex(p.weeks[0].days[1])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[0].days[2].day}
-            onPress={() => this.setState({ w1d2: !this.state.w1d2 })}
-          />
-          <Collapsible collapsed={this.state.w1d2}>
-            {this.ex(p.weeks[0].days[2])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[0].days[3].day}
-            onPress={() => this.setState({ w1d3: !this.state.w1d3 })}
-          />
-          <Collapsible collapsed={this.state.w1d3}>
-            {this.ex(p.weeks[0].days[3])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[0].days[4].day}
-            onPress={() => this.setState({ w1d4: !this.state.w1d4 })}
-          />
-          <Collapsible collapsed={this.state.w1d4}>
-            {this.ex(p.weeks[0].days[4])}
-          </Collapsible>
-        </Collapsible>
-        <Button style={styles.button}
-          title={"Week " + p.weeks[1].num + ": " + p.weeks[1].meso}
-          onPress={() => this.setState({ w2: !this.state.w2 })}
-        />
-        <Collapsible collapsed={this.state.w2}>
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[1].days[0].day}
-            onPress={() => this.setState({ w2d0: !this.state.w2d0 })}
-          />
-          <Collapsible collapsed={this.state.w2d0}>
-            {this.ex(p.weeks[1].days[0])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[1].days[1].day}
-            onPress={() => this.setState({ w2d1: !this.state.w2d1 })}
-          />
-          <Collapsible collapsed={this.state.w2d1}>
-            {this.ex(p.weeks[1].days[1])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[1].days[2].day}
-            onPress={() => this.setState({ w2d2: !this.state.w2d2 })}
-          />
-          <Collapsible collapsed={this.state.w2d2}>
-            {this.ex(p.weeks[1].days[2])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[1].days[3].day}
-            onPress={() => this.setState({ w2d3: !this.state.w2d3 })}
-          />
-          <Collapsible collapsed={this.state.w2d3}>
-            {this.ex(p.weeks[1].days[3])}
-          </Collapsible>
-
-          <Button style={styles.button}
-            title={"Day: " + p.weeks[1].days[4].day}
-            onPress={() => this.setState({ w2d4: !this.state.w2d4 })}
-          />
-          <Collapsible collapsed={this.state.w2d4}>
-            {this.ex(p.weeks[1].days[4])}
-          </Collapsible>
-        </Collapsible>
+        {p.weeks.map((w) => this.week(w))}
       </ScrollView>
     );
   }
