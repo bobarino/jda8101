@@ -37,6 +37,7 @@ class WorkoutStopwatch extends Component {
 
     this.getFormattedTime = this.getFormattedTime.bind(this);
     this.toggleStopwatch = this.toggleStopwatch.bind(this);
+    this.finishWorkout = this.finishWorkout.bind(this);
   }
 
   getFormattedTime(time) {
@@ -45,6 +46,10 @@ class WorkoutStopwatch extends Component {
 
   toggleStopwatch() {
     this.setState({ stopwatchStart: !this.state.stopwatchStart });
+  }
+
+  finishWorkout() {
+
   }
 
   render() {
@@ -57,7 +62,7 @@ class WorkoutStopwatch extends Component {
           reset={this.state.stopwatchReset}
           options={timerOptions}
           getTime={this.getFormattedTime} />
-        <Button style={styles.stopButton} onPress={() => console.log("stop")}>
+        <Button style={styles.stopButton} onPress={() => this.props.navigation.navigate("HomeScreen")}>
           <Text>Finish</Text>
         </Button>
       </View>
@@ -109,9 +114,9 @@ const Workout = createStackNavigator({
   WorkoutPreview: { screen: WorkoutPreview },
   ExercisePreview: { screen: ExercisePreview },
 }, {
-    navigationOptions: {
+    navigationOptions: (props) => ({
       gesturesEnabled: false,
-      headerTitle: <WorkoutStopwatch />,
+      headerTitle: <WorkoutStopwatch {...props} />,
       headerLeft: null,
       headerMode: "screen",
       headerStyle: {
@@ -124,7 +129,7 @@ const Workout = createStackNavigator({
         fontWeight: "bold",
       },
       initialRouteName: "WorkoutPreview",
-    }
+    })
   },
 );
 

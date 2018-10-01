@@ -1,7 +1,7 @@
 import { Firestore } from "./Firestore";
 import { LocalJSON, LocalJSONRef } from "./LocalJSON";
 
-let Exercises, Workouts, Programs, Teams, Users;
+let Exercises, Workouts, Programs, Teams, Users, LogEntries;
 
 const USE_LOCAL_JSON = false;
 const LOCAL_JSON_FOLDER = "../../local_database";
@@ -41,10 +41,10 @@ if (USE_LOCAL_JSON) {
   Users = new LocalJSON(jsonDB.users);
 } else {
   Exercises = new Firestore("exercises", ["exName", "exStart", "exAct", "exType"]);
-  // Workouts = new Firestore("workouts", []);
+  Workouts = new Firestore("workouts", []);
   Programs = new Firestore("programs", ["level", "pid", "sport", "weeks"]);
   Teams = new Firestore("teams", ["school", "sport"]);
   Users = new Firestore("users", ["team", "curProgram", "curProgramStart"]);
 }
 
-export { Exercises, Workouts, Programs, Teams, Users };
+export { Exercises, Workouts, Programs, Teams, Users, LogEntries };
