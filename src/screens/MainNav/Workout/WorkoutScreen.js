@@ -3,25 +3,12 @@ import { createStackNavigator, createMaterialTopTabNavigator } from "react-navig
 import Home from "./Home";
 import Program from "./Program";
 import Workout from "./Workout";
-import WorkLive from "./WorkLive";
 import TeamCalendar from "./TeamCalendar";
 
-export const TodayStack = createStackNavigator({
-  Workout1: { screen: Home },
-  Workout2: { screen: Workout },
-  Workout3: { screen: WorkLive },
-}, {
-    navigationOptions: {
-      gesturesEnabled: false,
-      header: null,
-      initialRouteName: "Workout1"
-    },
-  },
-);
 
 export const WorkoutTabNav = createMaterialTopTabNavigator({
   Today: {
-    screen: TodayStack,
+    screen: Home,
     navigationOptions: {
       tabBarLabel: "Today's Workout",
     }
@@ -33,10 +20,10 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
     }
   },
   TeamCalendar: {
-      screen: TeamCalendar,
-      navigationOptions: {
-          tabBarLabel: "Team Calendar",
-      }
+    screen: TeamCalendar,
+    navigationOptions: {
+      tabBarLabel: "Team Calendar",
+    }
   },
 },
   {
@@ -59,8 +46,22 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
     initialRouteName: "Today",
   });
 
+export const WorkoutStack = createStackNavigator({
+  HomeScreen: { screen: WorkoutTabNav },
+  LiveWorkout: {
+    screen: Workout,
+  },
+}, {
+    navigationOptions: {
+      gesturesEnabled: false,
+      header: null,
+      initialRouteName: "HomeScreen"
+    }
+  },
+);
+
 export default function WorkoutScreen(navigationOptionsFunc) {
   return createStackNavigator(
-    { Workout: { screen: WorkoutTabNav } }, { navigationOptions: navigationOptionsFunc }
+    { Workout: { screen: WorkoutStack } }, { navigationOptions: navigationOptionsFunc }
   );
 }

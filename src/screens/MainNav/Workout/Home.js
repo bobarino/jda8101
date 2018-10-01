@@ -80,7 +80,7 @@ export default class Home extends Component {
             );
           })}
           <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: "green" }}
-            onPress={() => this.props.navigation.navigate("IndividualExercise", { exercise: "" })}>
+            onPress={() => this.props.navigation.navigate("LiveWorkout", { day: day })}>
             <Text style={{ color: "white", fontSize: 24 }}>Start Workout</Text>
           </Button>
         </View>

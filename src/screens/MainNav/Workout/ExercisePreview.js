@@ -6,7 +6,7 @@ import Button from "../../../components/Button";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 
-export default class IndividualExercise extends Component {
+export default class ExercisePreview extends Component {
   constructor(props) {
     super(props);
   }
@@ -20,7 +20,7 @@ export default class IndividualExercise extends Component {
         {/* header container */}
         <View style={{ height: 50 }}>
           <View style={styles.header}>
-            <Button style={styles.backButton} onPress={() => this.props.navigation.navigate("ExerciseList")}>
+            <Button style={styles.backButton} onPress={() => this.props.navigation.navigate("WorkoutPreview")}>
               <Ionicons name="md-arrow-round-back" size={35} color="#9599a2" />
             </Button>
             <Text style={styles.headerText}>{exercise.exName}</Text>

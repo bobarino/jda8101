@@ -75,10 +75,20 @@ export default class Program extends Component {
     if (d.exercises.length != 0) {
       for (const e in d.exercises) {
         var c = d.exercises[e];
+        let text;
+        if (c.unit === "Time") {
+          text = `${c.sets} x ${c.time} seconds`;
+        }
+        if (c.unit === "Weight") {
+          text = `${c.sets} x ${c.reps} reps`;
+        }
+        if (c.unit === "Other") {
+          text = `${c.sets} sets`;
+        }
         toReturn.push(
-          <View key={e}>
-            <Text style={styles.exHead}>{c.exName + ": "}</Text>
-            <Text style={styles.exText}>{c.sets + "x" + (c.unit == "Time" ? c.time : c.reps) + (c.unit == "Time" ? " seconds" : " reps")}</Text>
+          <View key={e} style={{ paddingLeft: 80, flexDirection: "row", width: "100%" }}>
+            <Text style={styles.exHead}>{"- " + c.exName + ": "}</Text>
+            <Text style={styles.exText}>{text}</Text>
           </View>
         );
       }
