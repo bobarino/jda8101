@@ -20,7 +20,7 @@ export default class Calendar extends Component {
 
     constructor() {
         super();
-        this.state = { currentDate : new Date(), selectedDate : new Date().getDate(), programsLoaded: false };
+        this.state = { currentDate : new Date(), selectedDate : new Date(), programsLoaded: false };
     }
 
     componentDidMount() {
@@ -55,22 +55,36 @@ export default class Calendar extends Component {
     }
 
     renderCalendar() {
-        let firstDayOfMonth = new Date(this.state.currentDate.getFullYear(), this.state.currentDate.getMonth(), 1);
-        let lastDayOfMonth = new Date(this.state.currentDate.getFullYear(), this.state.currentDate.getMonth() + 1, 0);
-        let sundayOfPreviousMonth = new Date(this.state.currentDate.getFullYear(), this.state.currentDate.getMonth(), 0 - firstDayOfMonth.getDay());
+        let currentDate = this.state.currentDate;
+        // NOTE: new Date(year, month, 0) gets the second to last day of the previous month
+        let firstDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+        let lastDayOfMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+        let sundayOfPreviousMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0 - firstDayOfMonth.getDay());
 
+        //I'm not proud of what's below
         let daysArr = [];
-        //range function does not support a range between the same numbers
-        if (firstDayOfMonth.getDay() === 1) {
-            daysArr.push(sundayOfPreviousMonth.getDate() + firstDayOfMonth.getDay());
-        } else if (firstDayOfMonth.getDay() > 1) {
-            daysArr = range(sundayOfPreviousMonth.getDate(), sundayOfPreviousMonth.getDate() + firstDayOfMonth.getDay());
+        let sevenDays = [];
+        for (let i = sundayOfPreviousMonth.getDate() + 1; i < sundayOfPreviousMonth.getDate() + firstDayOfMonth.getDay() + 1; i++) {
+            sevenDays.push(new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, i));
         }
+        for (let i = 1, isLastWeek = false; !(sevenDays.length === 0 && isLastWeek); i++) {
+            if (isLastWeek && sevenDays.length > 0) {
+                sevenDays.push(new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, i));
+            } else {
+                sevenDays.push(new Date(currentDate.getFullYear(), currentDate.getMonth(), i));
+            }
+            if (sevenDays.length > 0 && sevenDays.length % 7 === 0) {
+                daysArr.push(sevenDays);
+                sevenDays = [];
+            }
+            if (i === lastDayOfMonth.getDate()) {
+                isLastWeek = true;
+                i = 0;
+            }
+        }
+        daysArr.push(sevenDays);
 
-        //NOTE: new Date(year, month, 0) gets the second to last day of the previous month
-        daysArr = daysArr.concat(range(firstDayOfMonth.getDate(), lastDayOfMonth.getDate() + 1));
-        let grouped_days = this.getWeeksArray(daysArr);
-        return grouped_days.map((week_days) => {
+        return daysArr.map((week_days) => {
             return (
                 <View style={styles.week_days}>
                     { this.renderDays(week_days) }
@@ -79,69 +93,57 @@ export default class Calendar extends Component {
         });
     }
 
-    getWeeksArray(days) {
-        let weeks_r = [];
-        let seven_days = [];
-        let count = 0;
-        days.forEach((day) => {
-            count++;
-            seven_days.push(day);
-            if(count === 7){
-                weeks_r.push(seven_days);
-                count = 0;
-                seven_days = [];
-            }
-        });
-        if (count > 0) {
-            for (let i = 1; count < 7; i++, count++) {
-                seven_days.push(i);
-            }
-            weeks_r.push(seven_days);
-        }
-        return weeks_r;
-    }
-
     renderDays(week_days) {
-        //TODO fix the select bug with days that have the same number
         return week_days.map((day) => {
             return (
                 <TouchableOpacity
-                    onPress={this.onPressDay.bind(this, day)}
-                    style={(this.state.selectedDate === day) ? styles.day_selected : styles.day}
+                    onPress={this.onPressDay.bind(this, day.getDate(), day.getMonth())}
+                    style={(this.state.selectedDate.getDate() === day.getDate()
+                        && this.state.selectedDate.getMonth() === day.getMonth()) ? styles.day_selected : styles.day}
                     noDefaultStyles={true}
                 >
-                    <Text style={styles.text_center}>{day}</Text>
+                    <Text style={styles.text_center}>{day.getDate()}</Text>
                 </TouchableOpacity>
             );
         });
     }
 
-    onPressDay(day) {
-        this.setState({ currentDate: this.state.currentDate, selectedDate: day});
+    onPressDay(date, month) {
+        this.setState({ currentDate: this.state.currentDate,
+            selectedDate: new Date(this.state.currentDate.getFullYear(), month, date),
+            program: this.state.program, exercises: this.state.exercises, programsLoaded: this.state.programsLoaded });
         this.renderCalendar();
     }
 
     onPressNextMonth() {
         this.setState({ currentDate: new Date(this.state.currentDate.getFullYear(),
-                this.state.currentDate.getMonth() + 1, this.state.currentDate.getDate())});
+                this.state.currentDate.getMonth() + 1, this.state.currentDate.getDate()),
+                selectedDate: this.state.selectedDate, program: this.state.program,
+                exercises: this.state.exercises, programsLoaded: this.state.programsLoaded });
         this.renderCalendar();
     }
 
     onPressPreviousMonth() {
         this.setState({ currentDate: new Date(this.state.currentDate.getFullYear(),
-                this.state.currentDate.getMonth() - 1, this.state.currentDate.getDate())});
+                this.state.currentDate.getMonth() - 1, this.state.currentDate.getDate()),
+                selectedDate: this.state.selectedDate, program: this.state.program,
+                exercises: this.state.exercises, programsLoaded: this.state.programsLoaded});
         this.renderCalendar();
     }
 
     onPressNextYear() {
         this.setState({ currentDate: new Date(this.state.currentDate.getFullYear() + 1,
-                this.state.currentDate.getMonth(), this.state.currentDate.getDate())});
+                this.state.currentDate.getMonth(), this.state.currentDate.getDate()),
+                selectedDate: this.state.selectedDate, program: this.state.program,
+                exercises: this.state.exercises, programsLoaded: this.state.programsLoaded});
         this.renderCalendar();
     }
 
     onPressPreviousYear() {
         this.setState({ currentDate: new Date(this.state.currentDate.getFullYear() - 1,
-                this.state.currentDate.getMonth(), this.state.currentDate.getDate())});
+                this.state.currentDate.getMonth(), this.state.currentDate.getDate()),
+                selectedDate: this.state.selectedDate, program: this.state.program,
+                exercises: this.state.exercises, programsLoaded: this.state.programsLoaded});
         this.renderCalendar();
     }
 
@@ -194,7 +196,7 @@ export default class Calendar extends Component {
                     </View>
                     <View style={[styles.notes_selected_date]}>
                         <Text style={styles.small_text}>8:00 PM</Text>
-                        <Text style={styles.big_text}>{this.state.selectedDate}</Text>
+                        <Text style={styles.big_text}>{this.state.selectedDate.getDate()}</Text>
                         <Text style={styles.small_text}>{this.state.exercises.meso}</Text>
                     </View>
                 </View>
