@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, Modal, Dimensions, StyleSheet } from "react-native";
+import { Text, View, Modal, Alert, Dimensions, StyleSheet } from "react-native";
 import Button from "../../../components/Button";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
@@ -58,7 +58,15 @@ export default class WorkoutPreview extends Component {
             <View style={styles.trimpButtonContainer}>{scoreButtons}</View>}
           </View>
           <Button style={styles.submitButton}
-            onPress={() => this.props.finishCallback(this.state.selectedTrimp, this.props.start, this.props.duration)}><Text style={{ color: "white" }}>Submit</Text></Button>
+            onPress={() => {
+              if (this.state.selectedTrimp === null)
+                Alert.alert("Error", "Please select a TRIMP score to continue.");
+              else
+                this.props.finishCallback(this.state.selectedTrimp, this.props.start, this.props.duration);
+            }}
+          >
+            <Text style={{ color: "white" }}>Submit</Text>
+          </Button>
         </View>
       </Modal >
     );
