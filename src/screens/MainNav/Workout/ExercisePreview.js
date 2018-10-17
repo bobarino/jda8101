@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
+import { Text, View, Modal, ScrollView, Dimensions, StyleSheet } from "react-native";
 import Button from "../../../components/Button";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -13,17 +13,21 @@ export default class ExercisePreview extends Component {
 
 
   render() {
-    const { exercise } = this.props.navigation.state.params;
+    if (!this.props.exercise) return null;
 
     return (
-      <View style={{ width: "100%", height: "100%" }}>
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.props.visible}>
+
         {/* header container */}
-        <View style={{ height: 50 }}>
+        <View style={{ height: 70 }}>
           <View style={styles.header}>
-            <Button style={styles.backButton} onPress={() => this.props.navigation.navigate("WorkoutPreview")}>
+            <Button style={styles.backButton} onPress={this.props.closeCallback}>
               <Ionicons name="md-arrow-round-back" size={35} color="#9599a2" />
             </Button>
-            <Text style={styles.headerText}>{exercise.exName}</Text>
+            <Text style={styles.headerText}>{this.props.exercise.exName}</Text>
             <View style={{ width: 35 }} />
           </View>
         </View>
@@ -33,18 +37,18 @@ export default class ExercisePreview extends Component {
           <View style={styles.videoContainer} />
           <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
             <Text style={styles.labelText}>Type:</Text>
-            <Text style={styles.typeText}>{exercise.exType}</Text>
+            <Text style={styles.typeText}>{this.props.exercise.exType}</Text>
           </View>
           <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
             <Text style={styles.labelText}>Start:</Text>
-            <Text style={styles.typeText}>{exercise.exStart}</Text>
+            <Text style={styles.typeText}>{this.props.exercise.exStart}</Text>
           </View>
           <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
             <Text style={styles.labelText}>Action:</Text>
-            <Text style={styles.typeText}>{exercise.exAct}</Text>
+            <Text style={styles.typeText}>{this.props.exercise.exAct}</Text>
           </View>
         </ScrollView>
-      </View>
+      </Modal>
     );
   }
 }
@@ -58,7 +62,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     backgroundColor: "#324151",
-    height: 50
+    height: 50,
+    paddingTop: 20
   },
   backButton: {
     paddingLeft: 10,
