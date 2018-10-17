@@ -2,16 +2,19 @@ import firebase from "react-native-firebase";
 
 export class Firestore {
 
-  constructor(collection, fields) {
+  constructor(collection, fields, subCollections) {
     this.db = firebase.firestore();
     this.collection = collection;
     this.fields = fields;
+    this.subCollections = subCollections;
   }
 
   makeEntity(doc) {
     const data = doc.data();
     const entity = Object.assign({}, data);
     entity.id = doc.id;
+    if (this.subCollections)
+      this.subCollections.forEach((value) => entity[value] = this.db.collection(this.collection).doc(doc.id).collection(value));
     return entity;
   }
 

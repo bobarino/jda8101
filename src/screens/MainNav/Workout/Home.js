@@ -22,7 +22,14 @@ export default class Home extends Component {
     const curWeek = 1;
     const curDay = 2;
 
-    Programs.getList().then(async (programs) => {
+    LoginService.getCurrentUser().then((user) => {
+      const curDate = new Date();
+      const docID = `${curDate.getFullYear()}/${curDate.getMonth()}/${curDate.getDate()}`;
+      return user.logs.doc(docID).get();
+    }).then((log) => {
+      this.setState({ completedWorkout: log.exists });
+      return Programs.getList(); // now load programs
+    }).then(async (programs) => {
       const curProgram = programs[0];
 
       const week = curProgram.weeks[curWeek];

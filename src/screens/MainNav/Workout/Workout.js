@@ -6,6 +6,9 @@ import WorkoutStopwatch from "./WorkoutStopwatch";
 import ExercisePreview from "./ExercisePreview";
 import WorkoutRecord from "./WorkoutRecord";
 
+import LoginService from "../../../services/LoginService";
+import { Users } from "../../../entities";
+
 export default class Workout extends Component {
 
   constructor(props) {
@@ -32,21 +35,23 @@ export default class Workout extends Component {
   }
 
   recordWorkout(trimp, start, duration) {
-    console.log("trimp:", trimp);
-    console.log("start:", start);
-    console.log("duration:", duration);
+    const docID = `${start.getFullYear()}/${start.getMonth()}/${start.getDate()}`;
 
-    // this is a bit hacky but it's how we change the button from the exit button back to
-    // the hamburger menu button
-    let parent = this.props.navigation.dangerouslyGetParent();
-    while (parent) {
-      if (parent.state.routeName === "Workout") {
-        parent.setParams({ workoutActive: false });
-        break;
+    LoginService.getCurrentUser().then((user) => {
+      user.logs.doc(docID).set({ duration, start, trimp });
+    }).then(() => {
+      // this is a bit hacky but it's how we change the button from the exit button back to
+      // the hamburger menu button
+      let parent = this.props.navigation.dangerouslyGetParent();
+      while (parent) {
+        if (parent.state.routeName === "Workout") {
+          parent.setParams({ workoutActive: false });
+          break;
+        }
+        parent = parent.dangerouslyGetParent();
       }
-      parent = parent.dangerouslyGetParent();
-    }
-    this.props.navigation.navigate("HomeScreen");
+      this.props.navigation.navigate("HomeScreen");
+    });
   }
 
   ex = (item, i) => {
