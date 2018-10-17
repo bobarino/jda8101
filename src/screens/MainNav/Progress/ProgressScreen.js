@@ -2,6 +2,7 @@ import { createStackNavigator, createMaterialTopTabNavigator } from "react-navig
 
 import History from "./History";
 import Log from "./Log";
+import TeamLog from "./TeamLog";
 
 export const ProgTabNav = createMaterialTopTabNavigator({
   Log: {
@@ -14,6 +15,12 @@ export const ProgTabNav = createMaterialTopTabNavigator({
     screen: History,
     navigationOptions: {
       tabBarLabel: "Training History",
+    }
+  },
+  TeamLog: {
+    screen: TeamLog,
+    navigationOptions: {
+      tabBarLabel: "Team Log",
     }
   },
 },

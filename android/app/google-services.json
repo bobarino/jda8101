@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "224232150692",
-    "firebase_url": "https://athlete-physics.firebaseio.com",
-    "project_id": "athlete-physics",
-    "storage_bucket": "athlete-physics.appspot.com"
+    "project_number": "940837017558",
+    "firebase_url": "https://athlete-physics-mobile.firebaseio.com",
+    "project_id": "athlete-physics-mobile",
+    "storage_bucket": "athlete-physics-mobile.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:224232150692:android:f46b808b0bcd5745",
+        "mobilesdk_app_id": "1:940837017558:android:f46b808b0bcd5745",
         "android_client_info": {
           "package_name": "com.userapp1"
         }
       },
       "oauth_client": [
         {
-          "client_id": "224232150692-qqhr09bmdpr06m9dg45363aqhfq5sala.apps.googleusercontent.com",
+          "client_id": "940837017558-urvpn2al1igccs30hn7qpo1u3c4n2791.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCE_iWEZ_68tg7Jr_hRoEZYv_Z0AiAcYYk"
+          "current_key": "AIzaSyC7Eb4saw_1CK7ZdMHz3EFqhFAVZ44hSLY"
         }
       ],
       "services": {
