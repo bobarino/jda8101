@@ -19,18 +19,27 @@ async function logout() {
   return firebase.auth().signOut();
 }
 
-async function register(email, password, teamCode) {
+async function register(first, last, email, password, teamCode) {
   const team = Teams.getByID(teamCode);
 
   if (teamCode && !team) {
     throw new Error("Error: Invalid Team Code");
   }
 
+  // get firebase auth object
   const userCredential = await firebase.auth().createUserAndRetrieveDataWithEmailAndPassword(email, password);
 
-  const user = { team: undefined, curProgram: undefined, curProramStart: undefined };
-  Users.setByID(userCredential.user.id, user);
+  const user = {
+    first,
+    last,
+    team,
+    curProgram: undefined,
+    curProramStart: undefined,
+    uid: userCredential.user.id
+  };
 
+  // update record in firestore
+  Users.setByID(userCredential.user.email, user);
   return user;
 }
 
@@ -54,4 +63,4 @@ function sendPasswordResetEmail(email) {
   return firebase.auth().sendPasswordResetEmail(email);
 }
 
-export default { login, register, logout, getCurrentUserCredential, getCurrentUser, onLoginStateChanged, isLoggedIn, sendPasswordResetEmail }
+export default { login, register, logout, getCurrentUserCredential, getCurrentUser, onLoginStateChanged, isLoggedIn, sendPasswordResetEmail };

@@ -48,8 +48,6 @@ export default class Home extends Component {
 
     }).catch((error) => console.error(error));
 
-    // Exercises.getList().then((list) => this.setState({ exers: list }));
-
     this.setState({ curUser: LoginService.getCurrentUser() });
   }
 

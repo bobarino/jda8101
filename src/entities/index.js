@@ -43,10 +43,9 @@ if (USE_LOCAL_JSON) {
   Exercises = new Firestore("exercises", ["exName", "exStart", "exAct", "exType"]);
   Workouts = new Firestore("workouts", []);
   Programs = new Firestore("programs", ["level", "pid", "sport", "weeks"]);
-
   // TODO: move users for teams into a collection and remove curProgress
   Teams = new Firestore("teams", ["school", "sport", "users"]);
-  Users = new Firestore("users", ["team", "curProgram", "curProgramStart", "type", "curProgress"], ["logs"]);
+  Users = new Firestore("users", ["first", "last", "uid", "team", "curProgram", "curProgramStart", "type", "curProgress"], ["logs"]);
 }
 
 export { Exercises, Workouts, Programs, Teams, Users, LogEntries };

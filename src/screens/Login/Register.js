@@ -8,11 +8,19 @@ import { LogoImage } from "../../Images";
 
 
 export default class Register extends Component {
-  state = { email: "", password: "", team: "", errorMessage: "", showSpinner: false }
+  state = {
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    team: "",
+    errorMessage: "",
+    showSpinner: false
+  }
 
   handleSignUp = () => {
     this.setState({ showSpinner: true });
-    LoginService.register(this.state.email, this.state.password, this.state.team)
+    LoginService.register(this.state.firstName, this.state.lastName, this.state.email, this.state.password, this.state.team)
       .then(() => {
         this.setState({ email: "", password: "", team: "", errorMessage: "", showSpinner: false });
         this.props.navigation.navigate("MainNav");
@@ -34,6 +42,20 @@ export default class Register extends Component {
             </Text>
           </View>
           <View style={styles.inputContainer}>
+            <TextInput
+              placeholder="First Name"
+              autoCapitalize="words"
+              style={styles.textInput}
+              onChangeText={firstName => this.setState({ firstName })}
+              value={this.state.firstName}
+            />
+            <TextInput
+              placeholder="Last Name"
+              autoCapitalize="words"
+              style={styles.textInput}
+              onChangeText={lastName => this.setState({ lastName })}
+              value={this.state.lastName}
+            />
             <TextInput
               placeholder="Email"
               autoCapitalize="none"

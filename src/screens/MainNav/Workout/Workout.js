@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Text, View, ScrollView, StyleSheet } from "react-native";
 import Button from "../../../components/Button";
-import { Exercises } from "../../../entities";
+import { Exercises, Workouts } from "../../../entities";
 import WorkoutStopwatch from "./WorkoutStopwatch";
 import ExercisePreview from "./ExercisePreview";
 import WorkoutRecord from "./WorkoutRecord";
 
 import LoginService from "../../../services/LoginService";
-import { Users } from "../../../entities";
 
 export default class Workout extends Component {
 
@@ -37,8 +36,10 @@ export default class Workout extends Component {
   recordWorkout(trimp, start, duration) {
     const docID = `${start.getFullYear()}/${start.getMonth()}/${start.getDate()}`;
 
-    LoginService.getCurrentUser().then((user) => {
-      user.logs.doc(docID).set({ duration, start, trimp });
+    LoginService.getCurrentUser().then(async (user) => {
+      user.logs.doc(docID).set({
+        duration, start, trimp, workout: (await Workouts.getByID(this.props.navigation.state.params.day.wID)).doc().ref
+      });
     }).then(() => {
       // this is a bit hacky but it's how we change the button from the exit button back to
       // the hamburger menu button
@@ -87,6 +88,7 @@ export default class Workout extends Component {
 
   render() {
     const day = this.props.navigation.state.params.day;
+    console.log("day:", day);
 
     return (
       <View>

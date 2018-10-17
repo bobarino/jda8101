@@ -15,6 +15,8 @@ export class Firestore {
     entity.id = doc.id;
     if (this.subCollections)
       this.subCollections.forEach((value) => entity[value] = this.db.collection(this.collection).doc(doc.id).collection(value));
+
+    entity.doc = () => doc;
     return entity;
   }
 
