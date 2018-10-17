@@ -95,7 +95,8 @@ export default class Home extends Component {
 
               this.props.navigation.navigate("LiveWorkout", { day: day });
               this.setState({ completedWorkout: true });
-            }}>
+            }}
+            disabled={this.state.completedWorkout}>
             <Text style={{ color: "white", fontSize: 24 }}>{this.state.completedWorkout ? "Workout Already Complete" : "Start Workout"}</Text>
           </Button>
         </View>

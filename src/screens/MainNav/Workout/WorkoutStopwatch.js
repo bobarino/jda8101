@@ -63,7 +63,10 @@ export default class WorkoutStopwatch extends Component {
           reset={this.state.stopwatchReset}
           options={timerOptions}
           getTime={this.getFormattedTime} />
-        <Button style={this.state.startTime ? styles.stopButton : styles.stopButtonGrey} onPress={this.finishWorkout}>
+        <Button
+          style={this.state.startTime ? styles.stopButton : styles.stopButtonGrey}
+          onPress={this.finishWorkout}
+          disabled={!this.state.startTime}>
           <Text>Finish</Text>
         </Button>
       </View>

@@ -18,6 +18,7 @@ export default class Button extends Component {
       <TouchableOpacity
         style={this.props.style}
         onPress={this.props.onPress}
+        disabled={this.props.disabled}
         activeOpacity={0.8}
       >
         <View style={{ flex: 1, justifyContent: "center", alignContent: "center" }}>
