@@ -32,3 +32,11 @@ export function getDateFromWorkoutDate(startDate, curDay, curWeek) {
 }
 
 export const dayStrings = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+
+export const getInitials = name => {
+  if (!name.length) return "AP";
+
+  const arr = name.split(" ");
+  if (arr.length > 1) return `${arr[0][0].toUpperCase()}${arr[1][0].toUpperCase()}`;
+  return arr[0].toUpperCase();
+};

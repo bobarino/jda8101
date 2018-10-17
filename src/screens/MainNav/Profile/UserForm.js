@@ -4,15 +4,11 @@ import { Avatar, Button, Badge } from "react-native-elements";
 import MultiSelect from "react-native-multiple-select";
 import { withFormik } from "formik";
 
+import { getInitials } from "../../../Utils";
+
 const allTeams = ["1101", "1102", "1103", "1104", "1105"];
 
-const getInitials = name => {
-  if (!name.length) return "AP";
 
-  const arr = name.split(" ");
-  if (arr.length > 1) return `${arr[0][0].toUpperCase()}${arr[1][0].toUpperCase()}`;
-  return arr[0].toUpperCase();
-};
 
 class UserForm extends Component {
   state = {
