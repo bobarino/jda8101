@@ -44,7 +44,7 @@ if (USE_LOCAL_JSON) {
   Workouts = new Firestore("workouts", []);
   Programs = new Firestore("programs", ["level", "pid", "sport", "weeks"]);
   Teams = new Firestore("teams", ["school", "sport", "users"]);
-  Users = new Firestore("users", ["team", "curProgram", "curProgramStart", "type"]);
+  Users = new Firestore("users", ["team", "curProgram", "curProgramStart", "type", "curProgress"]);
 }
 
 export { Exercises, Workouts, Programs, Teams, Users, LogEntries };
