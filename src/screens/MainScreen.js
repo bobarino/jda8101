@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, Image, View, Text, Dimensions, ScrollView } from "react-native";
+import { SafeAreaView, Image, View, Text, Dimensions, ScrollView, Alert } from "react-native";
 import { createStackNavigator, createDrawerNavigator, DrawerItems } from "react-navigation";
 
 import Login from "./Login/Login";
@@ -22,25 +22,56 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 
 
 function createNavigationHeader(name) {
-  return ({ navigation }) => ({
-    initialRouteName: name,
-    drawerLabel: name,
-    headerMode: "screen",
-    headerTitle: name,
-    headerStyle: {
-      backgroundColor: "#324151",
-    },
-    headerTintColor: "#9599a2",
-    headerTitleStyle: {
-      fontWeight: "bold",
-    },
-    headerLeft: (
-      <Button style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()}>
-        <Ionicons name="md-menu"
-          size={35} color="#9599a2" />
-      </Button>
-    )
-  });
+  return ({ navigation }) => {
+
+    let headerButton = null;
+
+    if (navigation.getParam("workoutActive", false)) {
+      headerButton = (
+        <Button style={{ paddingLeft: 10 }} onPress={() => {
+          Alert.alert(
+            "Warning",
+            "Are you sure you want to cancel your active workout?",
+            [
+              { text: "Cancel", style: "cancel" },
+              {
+                text: "OK", onPress: () => {
+                  navigation.setParams({ workoutActive: false });
+                  navigation.navigate("HomeScreen");
+                }
+              },
+            ],
+            { cancelable: true }
+          );
+        }}>
+          <Ionicons name="md-exit"
+            size={35} color="#9599a2" />
+        </Button>
+      );
+    } else {
+      headerButton = (
+        <Button style={{ paddingLeft: 10 }} onPress={() => navigation.openDrawer()}>
+          <Ionicons name="md-menu"
+            size={35} color="#9599a2" />
+        </Button>
+      );
+    }
+
+    return {
+      initialRouteName: name,
+      drawerLabel: name,
+      headerMode: "screen",
+      headerTitle: name,
+      headerStyle: {
+        backgroundColor: "#324151",
+      },
+      headerTintColor: "#9599a2",
+      headerTitleStyle: {
+        fontWeight: "bold",
+      },
+      headerLeft: headerButton
+    };
+  };
 }
 
 const { width } = Dimensions.get("window");

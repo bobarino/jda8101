@@ -4,33 +4,49 @@ import Button from "../../../components/Button";
 import { Exercises } from "../../../entities";
 import WorkoutStopwatch from "./WorkoutStopwatch";
 import ExercisePreview from "./ExercisePreview";
+import WorkoutRecord from "./WorkoutRecord";
 
 export default class Workout extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      stopwatchStart: false,
-      stopwatchReset: false,
       showPreview: false,
+      showFinish: false,
+      workoutStart: null,
+      workoutDuration: null,
       previewEx: null,
     };
 
-    this.getFormattedTime = this.getFormattedTime.bind(this);
-    this.toggleStopwatch = this.toggleStopwatch.bind(this);
     this.showPreviewModal = this.showPreviewModal.bind(this);
-  }
-
-  getFormattedTime(time) {
-    this.currentTime = time;
-  }
-
-  toggleStopwatch() {
-    this.setState({ stopwatchStart: !this.state.stopwatchStart });
+    this.finishWorkout = this.finishWorkout.bind(this);
+    this.recordWorkout = this.recordWorkout.bind(this);
   }
 
   showPreviewModal(ex) {
     this.setState({ showPreview: true, previewEx: ex });
+  }
+
+  finishWorkout(start, duration) {
+    this.setState({ showFinish: true, workoutStart: start, workoutDuration: duration });
+  }
+
+  recordWorkout(trimp, start, duration) {
+    console.log("trimp:", trimp);
+    console.log("start:", start);
+    console.log("duration:", duration);
+
+    // this is a bit hacky but it's how we change the button from the exit button back to
+    // the hamburger menu button
+    let parent = this.props.navigation.dangerouslyGetParent();
+    while (parent) {
+      if (parent.state.routeName === "Workout") {
+        parent.setParams({ workoutActive: false });
+        break;
+      }
+      parent = parent.dangerouslyGetParent();
+    }
+    this.props.navigation.navigate("HomeScreen");
   }
 
   ex = (item, i) => {
@@ -69,11 +85,20 @@ export default class Workout extends Component {
 
     return (
       <View>
-        <WorkoutStopwatch />
+        <WorkoutStopwatch
+          finishCallback={this.finishWorkout}
+        />
         <ExercisePreview
           visible={this.state.showPreview}
           exercise={this.state.previewEx}
           closeCallback={() => this.setState({ showPreview: false, previewEx: null })}
+        />
+        <WorkoutRecord
+          visible={this.state.showFinish}
+          start={this.state.workoutStart}
+          duration={this.state.workoutDuration}
+          closeCallback={() => this.setState({ showFinish: false })}
+          finishCallback={this.recordWorkout}
         />
         <ScrollView style={styles.scrollView}>
           {day.exercises.map((item, i) => this.ex(item, i))}

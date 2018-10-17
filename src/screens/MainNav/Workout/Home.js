@@ -83,6 +83,16 @@ export default class Home extends Component {
           })}
           <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: this.state.completedWorkout ? ORANGE1 : "green" }}
             onPress={() => {
+              // this is a bit hacky but its how we change the button from the drawer to the exit button
+              let parent = this.props.navigation.dangerouslyGetParent();
+              while (parent) {
+                if (parent.state.routeName === "Workout") {
+                  parent.setParams({ workoutActive: true });
+                  break;
+                }
+                parent = parent.dangerouslyGetParent();
+              }
+
               this.props.navigation.navigate("LiveWorkout", { day: day });
               this.setState({ completedWorkout: true });
             }}>

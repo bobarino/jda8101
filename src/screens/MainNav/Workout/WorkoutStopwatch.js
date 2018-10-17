@@ -29,6 +29,7 @@ export default class WorkoutStopwatch extends Component {
     this.state = {
       stopwatchStart: false,
       stopwatchReset: false,
+      startTime: null,
     };
 
     this.getFormattedTime = this.getFormattedTime.bind(this);
@@ -41,11 +42,15 @@ export default class WorkoutStopwatch extends Component {
   }
 
   toggleStopwatch() {
+    if (this.state.startTime == null) {
+      this.setState({ startTime: new Date() });
+    }
     this.setState({ stopwatchStart: !this.state.stopwatchStart });
   }
 
   finishWorkout() {
-    this.props.navigation.navigate("HomeScreen");
+    this.setState({ stopwatchStart: false });
+    this.props.finishCallback(this.state.startTime, this.currentTime);
   }
 
   render() {
@@ -58,7 +63,7 @@ export default class WorkoutStopwatch extends Component {
           reset={this.state.stopwatchReset}
           options={timerOptions}
           getTime={this.getFormattedTime} />
-        <Button style={styles.stopButton} onPress={this.finishWorkout}>
+        <Button style={this.state.startTime ? styles.stopButton : styles.stopButtonGrey} onPress={this.finishWorkout}>
           <Text>Finish</Text>
         </Button>
       </View>
@@ -98,6 +103,16 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     backgroundColor: ORANGE1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginRight: 5,
+    marginTop: 5,
+    borderRadius: 5,
+  },
+  stopButtonGrey: {
+    width: 50,
+    height: 50,
+    backgroundColor: "grey",
     alignItems: "center",
     justifyContent: "center",
     marginRight: 5,

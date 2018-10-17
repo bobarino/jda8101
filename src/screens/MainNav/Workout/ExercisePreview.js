@@ -18,7 +18,6 @@ export default class ExercisePreview extends Component {
     return (
       <Modal
         animationType="slide"
-        transparent={false}
         visible={this.props.visible}>
 
         {/* header container */}
