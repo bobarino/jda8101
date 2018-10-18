@@ -106,17 +106,6 @@ export default class TeamLog extends Component {
         {students.map((u) => this.users(u))}
       </ScrollView>
     );
-      // return (
-      //   <View style={styles.container}>
-      //     <Text>Team Log for {school}</Text>
-      //     <Text style={{ fontSize: 26 }}>Students: </Text>
-      //     {students.map((item, i) => {
-      //       return (
-      //         <Text key={i} style={{ fontSize: 20}}>{item.first} {item.last}</Text>
-      //       );
-      //     })}
-      //   </View>
-      // );
       return (
         <View style={styles.container}>
           <Text>You must be a coach to view this screen.</Text>
