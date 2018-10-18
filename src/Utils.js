@@ -12,6 +12,25 @@ export function calculateWeeksBetween(date1, date2) {
   return Math.floor(difference_ms / ONE_WEEK);
 }
 
+export async function getWorkoutFromDates(program, startDate, curDate) {
+  const { curDay, curWeek } = getWorkoutDayAndWeek(startDate, curDate);
+
+  console.log("day:", curDay);
+  console.log("week:", curWeek);
+
+  const week = program.weeks[curWeek];
+  let day = undefined;
+  if (week) {
+    day = week.days[curDay];
+  }
+
+  if (day) {
+    return (await day.get()).data();
+  }
+
+  return undefined;
+}
+
 export function getWorkoutDayAndWeek(startDate, curDate) {
   if (startDate.getDay() != 1) {
     // start must be a monday
