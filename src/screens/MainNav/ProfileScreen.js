@@ -28,14 +28,11 @@ class Profile extends Component {
       const team = await user.team.get();
       const program = await user.curProgram.get();
 
-      console.log("team:", team);
-      console.log("program:", program);
-
       this.setState({
         first: user.first,
         last: user.last,
         email: user.id,
-        team: (team && team.exists) ? `${team.data().school} - ${team.data().sport}` : "N/A",
+        team: (team && team.exists) ? `${team.data().school}` : "N/A",
         program: (program && program.exists) ? `${program.data().sport} - Level ${program.data().level}` : "None",
         loading: false
       });
