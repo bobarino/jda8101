@@ -137,36 +137,35 @@ export default class Calendar extends Component {
   }
 
   onPressDay(date, month) {
-    this.setState({ selectedDate: new Date(this.state.currentDate.getFullYear(), month, date) });
-    this.updateNotes();
+    this.setState({ selectedDate: new Date(this.state.currentDate.getFullYear(), month, date) }, () => this.updateNotes());
   }
 
   onPressNextMonth() {
     this.setState({
       currentDate: new Date(this.state.currentDate.getFullYear(),
         this.state.currentDate.getMonth() + 1, this.state.currentDate.getDate())
-    });
+    }, () => this.updateNotes());
   }
 
   onPressPreviousMonth() {
     this.setState({
       currentDate: new Date(this.state.currentDate.getFullYear(),
         this.state.currentDate.getMonth() - 1, this.state.currentDate.getDate())
-    });
+    }, () => this.updateNotes());
   }
 
   onPressNextYear() {
     this.setState({
       currentDate: new Date(this.state.currentDate.getFullYear() + 1,
         this.state.currentDate.getMonth(), this.state.currentDate.getDate()),
-    });
+    }, () => this.updateNotes());
   }
 
   onPressPreviousYear() {
     this.setState({
       currentDate: new Date(this.state.currentDate.getFullYear() - 1,
         this.state.currentDate.getMonth(), this.state.currentDate.getDate()),
-    });
+    }, () => this.updateNotes());
   }
 
   render() {
