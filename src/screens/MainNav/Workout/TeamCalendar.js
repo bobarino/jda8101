@@ -21,14 +21,18 @@ export default class Calendar extends Component {
   }
 
   componentDidMount() {
-    LoginService.getCurrentUser().then(async (user) => { return { user, program: await user.curProgram.get() }; })
-      .then(({ user, program }) => {
+    LoginService.getCurrentUser().then(async (user) => {
+      if (!user.curProgram) {
+        this.setState({ noProgram: true, programsLoaded: true });
+      } else {
+        const program = await user.curProgram.get();
         if (!program.exists) this.setState({ noProgram: true, programsLoaded: true });
         else {
           this.setState({ program: program.data(), programStart: user.curProgramStart, programsLoaded: true });
           this.updateNotes();
         }
-      }).catch((e) => console.error(e));
+      }
+    }).catch((e) => console.error(e));
   }
 
   updateNotes() {

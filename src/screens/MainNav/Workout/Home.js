@@ -4,7 +4,7 @@ import LoginService from "../../../services/LoginService";
 import { Programs } from "../../../entities";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../components/Button";
-import { dayStrings } from "../../../Utils";
+import { dayStrings, getWorkoutFromDates } from "../../../Utils";
 import { ORANGE1 } from "../../../Colors";
 
 export default class Home extends Component {
@@ -19,36 +19,22 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    const curWeek = 1;
-    const curDay = 2;
-
-    LoginService.getCurrentUser().then((user) => {
+    LoginService.getCurrentUser().then(async (user) => {
       const curDate = new Date();
-      const docID = `${curDate.getFullYear()}/${curDate.getMonth()}/${curDate.getDate()}`;
-      return user.logs.doc(docID).get();
-    }).then((log) => {
-      this.setState({ completedWorkout: log.exists });
-      return Programs.getList(); // now load programs
-    }).then(async (programs) => {
-      const curProgram = programs[0];
+      // const curDate = new Date("10/17/2018");
+      const log = user.logs.doc(`${curDate.getFullYear()}/${curDate.getMonth()}/${curDate.getDate()}`).get();
 
-      const week = curProgram.weeks[curWeek];
-      let day = undefined;
-      if (week) {
-        day = week.days[curDay];
-      }
-
-      if (day) {
-        day.get().then((doc) => {
-          this.setState({ day: doc.data(), loading: false });
-        });
+      if (!user.curProgram) {
+        this.setState({ completedWorkout: log.exists, loading: false });
       } else {
-        this.setState({ loading: false });
+        const program = await user.curProgram.get();
+        if (!program.exists) this.setState({ completedWorkout: log.exists, loading: false });
+        else {
+          const day = await getWorkoutFromDates(program.data(), user.curProgramStart, curDate);
+          this.setState({ day, programStart: user.curProgramStart, loading: false });
+        }
       }
-
-    }).catch((error) => console.error(error));
-
-    this.setState({ curUser: LoginService.getCurrentUser() });
+    });
   }
 
   render() {
@@ -61,8 +47,7 @@ export default class Home extends Component {
       </View >
     );
 
-
-    if (day.exercises.length == 0) return (
+    if (!day || day.exercises.length == 0) return (
       <View style={styles.baseContainer} >
         <Text style={styles.headerText}>No Workout Today</Text>
       </View >
@@ -70,7 +55,7 @@ export default class Home extends Component {
 
     return (
       <View style={styles.baseContainer}>
-        <Text style={styles.headerText}>{dayStrings[day.day]}{"'"}s Workout:</Text>
+        <Text style={styles.headerText}>{dayStrings[day.day - 1]}{"'"}s Workout:</Text>
         <View style={styles.exerciseContiner}>
           <View style={{ flexDirection: "row", width: "100%" }}>
             <Text style={{ fontSize: 26 }}>Week: </Text>
