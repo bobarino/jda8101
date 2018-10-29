@@ -40,7 +40,7 @@ if (USE_LOCAL_JSON) {
   Teams = new LocalJSON(jsonDB.teams);
   Users = new LocalJSON(jsonDB.users);
 } else {
-  Exercises = new Firestore("exercises", ["exName", "exStart", "exAct", "exType"]);
+  Exercises = new Firestore("exercises", ["exName", "exStart", "exAct", "exType", "exVideo"]);
   Workouts = new Firestore("workouts", []);
   Programs = new Firestore("programs", ["level", "pid", "sport", "weeks"]);
   Teams = new Firestore("teams", ["school", "sport"]);

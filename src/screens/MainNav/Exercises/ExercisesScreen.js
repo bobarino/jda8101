@@ -26,7 +26,8 @@ class ExercisesList extends Component {
     const list = this.state.exers;
 
     const exList = list.map((x, i) => {
-      return (
+        console.log(x);
+        return (
         <View key={i}>
           <Button
             style={styles.listCell}

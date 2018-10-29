@@ -84,9 +84,10 @@ export default class Calendar extends Component {
         }
         daysArr.push(sevenDays);
 
-        return daysArr.map((week_days) => {
+        return daysArr.map((week_days, index) => {
             return (
-                <View style={styles.week_days}>
+                <View style={styles.week_days}
+                    key={index}>
                     { this.renderDays(week_days) }
                 </View>
             );
@@ -94,9 +95,10 @@ export default class Calendar extends Component {
     }
 
     renderDays(week_days) {
-        return week_days.map((day) => {
+        return week_days.map((day, index) => {
             return (
                 <TouchableOpacity
+                    key={index}
                     onPress={this.onPressDay.bind(this, day.getDate(), day.getMonth())}
                     style={(this.state.selectedDate.getDate() === day.getDate()
                         && this.state.selectedDate.getMonth() === day.getMonth()) ? styles.day_selected : styles.day}

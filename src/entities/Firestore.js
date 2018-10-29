@@ -6,6 +6,11 @@ export class Firestore {
     this.db = firebase.firestore();
     this.collection = collection;
     this.fields = fields;
+    this.storage = firebase.storage();
+  }
+
+  getStorage() {
+    return this.storage;
   }
 
   makeEntity(doc) {

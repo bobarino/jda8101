@@ -15,15 +15,15 @@
     "native-base": "^2.6.1",
     "react": "16.3.1",
     "react-native": "0.55.4",
-    "react-native-calendars": "^1.20.0",
-    "react-native-collapsible": "^1.0.1",
+    "react-native-collapsible": "^1.2.0",
     "react-native-easy-grid": "^0.2.0",
     "react-native-elements": "^0.19.1",
     "react-native-email": "^1.0.1",
     "react-native-firebase": "^4.2.0",
     "react-native-multiple-select": "^0.4.4",
     "react-native-stopwatch-timer": "0.0.20",
-    "react-native-vector-icons": "^5.0.0",
+    "react-native-vector-icons": "^6.0.2",
+    "react-native-video": "^3.2.1",
     "react-navigation": "^2.5.3"
   },
   "devDependencies": {
