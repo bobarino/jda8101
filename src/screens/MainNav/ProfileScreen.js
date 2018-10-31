@@ -1,8 +1,9 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet, Text } from "react-native";
+import { View, TextInput, StyleSheet, Text, Picker } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Avatar } from "react-native-elements";
 import LoginService from "../../services/LoginService";
+import { Teams, Users } from "../../entities";
 
 import Spinner from "../../components/Spinner";
 import Button from "../../components/Button";
@@ -17,26 +18,38 @@ class Profile extends Component {
     first: "",
     last: "",
     email: "",
-    team: "N/A",
+    team: null,
+    teams: [],
     program: "None",
     editing: false,
+    editingTeam: false,
     loading: true,
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    await Teams.getList().then(async (teams) => {
+      this.setState({ teams });
+    });
+
     LoginService.getCurrentUser().then(async (user) => {
-      const team = await user.team.get();
-      const program = await user.curProgram.get();
+      const team = this.state.teams.find(({ id }) => id === user.team);
+      const program = null;
 
       this.setState({
         first: user.first,
         last: user.last,
         email: user.id,
-        team: (team && team.exists) ? `${team.data().school}` : "N/A",
+        team,
         program: (program && program.exists) ? `${program.data().sport} - Level ${program.data().level}` : "None",
         loading: false
       });
     });
+  }
+
+  updateProfileInfo() {
+    const { email, first, last, team } = this.state;
+    Users.setByID(email, { first, last, team: team && team.id });
+    this.setState({ editing: false, editingTeam: false });
   }
 
   render() {
@@ -61,7 +74,7 @@ class Profile extends Component {
             </View>
           </View>
           <Button style={styles.editButton}
-            onPress={() => this.setState({ editing: !this.state.editing })}>
+            onPress={() => this.setState({ editing: !this.state.editing, editingTeam: false })}>
             <Text style={styles.editButtonText}>{this.state.editing ? "Stop Editing" : "Edit Profile Info"}</Text>
           </Button>
           <View style={styles.displayContainer}>
@@ -109,10 +122,27 @@ class Profile extends Component {
             </View>
             <View style={{ width: "100%", flexDirection: "row", alignItems: "center" }}>
               <Text style={{ width: 75, marginTop: 4, fontSize: 16 }}>Team: </Text>
-              <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>{this.state.team}</Text>
-              {this.state.editing ? (
-                <Button onPress={() => console.log("leave team")} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>
-                  <Text style={{ color: "white", fontSize: 16 }}>Leave Team</Text>
+              {this.state.editing && this.state.editingTeam ? (
+                <Picker
+                  selectedValue={this.state.team && this.state.team.id}
+                  style={{ flex: 1, marginLeft: 4, marginTop: 4 }}
+                  onValueChange={(value, index) => {
+                    this.setState({ team: value && this.state.teams[index - 1] });
+                  }}
+                >
+                  <Picker.Item label="None" value={null} />
+                  {this.state.teams.map((team) => (
+                    <Picker.Item key={team.id} label={`${team.school}: ${team.sport}`} value={team.id} />
+                  ))}
+                </Picker>
+              ) : (
+                <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>
+                  {this.state.team ? this.state.team.school : "None"}
+                </Text>)
+              }
+              {this.state.editing && !this.state.editingTeam ? (
+                <Button onPress={() => this.setState({ editingTeam: true })} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>
+                  <Text style={{ color: "white", fontSize: 16 }}>Edit Team</Text>
                 </Button>
               ) : null}
             </View>
@@ -126,6 +156,12 @@ class Profile extends Component {
               ) : null}
             </View>
           </View>
+          {this.state.editing && (
+            <Button style={styles.editButton}
+              onPress={() => this.updateProfileInfo()}>
+              <Text style={styles.editButtonText}>Save Changes</Text>
+            </Button>
+          )}
         </View>
       </View >
     );
