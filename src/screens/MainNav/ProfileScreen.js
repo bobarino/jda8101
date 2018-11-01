@@ -3,7 +3,7 @@ import { View, TextInput, StyleSheet, Text, Picker } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Avatar } from "react-native-elements";
 import LoginService from "../../services/LoginService";
-import { Teams, Users } from "../../entities";
+import { Programs, Teams, Users } from "../../entities";
 
 import Spinner from "../../components/Spinner";
 import Button from "../../components/Button";
@@ -20,9 +20,10 @@ class Profile extends Component {
     email: "",
     team: null,
     teams: [],
-    program: "None",
+    program: null,
     editing: false,
     editingTeam: false,
+    editingProgram: false,
     loading: true,
   }
 
@@ -31,25 +32,29 @@ class Profile extends Component {
       this.setState({ teams });
     });
 
+    await Programs.getList().then(async (programs) => {
+      this.setState({ programs });
+    });
+
     LoginService.getCurrentUser().then(async (user) => {
       const team = this.state.teams.find(({ id }) => id === user.team);
-      const program = null;
+      const program = user.curProgram;
 
       this.setState({
         first: user.first,
         last: user.last,
         email: user.id,
         team,
-        program: (program && program.exists) ? `${program.data().sport} - Level ${program.data().level}` : "None",
+        program,
         loading: false
       });
     });
   }
 
   updateProfileInfo() {
-    const { email, first, last, team } = this.state;
-    Users.setByID(email, { first, last, team: team && team.id });
-    this.setState({ editing: false, editingTeam: false });
+    const { email, first, last, team, program } = this.state;
+    Users.setByID(email, { first, last, team: team && team.id, curProgram: program });
+    this.setState({ editing: false, editingTeam: false, editingProgram: false });
   }
 
   render() {
@@ -74,7 +79,7 @@ class Profile extends Component {
             </View>
           </View>
           <Button style={styles.editButton}
-            onPress={() => this.setState({ editing: !this.state.editing, editingTeam: false })}>
+            onPress={() => this.setState({ editing: !this.state.editing, editingTeam: false, editingProgram: false })}>
             <Text style={styles.editButtonText}>{this.state.editing ? "Stop Editing" : "Edit Profile Info"}</Text>
           </Button>
           <View style={styles.displayContainer}>
@@ -148,10 +153,27 @@ class Profile extends Component {
             </View>
             <View style={{ width: "100%", flexDirection: "row", alignItems: "center" }}>
               <Text style={{ width: 75, marginTop: 4, fontSize: 16 }}>Program: </Text>
-              <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>{this.state.program}</Text>
-              {this.state.editing ? (
-                <Button onPress={() => console.log("leave program")} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>
-                  <Text style={{ color: "white", fontSize: 16 }}>Leave Program</Text>
+              {this.state.editing && this.state.editingProgram ? (
+                <Picker
+                  selectedValue={this.state.program && this.state.program.id}
+                  style={{ flex: 1, marginLeft: 4, marginTop: 4 }}
+                  onValueChange={value => {
+                    this.setState({ program: value && this.state.programs.find(({ id }) => id === value) });
+                  }}
+                >
+                  <Picker.Item label="None" value={null} />
+                  {this.state.programs.map(({ id }) => (
+                    <Picker.Item key={id} label={id} value={id} />
+                  ))}
+                </Picker>
+              ) : (
+                <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>
+                  {this.state.program ? this.state.program.id : "None"}
+                </Text>)
+              }
+              {this.state.editing && !this.state.editingProgram ? (
+                <Button onPress={() => this.setState({ editingProgram: true })} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>
+                  <Text style={{ color: "white", fontSize: 16 }}>Edit Program</Text>
                 </Button>
               ) : null}
             </View>
