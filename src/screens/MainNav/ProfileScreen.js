@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, TextInput, StyleSheet, Text, Picker } from "react-native";
+import { View, TextInput, StyleSheet, Text, Picker, Alert } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Avatar } from "react-native-elements";
 import LoginService from "../../services/LoginService";
@@ -19,25 +19,19 @@ class Profile extends Component {
     last: "",
     email: "",
     team: null,
-    teams: [],
     program: null,
     editing: false,
-    editingTeam: false,
     editingProgram: false,
     loading: true,
   }
 
   async componentDidMount() {
-    await Teams.getList().then(async (teams) => {
-      this.setState({ teams });
-    });
-
     await Programs.getList().then(async (programs) => {
       this.setState({ programs });
     });
 
     LoginService.getCurrentUser().then(async (user) => {
-      const team = this.state.teams.find(({ id }) => id === user.team);
+      const team = user.team;
       const program = user.curProgram;
 
       this.setState({
@@ -51,9 +45,15 @@ class Profile extends Component {
     });
   }
 
-  updateProfileInfo() {
+  async updateProfileInfo() {
+    const teams = await Teams.getList();
+
     const { email, first, last, team, program } = this.state;
-    Users.setByID(email, { first, last, team: team && team.id, curProgram: program });
+
+    if (team && !teams.map(({ id }) => id).find(x => x === team)) {
+      Alert.alert("Not a valid team code");
+    }
+    Users.setByID(email, { first, last, team, curProgram: program });
     this.setState({ editing: false, editingTeam: false, editingProgram: false });
   }
 
@@ -126,30 +126,18 @@ class Profile extends Component {
               />
             </View>
             <View style={{ width: "100%", flexDirection: "row", alignItems: "center" }}>
-              <Text style={{ width: 75, marginTop: 4, fontSize: 16 }}>Team: </Text>
-              {this.state.editing && this.state.editingTeam ? (
-                <Picker
-                  selectedValue={this.state.team && this.state.team.id}
-                  style={{ flex: 1, marginLeft: 4, marginTop: 4 }}
-                  onValueChange={(value, index) => {
-                    this.setState({ team: value && this.state.teams[index - 1] });
-                  }}
-                >
-                  <Picker.Item label="None" value={null} />
-                  {this.state.teams.map((team) => (
-                    <Picker.Item key={team.id} label={`${team.school}: ${team.sport}`} value={team.id} />
-                  ))}
-                </Picker>
-              ) : (
-                <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>
-                  {this.state.team ? this.state.team.school : "None"}
-                </Text>)
-              }
-              {this.state.editing && !this.state.editingTeam ? (
-                <Button onPress={() => this.setState({ editingTeam: true })} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>
-                  <Text style={{ color: "white", fontSize: 16 }}>Edit Team</Text>
-                </Button>
-              ) : null}
+              <Text style={{ width: 75, fontSize: 16 }}>Team: </Text>
+              <TextInput
+                autoCorrect={false}
+                autoCapitalize="none"
+                fontSize={16}
+                onChangeText={team => this.setState({ team })}
+                placeholder="None"
+                style={this.state.editing ? styles.editingTextBox : styles.regularTextBox}
+                value={this.state.team}
+                editable={this.state.editing}
+                selectTextOnFocus={this.state.editing}
+              />
             </View>
             <View style={{ width: "100%", flexDirection: "row", alignItems: "center" }}>
               <Text style={{ width: 75, marginTop: 4, fontSize: 16 }}>Program: </Text>
