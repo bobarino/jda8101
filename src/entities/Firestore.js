@@ -35,6 +35,15 @@ export class Firestore {
     return ret;
   }
 
+  async getSubCollectionList(document, sub) {
+    const snap = await this.db.collection(this.collection).doc(document).collection(sub).get();
+    const ret = [];
+    for (const doc of snap.docs) {
+      ret.push(await this.makeEntity(doc));
+    }
+    return ret;
+  }
+
   async getByID(id) {
     const doc = await this.db.collection(this.collection).doc(id).get();
 
