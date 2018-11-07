@@ -38,45 +38,46 @@ export default class History extends Component {
 
   render() {
     const { logs, dates, trimps} = this.state;
-    console.log("Logging Dates: ", dates);
-    console.log("Logging Trimps: ", trimps);
+    console.log("Logging Dates New: ", dates);
+    console.log("Logging Trimps HEYY: ", trimps);
+    if (dates.length > 0 && trimps.length > 0)
+      return (
+        <View>
+          <Text>
+            TRIMP History
+          </Text>
+          <LineChart
+            data={{
+              labels: dates,
+              datasets: [{
+                data: trimps
+              }]
+            }}
+            width={Dimensions.get('window').width}
+            height={300}
+            chartConfig={{
+              backgroundColor: '#e26a00',
+              backgroundGradientFrom: '#fb8c00',
+              backgroundGradientTo: '#ffa726',
+              decimalPlaces: 2, // optional, defaults to 2dp
+              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+              style: {
+                borderRadius: 16
+              }
+            }}
+            bezier
+            style={{
+              marginVertical: 8,
+              borderRadius: 16
+            }}
+          />
+        </View>
+      );
     return (
       <View>
         <Text>
           TRIMP History
         </Text>
-        <LineChart
-          data={{
-            labels: dates,
-            datasets: [{
-              data: [
-                Math.random() * 10,
-                5,
-                6,
-                10,
-                7,
-                15
-              ]
-            }]
-          }}
-          width={Dimensions.get('window').width}
-          height={300}
-          chartConfig={{
-            backgroundColor: '#e26a00',
-            backgroundGradientFrom: '#fb8c00',
-            backgroundGradientTo: '#ffa726',
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16
-            }
-          }}
-          bezier
-          style={{
-            marginVertical: 8,
-            borderRadius: 16
-          }}
-        />
       </View>
     );
   }
