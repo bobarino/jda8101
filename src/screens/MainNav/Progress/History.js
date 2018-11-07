@@ -37,8 +37,6 @@ export default class History extends Component {
 
   render() {
     const { logs, dates, trimps} = this.state;
-    console.log("Logging Dates New: ", dates);
-    console.log("Logging Trimps HEYY: ", trimps);
     if (dates.length > 0 && trimps.length > 0)
       return (
         <ScrollView>
@@ -59,7 +57,7 @@ export default class History extends Component {
                 backgroundColor: '#e26a00',
                 backgroundGradientFrom: '#fb8c00',
                 backgroundGradientTo: '#ffa726',
-                decimalPlaces: 2, // optional, defaults to 2dp
+                decimalPlaces: 2,
                 color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
                 style: {
                   borderRadius: 16
@@ -75,7 +73,7 @@ export default class History extends Component {
           <Text style={{ fontSize: 20, marginTop: 10 }}> Exercise List: </Text>
           {logs.map((item, i) => {
             return (
-              <View style={{ padding: 10 }}>
+              <View style={{ padding: 5 }}>
                 <Text key={i} style={{ fontSize: 15, marginLeft: 20, fontWeight: "bold" }}>
                   Date: {item.date.toString().split(" ")[1] + " " + item.date.toString().split(" ")[2] + " " + item.date.toString().split(" ")[3]}
                 </Text>
@@ -93,7 +91,7 @@ export default class History extends Component {
     return (
       <View>
         <Text>
-          TRIMP History
+          History Not Found
         </Text>
       </View>
     );
