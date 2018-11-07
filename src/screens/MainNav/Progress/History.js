@@ -43,7 +43,7 @@ export default class History extends Component {
     if (dates.length > 0 && trimps.length > 0)
       return (
         <View>
-          <Text>
+          <Text style={{ fontSize: 26, padding: 15 }}>
             TRIMP History
           </Text>
           <LineChart
@@ -54,7 +54,7 @@ export default class History extends Component {
               }]
             }}
             width={Dimensions.get('window').width}
-            height={300}
+            height={350}
             chartConfig={{
               backgroundColor: '#e26a00',
               backgroundGradientFrom: '#fb8c00',
