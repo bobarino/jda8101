@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import { View, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Users } from "../../../entities";
-import { Firestore } from "../../../entities/Firestore";
 import {
   LineChart,
   BarChart,
@@ -27,7 +26,7 @@ export default class History extends Component {
       let dates = [];
       let trimps = [];
       for (var i = 0; i < logs.length; i++) {
-        dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2]);
+        dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2] + " " + logs[i].date.toString().split(" ")[3]);
         trimps.push(logs[i].trimp);
       }
       this.setState({ dates: dates });
@@ -42,36 +41,54 @@ export default class History extends Component {
     console.log("Logging Trimps HEYY: ", trimps);
     if (dates.length > 0 && trimps.length > 0)
       return (
-        <View>
-          <Text style={{ fontSize: 26, padding: 15 }}>
-            TRIMP History
-          </Text>
-          <LineChart
-            data={{
-              labels: dates,
-              datasets: [{
-                data: trimps
-              }]
-            }}
-            width={Dimensions.get('window').width}
-            height={350}
-            chartConfig={{
-              backgroundColor: '#e26a00',
-              backgroundGradientFrom: '#fb8c00',
-              backgroundGradientTo: '#ffa726',
-              decimalPlaces: 2, // optional, defaults to 2dp
-              color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-              style: {
+        <ScrollView>
+          <View>
+            <Text style={{ fontSize: 20, padding: 5 }}>
+              TRIMP History
+            </Text>
+            <LineChart
+              data={{
+                labels: dates,
+                datasets: [{
+                  data: trimps
+                }]
+              }}
+              width={Dimensions.get('window').width}
+              height={300}
+              chartConfig={{
+                backgroundColor: '#e26a00',
+                backgroundGradientFrom: '#fb8c00',
+                backgroundGradientTo: '#ffa726',
+                decimalPlaces: 2, // optional, defaults to 2dp
+                color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
+                style: {
+                  borderRadius: 16
+                }
+              }}
+              bezier
+              style={{
+                marginVertical: 8,
                 borderRadius: 16
-              }
-            }}
-            bezier
-            style={{
-              marginVertical: 8,
-              borderRadius: 16
-            }}
-          />
-        </View>
+              }}
+            />
+          </View>
+          <Text style={{ fontSize: 20, marginTop: 10 }}> Exercise List: </Text>
+          {logs.map((item, i) => {
+            return (
+              <View style={{ padding: 10 }}>
+                <Text key={i} style={{ fontSize: 15, marginLeft: 20, fontWeight: "bold" }}>
+                  Date: {item.date.toString().split(" ")[1] + " " + item.date.toString().split(" ")[2] + " " + item.date.toString().split(" ")[3]}
+                </Text>
+                <Text style={{ fontSize: 15, marginLeft: 20 }}>
+                  Duration: {item.duration.toString()}
+                </Text>
+                <Text style={{ fontSize: 15, marginLeft: 20 }}>
+                  TRIMP Score: {item.trimp.toString()}
+                </Text>
+              </View>
+            );
+          })}
+        </ScrollView>
       );
     return (
       <View>
