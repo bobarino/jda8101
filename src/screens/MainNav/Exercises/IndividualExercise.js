@@ -1,11 +1,10 @@
 import React, { Component } from "react";
 
-import { StyleSheet, Text, View, Dimensions, ScrollView, Animated } from "react-native";
+import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
 import Button from "../../../components/Button";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Video from "react-native-video";
-import {Icon} from "react-native-vector-icons/FontAwesome";
 
 export default class IndividualExercise extends Component {
   constructor(props) {
@@ -59,7 +58,6 @@ export default class IndividualExercise extends Component {
 
 const VIEW_WIDTH = Dimensions.get("window").width - 40;
 const VIDEO_HEIGHT = Dimensions.get("window").width - 200;
-// const VIEW_HEIGHT = Dimensions.get("window").height * 2 ;
 const styles = StyleSheet.create({
   scrollView: {
       flex: 1,

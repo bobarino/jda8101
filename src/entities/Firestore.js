@@ -6,12 +6,12 @@ export class Firestore {
     this.db = firebase.firestore();
     this.collection = collection;
     this.fields = fields;
-    this.storage = firebase.storage();
+    // this.storage = firebase.storage();
   }
-
-  getStorage() {
-    return this.storage;
-  }
+  //TODO: when we have enough space in Firebase Storage use this
+  // getStorage() {
+  //   return this.storage;
+  // }
 
   makeEntity(doc) {
     const data = doc.data();
