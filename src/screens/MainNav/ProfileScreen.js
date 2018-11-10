@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import firebase from "react-native-firebase";
 import { View, TextInput, StyleSheet, Text, Picker, Alert } from "react-native";
 import { createStackNavigator } from "react-navigation";
 import { Avatar } from "react-native-elements";
@@ -31,7 +32,7 @@ class Profile extends Component {
     });
 
     LoginService.getCurrentUser().then(async (user) => {
-      const team = user.team;
+      const team = user.team && user.team.id;
       const program = user.curProgram;
 
       this.setState({
@@ -46,14 +47,26 @@ class Profile extends Component {
   }
 
   async updateProfileInfo() {
+    const db = firebase.firestore();
+
     const teams = await Teams.getList();
 
     const { email, first, last, team, program } = this.state;
 
+    let programRef = null;
+    if (program) {
+      programRef = db.collection("programs").doc(program.id);
+    }
+
+    let teamRef = null;
+    if (team) {
+      teamRef = db.collection("teams").doc(team);
+    }
+
     if (team && !teams.map(({ id }) => id).find(x => x === team)) {
       Alert.alert("Not a valid team code");
     }
-    Users.setByID(email, { first, last, team, curProgram: program });
+    Users.setByID(email, { first, last, team: teamRef, curProgram: programRef });
     this.setState({ editing: false, editingTeam: false, editingProgram: false });
   }
 
