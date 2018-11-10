@@ -12,7 +12,7 @@ const getInitials = name => {
 
 class ListItem extends Component {
   render() {
-    const { name, workoutsCompleted } = this.props;
+    const { first, last, curProgress } = this.props;
     return (
       <View>
         <View style={styles.line} />
@@ -20,11 +20,11 @@ class ListItem extends Component {
           <Avatar
             activeOpacity={0.7}
             medium
-            title={getInitials(name || "")}
+            title={first[0].toUpperCase() + last[0].toUpperCase()}
           />
           <View style={styles.innerContainer}>
-            <Text style={styles.name}>{name}</Text>;
-            <Text style={styles.workoutsCompleted}>{workoutsCompleted}</Text>
+            <Text style={styles.name}>{first} {last}</Text>
+            <Text style={styles.workoutsCompleted}>{curProgress[0]}</Text>
           </View>
         </View>
       </View>
@@ -38,7 +38,7 @@ class RosterListView extends Component {
     return (
       <View>
         <View style={styles.titleContainer}>
-          <View style={{ marginLeft: 48 }}><Text style={{ fontWeight: "bold" }}>Name</Text></View>
+          <View style={{ marginLeft: 56 }}><Text style={{ fontWeight: "bold" }}>Name</Text></View>
           <View><Text style={{ fontWeight: "bold" }}>Workouts Completed</Text></View>
         </View>
         <FlatList
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    width: 295,
+    width: 225,
     marginLeft: 5,
   },
   workoutsCompleted: {
