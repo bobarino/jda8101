@@ -49,26 +49,28 @@ export default class Home extends Component {
 
     if (!day || day.exercises.length == 0) return (
       <View style={styles.baseContainer} >
-        <Text style={styles.headerText}>No Workout Today</Text>
+        <View style={styles.widgetContainer}>
+          <Text style={styles.headerText}>No Workout Today</Text>
+        </View>
       </View >
     );
 
     return (
       <View style={styles.baseContainer}>
-        <Text style={styles.headerText}>{dayStrings[day.day - 1]}{"'"}s Workout:</Text>
-        <View style={styles.exerciseContiner}>
-          <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={{ fontSize: 26 }}>Week: </Text>
-            <Text style={{ fontSize: 26 }}>{day.week}</Text>
+        <View style={styles.widgetContainer}>
+          <Text style={styles.headerText}>{dayStrings[day.day - 1]}{"'"}s Workout:</Text>
+          <View style={{ marginLeft: 10, flexDirection: "row", width: "100%" }}>
+            <Text style={{ fontSize: 24 }}>Week: </Text>
+            <Text style={{ fontSize: 24 }}>{day.week}</Text>
           </View>
-          <View style={{ flexDirection: "row", width: "100%" }}>
-            <Text style={{ fontSize: 26 }}>Mesocycle: </Text>
-            <Text style={{ fontSize: 26 }}>{day.meso}</Text>
+          <View style={{ marginLeft: 10, flexDirection: "row", width: "100%" }}>
+            <Text style={{ fontSize: 24 }}>Training Cycle: </Text>
+            <Text style={{ fontSize: 24 }}>{day.meso}</Text>
           </View>
-          <Text style={{ fontSize: 26 }}>Exercises: </Text>
+          <Text style={{ marginLeft: 10, fontSize: 26 }}>Exercises: </Text>
           {day.exercises.map((item, i) => {
             return (
-              <Text key={i} style={{ fontSize: 20, marginLeft: 20 }}>{item.exName}</Text>
+              <Text key={i} style={{ fontSize: 20, marginLeft: 30 }}>{item.exName}</Text>
             );
           })}
           <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: this.state.completedWorkout ? ORANGE1 : "green" }}
@@ -90,6 +92,8 @@ export default class Home extends Component {
             <Text style={{ color: "white", fontSize: 24 }}>{this.state.completedWorkout ? "Workout Already Complete" : "Start Workout"}</Text>
           </Button>
         </View>
+        <View style={styles.widgetContainer}>
+          <Text>Widget 2</Text></View>
       </View >
     );
   }
@@ -101,14 +105,15 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%"
   },
-  exerciseContiner: {
+  widgetContainer: {
     backgroundColor: "white",
-    width: "100%",
+    width: "95%",
 
     padding: 5,
 
     borderBottomWidth: 1,
-    borderBottomColor: "grey"
+    borderBottomColor: "grey",
+    marginTop: 10
   },
   headerText: {
     marginTop: 10,
