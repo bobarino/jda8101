@@ -3,6 +3,11 @@ package com.userapp1;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.horcrux.svg.SvgPackage;
+import io.invertase.firebase.RNFirebasePackage;
+import io.invertase.firebase.RNFirebasePackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import io.invertase.firebase.RNFirebasePackage;
@@ -10,6 +15,7 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.auth.RNFirebaseAuthPackage;
 import io.invertase.firebase.firestore.RNFirebaseFirestorePackage;
+import com.brentvatne.react.ReactVideoPackage;
 
 
 import com.facebook.react.ReactNativeHost;
@@ -32,12 +38,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new SvgPackage(),
             new VectorIconsPackage(),
+            new SvgPackage(),
             new RNFirebasePackage(),
             new RNFirebaseAuthPackage(),
-            new RNFirebaseFirestorePackage()
-
+            new RNFirebaseFirestorePackage(),
+            new ReactVideoPackage()
       );
     }
 
