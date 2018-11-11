@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, ScrollView } from "react-native";
+import { Text, View, StyleSheet, ScrollView, Dimensions } from "react-native";
 import LoginService from "../../../services/LoginService";
-import { Programs } from "../../../entities";
+import { Users } from "../../../entities";
 import Spinner from "../../../components/Spinner";
 import Button from "../../../components/Button";
 import { dayStrings, getWorkoutFromDates } from "../../../Utils";
 import { ORANGE1 } from "../../../Colors";
+import TRIMPGraph from "../Progress/TRIMPGraph";
 
 export default class Home extends Component {
   static navigationOptions = {
@@ -20,6 +21,20 @@ export default class Home extends Component {
 
   componentDidMount() {
     LoginService.getCurrentUser().then(async (user) => {
+      Users.getSubCollectionList(user.id, "logs")
+        .then(async (logs) => {
+          logs.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
+          this.setState({ logs: logs });
+          let dates = [];
+          let trimps = [];
+          for (var i = 0; i < logs.length; i++) {
+            dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2] + " " + logs[i].date.toString().split(" ")[3]);
+            trimps.push(logs[i].trimp);
+          }
+          this.setState({ dates: dates });
+          this.setState({ trimps: trimps });
+
+        }).catch((error) => console.error(error));
       const curDate = new Date();
       // const curDate = new Date("10/17/2018");
       const log = user.logs.doc(`${curDate.getFullYear()}/${curDate.getMonth()}/${curDate.getDate()}`).get();
@@ -93,7 +108,9 @@ export default class Home extends Component {
           </Button>
         </View>
         <View style={styles.widgetContainer}>
-          <Text>Widget 2</Text></View>
+          <Text>TRIMP Score History</Text>
+          <TRIMPGraph width={Dimensions.get("window").width - 40} height={200} />
+        </View>
       </ScrollView >
     );
   }
@@ -113,7 +130,8 @@ const styles = StyleSheet.create({
 
     borderBottomWidth: 1,
     borderBottomColor: "grey",
-    marginTop: 10
+    marginTop: 10,
+    alignItems: "center"
   },
   headerText: {
     fontSize: 32,
