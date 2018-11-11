@@ -104,6 +104,8 @@ PODS:
   - Protobuf (3.6.1)
   - React (0.55.4):
     - React/Core (= 0.55.4)
+  - react-native-video (3.2.1):
+    - React
   - React/Core (0.55.4):
     - yoga (= 0.55.4.React)
   - React/DevSupport (0.55.4):
@@ -135,7 +137,9 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
-  - RNVectorIcons (5.0.0):
+  - RNSVG (8.0.8):
+    - React
+  - RNVectorIcons (6.0.2):
     - React
   - yoga (0.55.4.React)
 
@@ -143,6 +147,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - react-native-video (from `../node_modules/react-native-video`)
   - React/Core (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
   - React/RCTActionSheet (from `../node_modules/react-native`)
@@ -155,6 +160,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNSVG (from `../node_modules/react-native-svg`)
   - RNVectorIcons (from `../node_modules/react-native-vector-icons`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
@@ -182,6 +188,10 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   React:
     :path: "../node_modules/react-native"
+  react-native-video:
+    :path: "../node_modules/react-native-video"
+  RNSVG:
+    :path: "../node_modules/react-native-svg"
   RNVectorIcons:
     :path: "../node_modules/react-native-vector-icons"
   yoga:
@@ -207,9 +217,11 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   React: aa2040dbb6f317b95314968021bd2888816e03d5
-  RNVectorIcons: c0dbfbf6068fefa240c37b0f71bd03b45dddac44
+  react-native-video: 6db316323366025251a815c49ca0e2edabe30a2a
+  RNSVG: 6252323c0312735f0af5f58b5adf2965b6a9ffbf
+  RNVectorIcons: 8c52e1e8da1153613fdef44748e865c25556cb9c
   yoga: a23273df0088bf7f2bb7e5d7b00044ea57a2a54a
 
-PODFILE CHECKSUM: b2fb3685871e0c6d490dde2502feb27662e37f46
+PODFILE CHECKSUM: f4539bc5a094232c2590b387999f2218aef41e64
 
 COCOAPODS: 1.5.3

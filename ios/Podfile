@@ -35,4 +35,6 @@ target 'userapp1' do
 
   pod 'RNSVG', :path => '../node_modules/react-native-svg'
 
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
 end
