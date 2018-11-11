@@ -36,7 +36,7 @@ class RosterListView extends Component {
   render() {
     const { players } = this.props;
     return (
-      <View>
+      <View style={{ height: "100%" }}>
         <View style={styles.titleContainer}>
           <View style={{ marginLeft: 48 }}><Text style={{ fontWeight: "bold" }}>Name</Text></View>
           <View><Text style={{ fontWeight: "bold" }}>Workouts Completed</Text></View>
@@ -44,6 +44,7 @@ class RosterListView extends Component {
         <FlatList
           data={players.map(player => ({ key: player.id, ...player }))}
           renderItem={({ item }) => <ListItem {...item} />}
+          style={{ flexGrow: 1 }}
         />
       </View>
     );
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
   },
   line: {
     borderBottomColor: "#A9A9A9",
-    borderBottomWidth: 0.5,
+    borderBottomWidth: 1,
   },
   outerContainer: {
     flexDirection: "row",

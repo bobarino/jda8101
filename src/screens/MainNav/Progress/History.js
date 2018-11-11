@@ -11,19 +11,19 @@ export default class History extends Component {
   state = {
     logs: [],
     dates: [],
-    trimps: []
+    trimps: [],
+    name: null,
   }
 
   componentDidMount() {
-    const { user } = this.props.navigation.state.params;
-    if (user) {
-      Users.getSubCollectionList(user.id, "logs")
+    if (this.props.navigation.state.params && this.props.navigation.state.params.user) {
+      this.setState({ name: this.props.navigation.state.params.user.name });
+      Users.getSubCollectionList(this.props.navigation.state.params.user.id, "logs")
         .then(async (logs) => {
           logs.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
           this.setState({ logs: logs });
         }).catch((error) => console.error(error));
-    }
-    else {
+    } else {
       LoginService.getCurrentUser()
         .then((user) => Users.getSubCollectionList(user.id, "logs"))
         .then(async (logs) => {
@@ -34,15 +34,13 @@ export default class History extends Component {
     }
   }
 
-
-
   render() {
     const { logs } = this.state;
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 20, paddingTop: 5 }}>
-            TRIMP History
+            TRIMP History{this.state.name != null ? " for " + this.state.name : ""}
           </Text>
           <TRIMPGraph width={Dimensions.get("window").width - 10} height={300} />
         </View>
