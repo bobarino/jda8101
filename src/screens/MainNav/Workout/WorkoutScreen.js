@@ -4,6 +4,8 @@ import Home from "./Home";
 import Program from "./Program";
 import Workout from "./Workout";
 import TeamCalendar from "./TeamCalendar";
+import SelectWorkout from "./SelectWorkout";
+import PreviewWorkout from "./PreviewWorkout";
 
 
 export const WorkoutTabNav = createMaterialTopTabNavigator({
@@ -16,13 +18,13 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
   Program: {
     screen: Program,
     navigationOptions: {
-      tabBarLabel: "Your Program",
+      tabBarLabel: "Program",
     }
   },
   TeamCalendar: {
     screen: TeamCalendar,
     navigationOptions: {
-      tabBarLabel: "Team Calendar",
+      tabBarLabel: "Calendar",
     }
   },
 },
@@ -51,6 +53,12 @@ export const WorkoutStack = createStackNavigator({
   LiveWorkout: {
     screen: Workout,
   },
+  SelectWorkout: {
+    screen: SelectWorkout,
+  },
+  PreviewWorkout: {
+    screen: PreviewWorkout
+  }
 }, {
     navigationOptions: {
       gesturesEnabled: false,

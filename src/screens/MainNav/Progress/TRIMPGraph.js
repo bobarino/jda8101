@@ -20,7 +20,7 @@ export default class TRIMPGraph extends Component {
         let dates = [];
         let trimps = [];
         for (var i = 0; i < logs.length; i++) {
-          dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2] + " " + logs[i].date.toString().split(" ")[3]);
+          dates.push(logs[i].start.getMonth() + "/" + logs[i].start.getDate());
           trimps.push(logs[i].trimp);
         }
         this.setState({ dates, trimps, loaded: true });
@@ -29,7 +29,11 @@ export default class TRIMPGraph extends Component {
   }
 
   render() {
-    if (this.state.loaded)
+    if (this.state.loaded) {
+      if (this.state.dates.length == 0) {
+        return null;
+      }
+
       return (
         <LineChart
           data={{
@@ -44,11 +48,11 @@ export default class TRIMPGraph extends Component {
             backgroundColor: "#e26a00",
             backgroundGradientFrom: "#fb8c00",
             backgroundGradientTo: "#ffa726",
-            decimalPlaces: 2,
+            decimalPlaces: 0,
             color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
             style: {
               borderRadius: 16
-            }
+            },
           }}
           bezier
           style={{
@@ -58,10 +62,12 @@ export default class TRIMPGraph extends Component {
           }}
         />
       );
+    }
     return (
       <View style={{ width: this.props.width, height: this.props.height }}>
         <Spinner show={true} />
       </View>
     );
+
   }
 }

@@ -6,6 +6,7 @@ import WorkoutStopwatch from "./WorkoutStopwatch";
 import ExercisePreview from "./ExercisePreview";
 import WorkoutRecord from "./WorkoutRecord";
 
+
 import LoginService from "../../../services/LoginService";
 
 export default class Workout extends Component {
@@ -34,10 +35,8 @@ export default class Workout extends Component {
   }
 
   recordWorkout(trimp, start, duration) {
-    const docID = `${start.getFullYear()}/${start.getMonth()}/${start.getDate()}`;
-
     LoginService.getCurrentUser().then(async (user) => {
-      user.logs.doc(docID).set({
+      user.logs.add({
         duration, start, trimp, workout: (await Workouts.getByID(this.props.navigation.state.params.day.wID)).doc().ref
       });
     }).then(() => {
