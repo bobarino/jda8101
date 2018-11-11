@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, ScrollView } from "react-native";
 import LoginService from "../../../services/LoginService";
 import { Programs } from "../../../entities";
 import Spinner from "../../../components/Spinner";
@@ -48,15 +48,15 @@ export default class Home extends Component {
     );
 
     if (!day || day.exercises.length == 0) return (
-      <View style={styles.baseContainer} >
+      <ScrollView contentContainerStyle={styles.baseContainer} >
         <View style={styles.widgetContainer}>
           <Text style={styles.headerText}>No Workout Today</Text>
         </View>
-      </View >
+      </ScrollView >
     );
 
     return (
-      <View style={styles.baseContainer}>
+      <ScrollView contentContainerStyle={styles.baseContainer}>
         <View style={styles.widgetContainer}>
           <Text style={styles.headerText}>{dayStrings[day.day - 1]}{"'"}s Workout:</Text>
           <View style={{ marginLeft: 10, flexDirection: "row", width: "100%" }}>
@@ -94,7 +94,7 @@ export default class Home extends Component {
         </View>
         <View style={styles.widgetContainer}>
           <Text>Widget 2</Text></View>
-      </View >
+      </ScrollView >
     );
   }
 }
@@ -116,7 +116,6 @@ const styles = StyleSheet.create({
     marginTop: 10
   },
   headerText: {
-    marginTop: 10,
     fontSize: 32,
     fontWeight: "bold"
   }

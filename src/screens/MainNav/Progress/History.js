@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, Dimensions, ScrollView } from "react-native";
 import { Users } from "../../../entities";
-import {
-  LineChart,
-  BarChart,
-  PieChart,
-  ProgressChart,
-  ContributionGraph
-} from 'react-native-chart-kit'
+import { LineChart } from "react-native-chart-kit";
+import LoginService from "../../../services/LoginService";
 
 
 export default class History extends Component {
@@ -20,23 +15,26 @@ export default class History extends Component {
 
   componentDidMount() {
     //TODO- Need to get current correct user dynamically
-    Users.getSubCollectionList("test@athlete-physics.com", "logs").then(async (logs) => {
-      logs.sort((a,b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
-      this.setState({ logs: logs });
-      let dates = [];
-      let trimps = [];
-      for (var i = 0; i < logs.length; i++) {
-        dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2] + " " + logs[i].date.toString().split(" ")[3]);
-        trimps.push(logs[i].trimp);
-      }
-      this.setState({ dates: dates });
-      this.setState({ trimps: trimps });
 
-    }).catch((error) => console.error(error));
+    LoginService.getCurrentUser()
+      .then((user) => Users.getSubCollectionList(user.id, "logs"))
+      .then(async (logs) => {
+        logs.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
+        this.setState({ logs: logs });
+        let dates = [];
+        let trimps = [];
+        for (var i = 0; i < logs.length; i++) {
+          dates.push(logs[i].date.toString().split(" ")[1] + " " + logs[i].date.toString().split(" ")[2] + " " + logs[i].date.toString().split(" ")[3]);
+          trimps.push(logs[i].trimp);
+        }
+        this.setState({ dates: dates });
+        this.setState({ trimps: trimps });
+
+      }).catch((error) => console.error(error));
   }
 
   render() {
-    const { logs, dates, trimps} = this.state;
+    const { logs, dates, trimps } = this.state;
     if (dates.length > 0 && trimps.length > 0)
       return (
         <ScrollView>
@@ -73,7 +71,7 @@ export default class History extends Component {
           <Text style={{ fontSize: 20, marginTop: 10 }}> Exercise List: </Text>
           {logs.map((item, i) => {
             return (
-              <View style={{ padding: 5 }}>
+              <View key={i} style={{ padding: 5 }}>
                 <Text key={i} style={{ fontSize: 15, marginLeft: 20, fontWeight: "bold" }}>
                   Date: {item.date.toString().split(" ")[1] + " " + item.date.toString().split(" ")[2] + " " + item.date.toString().split(" ")[3]}
                 </Text>

@@ -28,13 +28,14 @@ export default class IndividualExercise extends Component {
         </View>
 
         {/* body container */}
-        <View style={{paddingTop: 20, flex: 1}}>
-          <ScrollView style={ styles.scrollView } contentContainerStyle={{ alignItems: "center"}}>
+        <View style={{ paddingTop: 20, flex: 1 }}>
+          <ScrollView style={styles.scrollView} contentContainerStyle={{ alignItems: "center" }}>
             {exercise.exVideo && <View style={styles.videoContainer}>
-               <Video style={styles.video}
-                     source={{uri: "https://drive.google.com/uc?export=download&id=" + exercise.exVideo }}
-                     repeat={true}
-                     resizeMode="contain"
+              <Video style={styles.video}
+                source={{ uri: "https://drive.google.com/uc?export=download&id=" + exercise.exVideo }}
+                repeat={true}
+                volume={0}
+                resizeMode="contain"
               />
             </View>}
             <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
@@ -60,7 +61,7 @@ const VIEW_WIDTH = Dimensions.get("window").width - 40;
 const VIDEO_HEIGHT = Dimensions.get("window").width - 200;
 const styles = StyleSheet.create({
   scrollView: {
-      flex: 1,
+    flex: 1,
   },
   header: {
     flex: 1,
@@ -89,8 +90,8 @@ const styles = StyleSheet.create({
     alignItems: "center"
   },
   video: {
-      width: VIEW_WIDTH,
-      height: VIDEO_HEIGHT,
+    width: VIEW_WIDTH,
+    height: VIDEO_HEIGHT,
   },
   labelText: {
     fontSize: 24,
@@ -103,16 +104,16 @@ const styles = StyleSheet.create({
     width: VIEW_WIDTH - 105
   },
   videoCover: {
-      flex: 1,
-      width: VIEW_WIDTH,
-      height: VIDEO_HEIGHT,
-      alignItems: "center",
-      justifyContent: "center",
-      position: "absolute",
-      left: 0,
-      top: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: "rgba(255,255,255, .9)",
+    flex: 1,
+    width: VIEW_WIDTH,
+    height: VIDEO_HEIGHT,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    left: 0,
+    top: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: "rgba(255,255,255, .9)",
   },
 });

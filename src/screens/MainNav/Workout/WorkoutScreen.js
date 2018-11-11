@@ -10,7 +10,7 @@ export const WorkoutTabNav = createMaterialTopTabNavigator({
   Today: {
     screen: Home,
     navigationOptions: {
-      tabBarLabel: "Today's Workout",
+      tabBarLabel: "Home",
     }
   },
   Program: {

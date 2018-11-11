@@ -276,7 +276,7 @@ const styles = StyleSheet.create({
   day: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    padding: 17,
+    padding: 15,
     margin: 2,
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0)"
@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
   day_selected: {
     flex: 1,
     backgroundColor: "#FA8405",
-    padding: 17,
+    padding: 15,
     margin: 2,
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0)"
@@ -292,7 +292,7 @@ const styles = StyleSheet.create({
   day_wrongmonth: {
     flex: 1,
     backgroundColor: "darkgrey",
-    padding: 17,
+    padding: 15,
     margin: 2,
     borderWidth: 1,
     borderColor: "rgba(0, 0, 0, 0)"
@@ -300,7 +300,7 @@ const styles = StyleSheet.create({
   day_today: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    padding: 17,
+    padding: 15,
     margin: 2,
     borderWidth: 1,
     borderColor: "grey",
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
   day_today_selected: {
     flex: 1,
     backgroundColor: "#FA8405",
-    padding: 17,
+    padding: 15,
     borderWidth: 1,
     borderColor: "grey",
     borderStyle: "solid"
