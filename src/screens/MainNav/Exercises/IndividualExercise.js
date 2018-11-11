@@ -4,17 +4,16 @@ import { StyleSheet, Text, View, Dimensions, ScrollView } from "react-native";
 import Button from "../../../components/Button";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
-
+import Video from "react-native-video";
 
 export default class IndividualExercise extends Component {
   constructor(props) {
     super(props);
   }
 
-
   render() {
     const { exercise } = this.props.navigation.state.params;
-
+    //TODO we need to change to firebase storage but current plan doesnt have good limits
     return (
       <View style={{ width: "100%", height: "100%" }}>
         {/* header container */}
@@ -29,29 +28,40 @@ export default class IndividualExercise extends Component {
         </View>
 
         {/* body container */}
-        <ScrollView style={{ paddingTop: 20 }} contentContainerStyle={{ alignItems: "center" }}>
-          <View style={styles.videoContainer} />
-          <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
-            <Text style={styles.labelText}>Type:</Text>
-            <Text style={styles.typeText}>{exercise.exType}</Text>
-          </View>
-          <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
-            <Text style={styles.labelText}>Start:</Text>
-            <Text style={styles.typeText}>{exercise.exStart}</Text>
-          </View>
-          <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
-            <Text style={styles.labelText}>Action:</Text>
-            <Text style={styles.typeText}>{exercise.exAct}</Text>
-          </View>
-        </ScrollView>
+        <View style={{paddingTop: 20, flex: 1}}>
+          <ScrollView style={ styles.scrollView } contentContainerStyle={{ alignItems: "center"}}>
+            {exercise.exVideo && <View style={styles.videoContainer}>
+               <Video style={styles.video}
+                     source={{uri: "https://drive.google.com/uc?export=download&id=" + exercise.exVideo }}
+                     repeat={true}
+                     resizeMode="contain"
+              />
+            </View>}
+            <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
+              <Text style={styles.labelText}>Type:</Text>
+              <Text style={styles.typeText}>{exercise.exType}</Text>
+            </View>
+            <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
+              <Text style={styles.labelText}>Start:</Text>
+              <Text style={styles.typeText}>{exercise.exStart}</Text>
+            </View>
+            <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
+              <Text style={styles.labelText}>Action:</Text>
+              <Text style={styles.typeText}>{exercise.exAct}</Text>
+            </View>
+          </ScrollView>
+        </View>
       </View>
     );
   }
 }
 
 const VIEW_WIDTH = Dimensions.get("window").width - 40;
-
+const VIDEO_HEIGHT = Dimensions.get("window").width - 200;
 const styles = StyleSheet.create({
+  scrollView: {
+      flex: 1,
+  },
   header: {
     flex: 1,
     flexDirection: "row",
@@ -74,9 +84,13 @@ const styles = StyleSheet.create({
     width: VIEW_WIDTH,
     borderWidth: 1,
     borderColor: "grey",
-    height: VIEW_WIDTH,
+    height: VIDEO_HEIGHT,
     justifyContent: "center",
     alignItems: "center"
+  },
+  video: {
+      width: VIEW_WIDTH,
+      height: VIDEO_HEIGHT,
   },
   labelText: {
     fontSize: 24,
@@ -87,7 +101,18 @@ const styles = StyleSheet.create({
   typeText: {
     fontSize: 24,
     width: VIEW_WIDTH - 105
-  }
-
-
+  },
+  videoCover: {
+      flex: 1,
+      width: VIEW_WIDTH,
+      height: VIDEO_HEIGHT,
+      alignItems: "center",
+      justifyContent: "center",
+      position: "absolute",
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: "rgba(255,255,255, .9)",
+  },
 });
