@@ -108,7 +108,7 @@ export default class Home extends Component {
           </Button>
         </View>
         <View style={styles.widgetContainer}>
-          <Text>TRIMP Score History</Text>
+          <Text style={styles.graphHeader}>TRIMP Score History</Text>
           <TRIMPGraph width={Dimensions.get("window").width - 40} height={200} />
         </View>
       </ScrollView >
@@ -131,10 +131,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "grey",
     marginTop: 10,
-    alignItems: "center"
+    alignItems: "flex-start"
   },
   headerText: {
     fontSize: 32,
     fontWeight: "bold"
+  },
+  graphHeader: {
+    fontSize: 18,
+    alignSelf: "center"
   }
 });
