@@ -66,8 +66,15 @@ class Profile extends Component {
     if (team && !teams.map(({ id }) => id).find(x => x === team)) {
       Alert.alert("Not a valid team code");
     }
-    Users.setByID(email, { first, last, team: teamRef, curProgram: programRef });
-    this.setState({ editing: false, editingTeam: false, editingProgram: false });
+    LoginService.getCurrentUser().then((user) => {
+      user.first = first;
+      user.last = last;
+      user.team = teamRef;
+      user.curProgram = programRef;
+
+      Users.setByID(email, user);
+      this.setState({ editing: false, editingTeam: false, editingProgram: false });
+    });
   }
 
   render() {
@@ -168,9 +175,9 @@ class Profile extends Component {
                   ))}
                 </Picker>
               ) : (
-                <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>
-                  {this.state.program ? this.state.program.id : "None"}
-                </Text>)
+                  <Text style={{ flex: 1, marginLeft: 4, marginTop: 4, fontSize: 16 }}>
+                    {this.state.program ? this.state.program.id : "None"}
+                  </Text>)
               }
               {this.state.editing && !this.state.editingProgram ? (
                 <Button onPress={() => this.setState({ editingProgram: true })} style={{ backgroundColor: "red", marginTop: 4, paddingHorizontal: 5 }}>

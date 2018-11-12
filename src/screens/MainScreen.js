@@ -11,7 +11,6 @@ import WorkoutScreen from "./MainNav/Workout/WorkoutScreen";
 import ProfileScreen from "./MainNav/ProfileScreen";
 import TeamRosterScreen from "./MainNav/TeamRosterScreen";
 import FeedbackScreen from "./MainNav/FeedbackScreen";
-import SettingsScreen from "./MainNav/SettingsScreen";
 import ProgressScreen from "./MainNav/Progress/ProgressScreen";
 
 import LoginService from "../services/LoginService";
@@ -105,7 +104,6 @@ const MainNav = createDrawerNavigator({
   Progress: ProgressScreen(createNavigationHeader("Progress")),
   Profile: ProfileScreen(createNavigationHeader("Profile")),
   "Team Roster": TeamRosterScreen(createNavigationHeader("Team Roster")),
-  Settings: SettingsScreen(createNavigationHeader("Settings")),
   Feedback: FeedbackScreen(createNavigationHeader("Feedback")),
 },
   {
