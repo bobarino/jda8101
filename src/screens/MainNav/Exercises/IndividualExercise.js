@@ -5,14 +5,39 @@ import Button from "../../../components/Button";
 
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Video from "react-native-video";
+import { Spinner } from "native-base";
 
 export default class IndividualExercise extends Component {
+
   constructor(props) {
     super(props);
+    this.onVideoLoad = this.onVideoLoad.bind(this);
+  }
+
+  state = {
+    hasVideo: false,
+    videoLoaded: false,
+    exercise: null,
+  }
+
+  componentDidMount() {
+    const { exercise } = this.props.navigation.state.params;
+    console.log("exercise:", exercise);
+    let hasVideo = false;
+    if (exercise.exVideo) hasVideo = true;
+
+    this.setState({ hasVideo, exercise });
+  }
+
+  onVideoLoad() {
+    this.setState({ videoLoaded: true });
   }
 
   render() {
-    const { exercise } = this.props.navigation.state.params;
+    const { exercise } = this.state;
+
+    if (exercise === null) return (<Spinner show={true} />);
+
     //TODO we need to change to firebase storage but current plan doesnt have good limits
     return (
       <View style={{ width: "100%", height: "100%" }}>
@@ -30,14 +55,15 @@ export default class IndividualExercise extends Component {
         {/* body container */}
         <View style={{ paddingTop: 20, flex: 1 }}>
           <ScrollView style={styles.scrollView} contentContainerStyle={{ alignItems: "center" }}>
-            {exercise.exVideo && <View style={styles.videoContainer}>
+            {this.state.hasVideo ? <View style={styles.videoContainer}>
               <Video style={styles.video}
                 source={{ uri: "https://drive.google.com/uc?export=download&id=" + exercise.exVideo }}
                 repeat={true}
-                volume={0}
+                muted={true}
+                onLoad={this.onVideoLoad}
                 resizeMode="contain"
               />
-            </View>}
+            </View> : null}
             <View style={{ flexDirection: "row", width: VIEW_WIDTH, marginTop: 20 }}>
               <Text style={styles.labelText}>Type:</Text>
               <Text style={styles.typeText}>{exercise.exType}</Text>

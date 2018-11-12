@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, FlatList, Text, StyleSheet } from "react-native";
 import { Avatar } from "react-native-elements";
+import Button from "../../../components/Button";
 
 const getInitials = name => {
   if (!name.length) return "AP";
@@ -12,9 +13,12 @@ const getInitials = name => {
 
 class ListItem extends Component {
   render() {
-    const { name, workoutsCompleted } = this.props;
+    const { name, workoutsCompleted, userObj } = this.props;
     return (
-      <View>
+      <Button onPress={() => {
+        console.log("user:", userObj);
+        this.props.navigation.navigate("Progress", { user: userObj });
+      }}>
         <View style={styles.line} />
         <View style={styles.outerContainer}>
           <Avatar
@@ -27,7 +31,7 @@ class ListItem extends Component {
             <Text style={styles.workoutsCompleted}>{workoutsCompleted}</Text>
           </View>
         </View>
-      </View>
+      </Button >
     );
   }
 }
@@ -42,7 +46,7 @@ class RosterListView extends Component {
           <View><Text style={{ fontWeight: "bold" }}>Workouts Completed</Text></View>
         </View>
         <FlatList
-          data={players.map(player => ({ key: player.id, ...player }))}
+          data={players.map(player => ({ key: player.id, navigation: this.props.navigation, ...player }))}
           renderItem={({ item }) => <ListItem {...item} />}
           style={{ flexGrow: 1 }}
         />

@@ -310,6 +310,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#FA8405",
     padding: 15,
+    margin: 2,
     borderWidth: 1,
     borderColor: "grey",
     borderStyle: "solid"

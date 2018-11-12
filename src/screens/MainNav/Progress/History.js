@@ -16,6 +16,7 @@ export default class History extends Component {
   }
 
   componentDidMount() {
+    console.log("this.props.navigation.state:", this.props.navigation.state);
     if (this.props.navigation.state.params && this.props.navigation.state.params.user) {
       this.setState({
         name: this.props.navigation.state.params.user.name,
@@ -43,7 +44,7 @@ export default class History extends Component {
   render() {
     const { logs } = this.state;
     return (
-      <View style={{ flex: 1, alignItems: "center" }}>
+      <View style={{ width: "100%", alignItems: "center", flex: 1 }}>
         <View style={{ alignItems: "center" }}>
           <Text style={{ fontSize: 20, paddingTop: 5 }}>
             TRIMP History{this.state.name != null ? " for " + this.state.name : ""}
@@ -51,8 +52,8 @@ export default class History extends Component {
           <TRIMPGraph width={Dimensions.get("window").width - 10} height={300} userid={this.state.userID} />
         </View>
         <Text style={{ alignSelf: "flex-start", fontSize: 20, marginTop: 10, marginLeft: 5 }}>Workouts Performed: </Text>
-        <View style={{ backgroundColor: "white", flexGrow: 1, width: "100%" }}>
-          <ScrollView style={{ flexGrow: 1 }} contentContainerStyle={{ backgroundColor: "white" }}>
+        <View style={{ backgroundColor: "white", width: "100%", flexGrow: 1 }}>
+          <ScrollView contentContainerStyle={{ backgroundColor: "white" }}>
             {logs.map((item, i) => {
               return (
                 <View key={i} style={{ width: "100%", padding: 5, borderTopWidth: 1, borderTopColor: "black" }}>
