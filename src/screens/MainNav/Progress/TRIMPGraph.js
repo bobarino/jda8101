@@ -9,29 +9,41 @@ import Spinner from "../../../components/Spinner";
 export default class TRIMPGraph extends Component {
   state = {
     dates: [],
-    trimps: []
+    trimps: [],
+    userid: null,
   }
 
   componentDidMount() {
-    LoginService.getCurrentUser()
-      .then((user) => Users.getSubCollectionList(user.id, "logs"))
-      .then(async (logs) => {
-        logs.sort((a, b) => (a.date > b.date) ? 1 : ((b.date > a.date) ? -1 : 0));
-        let dates = [];
-        let trimps = [];
-        for (var i = 0; i < logs.length; i++) {
-          dates.push(logs[i].start.getMonth() + "/" + logs[i].start.getDate());
-          trimps.push(logs[i].trimp);
-        }
-        this.setState({ dates, trimps, loaded: true });
+    if (this.props.userid !== this.state.userid) this.update();
+  }
 
-      }).catch((error) => console.error(error));
+  componentDidUpdate() {
+    if (this.props.userid !== this.state.userid) this.update();
+  }
+
+  update() {
+    if (this.props.userid) {
+      Users.getSubCollectionList(this.props.userid, "logs")
+        .then(async (logs) => {
+          logs.sort((a, b) => (a.start > b.start) ? 1 : ((b.start > a.start) ? -1 : 0));
+          let dates = [];
+          let trimps = [];
+          for (var i = 0; i < logs.length; i++) {
+            dates.push(logs[i].start.getMonth() + "/" + logs[i].start.getDate());
+            trimps.push(logs[i].trimp);
+          }
+          this.setState({ dates, trimps, loaded: true, userid: this.props.userid });
+
+        }).catch((error) => console.error(error));
+    }
   }
 
   render() {
     if (this.state.loaded) {
       if (this.state.dates.length == 0) {
-        return null;
+        return (
+          <View style={{ width: this.props.width, height: this.props.height, backgroundColor: "white" }} />
+        );
       }
 
       return (

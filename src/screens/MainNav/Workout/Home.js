@@ -16,26 +16,36 @@ export default class Home extends Component {
   state = {
     day: undefined,
     loading: true,
-    completedWorkout: false
+    completedWorkout: false,
+    user: null
   }
 
   componentDidMount() {
-    LoginService.getCurrentUser().then(async (user) => {
+    LoginService.getCurrentUser().then((user) => {
       const curDate = new Date();
-      // const curDate = new Date("10/17/2018");
-      const log = user.logs.doc(`${curDate.getFullYear()}/${curDate.getMonth()}/${curDate.getDate()}`).get();
+      let logExists = false;
 
-      if (!user.curProgram) {
-        this.setState({ completedWorkout: log.exists, loading: false });
-      } else {
-        const program = await user.curProgram.get();
-        if (!program.exists) this.setState({ completedWorkout: log.exists, loading: false });
-        else {
-          const day = await getWorkoutFromDates(program.data(), user.curProgramStart, curDate);
-          this.setState({ day, programStart: user.curProgramStart, loading: false });
+      user.logs.get().then((querySnapshot) => {
+        querySnapshot.forEach(function (doc) {
+          if (doc.data().start.getMonth() == curDate.getMonth()
+            && doc.data().start.getYear() == curDate.getYear()
+            && doc.data().start.getDate() == curDate.getDate()) {
+            logExists = true;
+          }
+        });
+      }).then(async () => {
+        if (!user.curProgram) {
+          this.setState({ completedWorkout: logExists, loading: false, user });
+        } else {
+          const program = await user.curProgram.get();
+          if (!program.exists) this.setState({ completedWorkout: logExists, loading: false, user });
+          else {
+            const day = await getWorkoutFromDates(program.data(), user.curProgramStart, curDate);
+            this.setState({ day, programStart: user.curProgramStart, loading: false, user });
+          }
         }
-      }
-    });
+      }).catch((e) => console.log("error:", e));
+    }).catch((e) => console.log("error:", e));
   }
 
   render() {
@@ -100,11 +110,11 @@ export default class Home extends Component {
           {workoutElement}
           <View style={styles.widgetContainer}>
             <Text style={styles.graphHeader}>TRIMP Score History</Text>
-            <TRIMPGraph width={Dimensions.get("window").width - 40} height={200} />
+            <TRIMPGraph width={Dimensions.get("window").width - 40} height={200} userid={this.state.user.id} />
           </View>
           <View style={styles.widgetContainer}>
             <Text>Perform Any Workout</Text>
-            <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: ORANGE1 }}
+            <Button style={{ width: "100%", height: 32, marginTop: 20, alignItems: "center", backgroundColor: "green" }}
               onPress={() => this.props.navigation.navigate("SelectWorkout")}>
               <Text style={{ color: "white", fontSize: 24 }}>Select Workout</Text>
             </Button>
