@@ -57,6 +57,7 @@ buck-out/
 
 # CocoaPods
 ios/Pods
+ios/userapp1.xcworkspace/xcshareddata/
 
 # API Keys
 GoogleService-Info.plist

@@ -91,14 +91,32 @@ export default class Calendar extends Component {
   }
 
   renderDays(week_days) {
+    const today = new Date();
     return week_days.map((day, i) => {
+      if (this.state.currentDate.getMonth() != day.getMonth()) {
+        return (
+          <View key={i} style={styles.day_wrongmonth}>
+            <Text style={styles.text_center}>{day.getDate()}</Text>
+          </View>);
+      }
+
       let buttonStyle = styles.day;
       if (this.state.selectedDate.getDate() === day.getDate()
-        && this.state.selectedDate.getMonth() === day.getMonth())
-        buttonStyle = styles.day_selected;
-      else if (this.state.currentDate.getDate() == day.getDate()
-        && this.state.currentDate.getMonth() == day.getMonth())
-        buttonStyle = styles.day_current;
+        && this.state.selectedDate.getMonth() === day.getMonth()
+        && this.state.selectedDate.getFullYear() === day.getFullYear()) {
+        if (today.getDate() === day.getDate()
+          && today.getMonth() === day.getMonth()
+          && today.getFullYear() === day.getFullYear())
+          buttonStyle = styles.day_today_selected;
+        else
+          buttonStyle = styles.day_selected;
+      } else if (today.getDate() === day.getDate()
+        && today.getMonth() === day.getMonth()
+        && today.getFullYear() === day.getFullYear()) {
+        buttonStyle = styles.day_today;
+      }
+
+
 
       return (
         <TouchableOpacity
@@ -141,6 +159,8 @@ export default class Calendar extends Component {
   }
 
   onPressDay(date, month) {
+    // don't let presses on greyed out butons
+    if (month != this.state.selectedDate.getMonth()) return;
     this.setState({ selectedDate: new Date(this.state.currentDate.getFullYear(), month, date) }, () => this.updateNotes());
   }
 
@@ -256,20 +276,42 @@ const styles = StyleSheet.create({
   day: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    padding: 17,
-    margin: 2
+    padding: 15,
+    margin: 2,
+    borderWidth: 1,
+    borderColor: "rgba(0, 0, 0, 0)"
   },
   day_selected: {
     flex: 1,
     backgroundColor: "#FA8405",
-    padding: 17,
-    margin: 2
+    padding: 15,
+    margin: 2,
+    borderWidth: 1,
+    borderColor: "rgba(0, 0, 0, 0)"
   },
-  day_current: {
+  day_wrongmonth: {
+    flex: 1,
+    backgroundColor: "darkgrey",
+    padding: 15,
+    margin: 2,
+    borderWidth: 1,
+    borderColor: "rgba(0, 0, 0, 0)"
+  },
+  day_today: {
     flex: 1,
     backgroundColor: "#F5F5F5",
-    padding: 17,
+    padding: 15,
     margin: 2,
+    borderWidth: 1,
+    borderColor: "grey",
+    borderStyle: "solid"
+  },
+  day_today_selected: {
+    flex: 1,
+    backgroundColor: "#FA8405",
+    padding: 15,
+    margin: 2,
+    borderWidth: 1,
     borderColor: "grey",
     borderStyle: "solid"
   },

@@ -32,4 +32,9 @@ target 'userapp1' do
   # Required by native-base 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
+  pod 'RNSVG', :path => '../node_modules/react-native-svg'
+
+  pod 'react-native-video', :path => '../node_modules/react-native-video'
+
 end
