@@ -10,6 +10,9 @@ Team JDA 8101's project.
 - Added profile page
 - Added ability to join teams and workout programs
 
+##### Fixed Bugs
+- Connected database to chart screen
+
 ##### Known Bugs
 - Athletes are able to join any team
 - Training history chart lacks totality of user's data
